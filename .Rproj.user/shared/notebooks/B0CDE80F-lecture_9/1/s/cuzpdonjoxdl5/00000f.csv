@@ -1,0 +1,6 @@
+"0","walmart.map <- function(data, date) {"
+"0","    walmart <- subset(data, subset = (opendate <= date))"
+"0","    map(database = ""state"")"
+"0","    points(walmart$long, walmart$lat, col = walmart$storecolors,"
+"0","pch = 19, cex = walmart$storesize)"
+"0","}"

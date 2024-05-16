@@ -1,0 +1,262 @@
+# Demographic map of Japan
+
+-   Load packages by using `pacman` package manager
+
+```{r}
+#| code-fold: false
+pacman::p_load(tidyverse, here, data.table, magrittr, rvest, cowplot, sf, spdep, ggthemes, ggpubr, ggrepel, ggspatial, viridis)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+-   Load your CSV data
+
+```{r}
+#| code-fold: false
+#| message: false
+#| warning: false
+eld_pop_2021 <- read_csv(here("data", "csv",  "eld_pop_2021.csv"), col_names = TRUE)
+eld_pop_2021$Code <- sprintf("%05d", eld_pop_2021$Code)
+```
+
+-   Load the municipal map of Japan
+
+```{r results='hide', echo=FALSE}
+#| code-fold: false
+#| message: false
+#| warning: false
+projcrs <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
+
+d3 <- sf::st_read(here("data", "shapefile", "jpn", "japan_ver84.shp")) %>%
+  st_transform(sp::CRS("+proj=longlat +datum=WGS84"))
+
+d3 <- d3[,-c(2:6, 8:9)]
+colnames(d3)[1] <- "Code"
+```
+
+-   Mutual matching
+
+```{r}
+#| code-fold: false
+#| message: false
+#| warning: false
+
+# Filter geo-dataframe by fiscal one
+d3 <- d3 %>%
+  filter (Code %in% eld_pop_2021$Code)
+
+# Filter fiscal data-frame by geo-one
+eld_pop_2021 <- eld_pop_2021 %>%
+  filter(Code %in% d3$Code)
+```
+
+-   Merge fiscal and geo datasets
+
+```{r}
+#| code-fold: false
+#| message: false
+#| warning: false
+eld_pop_2021 <- merge(x = d3, y = eld_pop_2021, all.x = TRUE, by = "Code")
+```
+
+-   Load the *prefectural* map of Japan and change CRS to *WGS84*
+
+```{r}
+#| code-fold: false
+#| message: false
+#| warning: false
+PrefMap <- sf::st_read(here("data", "shapefile", "jpn", 'JPref.shp')) %>%
+  st_transform(sp::CRS("+proj=longlat +datum=WGS84"))
+PrefMap2 <- as(PrefMap, "Spatial")
+```
+
+-   Extract prefectural coordinates
+
+```{r}
+#| code-fold: false
+#| message: false
+#| warning: false
+coord2 <- as.data.frame(sp::coordinates(sp::spTransform(PrefMap2,
+                                                sp::CRS("+proj=longlat +datum=WGS84"))))
+```
+
+-   Load the names of prefectures
+
+```{r}
+#| code-fold: false
+#| message: false
+#| warning: false
+Pref <- read.csv(here("data", "csv", "japan_pref.csv"), stringsAsFactors = FALSE)
+colnames(Pref)[1] <- "Code"
+
+PrefCoord <- cbind(Pref, coord2)
+```
+
+-   Function to center the legend
+
+Taken from: https://stackoverflow.com/questions/48000292/center-align-legend-title-and-legend-keys-in-ggplot2-for-long-legend-titles
+
+```{r}
+#| code-fold: false
+#| message: false
+#| warning: false
+align_legend <- function(p, hjust = 0.5)
+{
+  # extract legend
+  g <- cowplot::plot_to_gtable(p)
+  grobs <- g$grobs
+  legend_index <- which(sapply(grobs, function(x) x$name) == "guide-box")
+  legend <- grobs[[legend_index]]
+
+  # extract guides table
+  guides_index <- which(sapply(legend$grobs, function(x) x$name) == "layout")
+
+  # there can be multiple guides within one legend box  
+  for (gi in guides_index) {
+    guides <- legend$grobs[[gi]]
+
+    # add extra column for spacing
+    # guides$width[5] is the extra spacing from the end of the legend text
+    # to the end of the legend title. If we instead distribute it by `hjust:(1-hjust)` on
+    # both sides, we get an aligned legend
+    spacing <- guides$width[5]
+    guides <- gtable::gtable_add_cols(guides, hjust*spacing, 1)
+    guides$widths[6] <- (1-hjust)*spacing
+    title_index <- guides$layout$name == "title"
+    guides$layout$l[title_index] <- 2
+
+    # reconstruct guides and write back
+    legend$grobs[[gi]] <- guides
+  }
+
+  # reconstruct legend and write back
+  g$grobs[[legend_index]] <- legend
+  g
+}
+```
+
+-   Elderly - mapping
+
+```{r}
+#| code-fold: false
+#| message: false
+#| warning: false
+# see the corresponding values to be put in the legend
+quantile(eld_pop_2021$EldPop, c(.1, .2, .3, .4, .5, .6, .7, .8, .9, 1), na.rm = TRUE)
+```
+
+```{r}
+#| code-fold: false
+#| message: false
+#| warning: false
+(EldMain <- eld_pop_2021 %>%
+  mutate(EldDecile = ntile(EldPop,10)) %>%
+  ggplot() +
+  geom_sf(aes(fill = EldDecile), colour = NA) +
+  geom_sf(data = PrefMap, # prefectural level
+           fill = NA,
+           color = "black",
+           linewidth = 0.1) +
+  coord_sf(xlim = c(128, 147), 
+           ylim = c(30.1, 46),
+           expand = FALSE) +
+  scale_fill_viridis(option="D", direction = -1,
+                     breaks = c(2, 4, 6, 8, 10),
+                     labels = c("27%", "32%", "36%",
+                                "41%", "65%"),
+                     name = "'65+' share") +
+  labs(title = "Proportion of '65+' residents (2020)") +
+  theme_bw() +
+  theme(axis.text=element_text(size=22),
+        axis.text.x = element_text(vjust = 0.5, color = 'black'),
+        axis.text.y = element_text(color = 'black'),
+        axis.title.y = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title=element_text(size=24,face="bold"),
+        legend.position = c(0.85, 0.5),
+        legend.title.align=0.5,
+        plot.title = element_text(hjust = 0.5, size=25,face="bold"),
+        legend.text=element_text(size=12),
+        legend.title=element_text(size=13, face="bold"),
+        legend.margin = margin(8, 8, 8, 8),
+        legend.spacing.y = unit(0.5, 'cm'),
+        legend.key = element_rect(fill = "white"),
+        legend.box.background = element_rect(color="black", linewidth=1),
+        legend.key.width=unit(1.5, "cm"),
+        legend.key.height = unit(1.5, "cm"))
+)
+```
+
+-   Kagoshima and Okinawa
+
+```{r}
+#| code-fold: false
+#| message: false
+#| warning: false
+EldRyukyu <- eld_pop_2021 %>%
+   mutate(EldDecile = ntile(EldPop,10)) %>%
+   ggplot() +
+   geom_sf(aes(fill = EldDecile), 
+           color = "grey",
+           size = 0.1) +
+   coord_sf(xlim = c(122.5, 130.5), 
+           ylim = c(23.5, 30.1),
+           expand = FALSE, datum = NA) +
+   scale_fill_viridis(direction = -1, discrete = FALSE,
+                     labels = NULL,
+                     option = "D",
+                     breaks = c(2, 4, 6, 8, 10)) +
+   geom_text(data = PrefCoord %>%
+               filter(Code %in% c(47)),
+             aes(x = V1, y = V2, label = "Okinawa Pref.\n沖縄県"),
+                  size = 10,
+                  alpha = 0.5,
+                  nudge_x = -1.5,
+                  nudge_y = 1.5,
+            family = "HiraKakuPro-W3") +
+  # theme_bw() +
+  labs(title = NULL) +
+  theme(legend.position = "none",
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, linewidth=1))
+```
+
+-   Combine
+
+```{r}
+#| code-fold: false
+#| message: false
+#| warning: false
+EldPlot <- EldMain +
+    annotation_custom(
+      grob = ggplotGrob(EldRyukyu),
+      xmin = 129,
+      xmax = 138,
+      ymin = 36.5,
+      ymax = 47.5
+  ) +
+  annotation_north_arrow(which_north = "grid", location = "br",  
+                         height = unit(4, "cm"), width = unit(4, "cm"),
+                         pad_x = unit(1, "cm"),
+                         pad_y = unit(6, "cm")) +
+  ggsn::scalebar(x.min = 128, x.max = 146.5,
+                   y.min = 31, y.max = 46,
+                   dist = 100, dist_unit = "km",
+                   st.bottom = FALSE, st.color = "black",
+             transform = TRUE, model = "WGS84")
+
+g <- ggdraw(align_legend(EldPlot))
+```
+
+```{r}
+#| code-fold: false
+#| message: false
+#| warning: false
+ggsave(g, file = here("figures", "Elderly-2020.pdf"), width = 15, height = 16, units = "in", device=cairo_pdf)
+ggsave(g, file = here("figures", "Elderly-2020.png"), width = 15, height = 16, units = "in")
+```
+
+![Intended publication quality map of Japan](figures/Elderly-2020.png){fig-align="center"}

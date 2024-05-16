@@ -1,0 +1,1 @@
+"0","points(x = cal.cities$long[top7], y = cal.cities$lat[top7], pch = 19)"

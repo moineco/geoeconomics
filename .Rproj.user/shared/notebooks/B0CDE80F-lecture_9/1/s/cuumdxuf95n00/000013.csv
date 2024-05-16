@@ -1,0 +1,4 @@
+"0","legend(x = -120, y = 32, bty = ""n"","
+"0","       legend = c(""Walmart"", ""Supercenter"", ""Distribution center""),"
+"0","       col = c(""red"", ""green"", ""blue""), pch = 19, # solid circles"
+"0","       pt.cex = c(0.5, 0.5, 1)) # size of circles"

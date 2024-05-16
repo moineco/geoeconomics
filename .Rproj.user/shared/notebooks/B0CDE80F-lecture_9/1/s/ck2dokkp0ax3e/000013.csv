@@ -1,0 +1,2 @@
+"0","## semitransparent; easy to distinguish"
+"0","points(x = c(2, 2), y = c(2, 2.2), pch = 16, cex = 5, col = black.trans)"

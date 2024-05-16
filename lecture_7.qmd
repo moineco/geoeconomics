@@ -1,0 +1,148 @@
+# Plotting U.S.A. Map
+
+-   We will explore different packages that could help with mapping geographical data, specifically for the U.S. At first we need to load necessary packages to execute the maps for this lecture.
+
+```{r}
+#| message: false
+library(usmap)
+library(tidyverse)
+```
+
+-   Alternatively you can use the pacman package manager for loading the necessary packages for this lecture.
+
+```{txt}
+#| code-fold: false
+#| warning: false
+#| message: false
+pacman::p_load(usmap, maps, mapdata, sf, plotly, tidyverse, mapview, leaflet, tmap, tmaptools, tigris)
+```
+
+## Using `usmap` package
+
+-   This is probably the most continent package to plot a U.S.A. map along with some data. Plot all states of the U.S.A. to create an empty map.
+
+```{r}
+#| code-fold: false
+#| warning: false
+#| message: false
+plot_usmap(regions = "states") + 
+  labs(title = "United States",
+       subtitle = "This is a map of the United States.") + 
+  theme(panel.background=element_blank())
+```
+
+-   Besides states, we could also plot all counties of the U.S.A.
+
+```{r}
+#| code-fold: false
+#| warning: false
+#| message: false
+plot_usmap(regions = "counties") + 
+  labs(title = "U.S.A. counties",
+       subtitle = "This is a map of the United States.") + 
+  theme(panel.background=element_blank())
+```
+
+-   `usmap` also provides many different regions to select
+
+```{r}
+#| code-fold: false
+#| warning: false
+#| message: false
+plot_usmap(include = .south_region, exclude = c("VA"), labels = TRUE)
+```
+
+-   `usmap` also provides north regions map
+
+```{r}
+#| code-fold: false
+#| warning: false
+#| message: false
+plot_usmap(include = .south_region, exclude = c("VA"), labels = TRUE)
+```
+
+-   We can also select certain states by using *state abbreviations*
+
+```{r}
+#| code-fold: false
+#| warning: false
+#| message: false
+plot_usmap(include = c("CT", "ME", "MA", "NH", "VT")) +
+  labs(title = "New England Region") +
+  theme(panel.background = element_rect(color = "black"))
+```
+
+## Using `ggplot2` package
+
+```{r}
+#| code-fold: false
+#| warning: false
+#| message: false
+usa <- map_data('usa')
+```
+
+-   Next, we use geom_ploygon function to plot U.S.A. map.
+
+```{r}
+#| code-fold: false
+#| warning: false
+#| message: false
+ggplot(data=usa, aes(x=long, y=lat, group=group)) + 
+  geom_polygon(fill='lightblue') + 
+  theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + 
+  ggtitle('U.S.A. Map') + 
+  coord_fixed(1.3)
+```
+
+-   In order to get more information about U.S.A., now we can add state data to the map. Like above, we obtain data from maps and mapdata packages, and use `ggplot2` to plot.
+
+```{r}
+#| code-fold: false
+#| warning: false
+#| message: false
+state <- map_data("state")
+```
+
+-   Plot the states with `ggplot2`
+
+```{r}
+#| code-fold: false
+#| warning: false
+#| message: false
+ggplot(data=state, aes(x=long, y=lat, fill=region, group=group)) + 
+  geom_polygon(color = "white") + 
+  guides(fill=FALSE) + 
+  theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + 
+  ggtitle('U.S.A. Map with States') + 
+  coord_fixed(1.3)
+```
+
+-   What if we only care about one state? Definitely, we can draw one state map using `ggplot2`. Firstly we need to filter data.
+
+```{r}
+#| code-fold: false
+#| warning: false
+#| message: false
+washington <- subset(state, region=="washington")
+counties <- map_data("county")
+washington_county <- subset(counties, region=="washington")
+```
+
+-   Plot Washington
+
+```{r}
+#| code-fold: false
+#| warning: false
+#| message: false
+ca_map <- ggplot(data=washington, mapping=aes(x=long, y=lat, group=group)) + 
+  coord_fixed(1.3) + 
+  geom_polygon(color="black", fill="gray") + 
+  geom_polygon(data=washington_county, fill=NA, color="white") + 
+  geom_polygon(color="black", fill=NA) + 
+  ggtitle('Washington Map with Counties') + 
+  theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())
+ca_map
+```

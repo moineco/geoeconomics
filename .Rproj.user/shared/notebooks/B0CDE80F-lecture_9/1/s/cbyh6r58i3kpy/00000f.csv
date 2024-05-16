@@ -1,0 +1,11 @@
+"0","library(""animation"")"
+"0","saveHTML({"
+"0","    for (i in 1:length(dates)) {"
+"0","        walmart.map(walmart, dates[i])"
+"0","        title(dates[i])"
+"0","    }"
+"0","}, title = ""Expansion of Walmart"", htmlfile = ""htmls/walmart.html"","
+"0","         outdir = getwd(), autobrowse = FALSE)"
+"2","Error in file.copy(system.file(""misc"", ""scianimator"", c(""js"", ""css""),  : 
+  more 'from' files than 'to' files
+"

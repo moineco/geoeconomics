@@ -1,0 +1,35 @@
+project:
+  type: book
+  output-dir: docs
+   
+book:
+  title: "Geoeconomics with R and Python"
+  author: "Moinul Islam"
+  date: "1/1/2024"
+  chapters:
+    - index.qmd
+    - lecture_1.qmd
+    - lecture_2.qmd
+    - lecture_3.qmd
+    - lecture_4.qmd
+    - lecture_5.qmd
+    - lecture_6.qmd
+    - lecture_7.qmd
+    - lecture_8.qmd
+    - lecture_9.qmd
+    - lecture_10.qmd
+    - lecture_11.qmd
+    - references.qmd
+
+bibliography: geoeconomics.bib
+
+format:
+  html:
+    theme: cosmo
+    code-fold: false
+    code-summary: "Show the code"
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+

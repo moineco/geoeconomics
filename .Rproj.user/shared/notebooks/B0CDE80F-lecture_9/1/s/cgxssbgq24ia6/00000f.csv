@@ -1,0 +1,3 @@
+"0","cal.cities <- subset(us.cities, subset = (country.etc == ""CA""))"
+"0","sind <- order(cal.cities$pop, decreasing = TRUE)# order by population"
+"0","top7 <- sind[1:7] # seven cities with largest population"

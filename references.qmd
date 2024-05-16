@@ -1,0 +1,7 @@
+# References {.unnumbered}
+
+Lovelace, R., Nowosad, J., and Muenchow, J. (2019). Geocomputation with R. CRC Press.
+
+Comber, L., and Brunsdon, C. (2020). Geographical Data Science and Spatial Data Analysis: An Introduction in R. Sage.
+
+Kopczewska, K. (2020). Applied Spatial Statistics and Econometrics: Data Analysis in R. Routledge.

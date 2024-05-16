@@ -1,0 +1,114 @@
+# Making maps with R
+
+List of R packages used in this section:
+
+```{r message=FALSE, warning=FALSE}
+#| code-fold: false
+pacman::p_load(rnaturalearth, sf, tidyverse)
+```
+
+-   We use free data on world map: Natural Earth
+
+-   Using `rnaturalearth` package, we get the data necessary to draw a world map
+
+-   Name the data world_map
+
+```{r message=FALSE, warning=FALSE}
+#| code-fold: false
+global_map <- ne_countries(scale = "small", returnclass = "sf")
+```
+
+-   Show the list of variables included global_map
+
+```{r message=FALSE, warning=FALSE}
+#| code-fold: false
+names(global_map)
+```
+
+-   We see 169 variables
+-   Check the class of global_map
+-   If you want to see the data of GDP for each country, use following code:
+
+```{r}
+#| code-fold: false
+global_map %>% 
+select(sovereignt, gdp_md, gdp_year) %>% 
+DT::datatable()
+```
+
+-   World is a GeoDataFrame with the following columns:
+
+`pop_est`: Contains a population estimate for the country
+
+`continent`: The country's continent
+
+`name_en`: The country's name in English
+
+`iso_a3`: The country's 3 letter abbreviation (we made this the index)
+
+`gdp_md`: A country's GDP in million dollar
+
+`geometry`: A POLYGON for each country (we will learn more about these soon)
+
+```{r}
+#| code-fold: false
+class(global_map)
+```
+
+-   global_map has two classes: sf & data.frame
+
+## Global GDP map
+
+```{r message=FALSE, warning=FALSE}
+#| code-fold: false
+global_map %>% 
+  ggplot() +
+  geom_sf(aes(fill = gdp_md)) +
+  scale_fill_gradient(low = "white", high = "green") +
+  labs(fill = "GDP") +
+  theme_minimal(base_family = "HiraKakuProN-W3") +
+  theme(legend.position = "bottom")
+```
+
+-   Let's change the color and the position of legend.
+
+```{r message=FALSE, warning=FALSE}
+#| code-fold: false
+global_map %>% 
+  ggplot() +
+  geom_sf(aes(fill = gdp_md)) +
+  scale_fill_gradient(low = "gray", high = "blue") +
+  labs(fill = "GDP_2019") +
+  theme_minimal(base_family = "HiraKakuProN-W3") +
+  theme(legend.position = "left")
+```
+
+## Regional GDP map
+
+-   GDP of European countries in 2019
+
+```{r message=FALSE, warning=FALSE}
+#| code-fold: false
+global_map %>% 
+  ggplot() +
+  geom_sf(aes(fill = gdp_md)) +
+  scale_fill_gradient(low = "white", high = "green") +
+  labs(fill = "GDP_Europe") +
+  coord_sf(xlim = c(-10, 45), ylim = c(35, 60)) +
+  theme_minimal(base_family = "HiraKakuProN-W3") +
+  theme(legend.position = "left")
+```
+
+-   GDP of African countries in 2019
+
+```{r message=FALSE, warning=FALSE}
+#| code-fold: false
+global_map %>% 
+  ggplot() +
+  geom_sf(aes(fill = gdp_md)) +
+  scale_fill_gradient(low = "white", high = "green") +
+  labs(fill = "GDP_Africa") +
+  coord_sf(xlim = c(-30, 60), ylim = c(-40, 40)) +
+  theme_minimal(base_family = "HiraKakuProN-W3") +
+  theme(legend.position = "left")
+```

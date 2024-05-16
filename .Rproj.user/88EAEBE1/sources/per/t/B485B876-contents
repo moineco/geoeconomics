@@ -1,0 +1,277 @@
+# Spatial data in R
+
+Spatial data are best analyzed by visualization through maps. This chapter covers two types of spatial data. One is spatial point data, which can be plotted as a set of points on a map. The other is spatial polygon data, which represent a sequence of connected points on a map corresponding to the boundaries of certain areas such as counties, districts, and provinces. We also consider spatial–temporal data, which are a set of spatial point or polygon data recorded over time, revealing changes in spatial patterns over time.
+
+First we can load necessary packages by using `pacman`.
+
+```{r}
+pacman::p_load(maps, animation, DT)
+```
+
+In R, the maps package provides various mapping tools as well as many spatial databases. The package contains a spatial database of various cities in the world. For example, it includes a data frame of US cities called us.cities. Any built-in data frame can be loaded by using the data() function. Below, we show the first few observations of this data set, which contains the name (as the name variable), state (country.etc), population (pop), latitude (lat), longitude (long), and whether the city is the capital of the country (capital = 1), the capital of a state (capital = 2), or neither (capital = 0).
+
+```{r}
+data("us.cities")
+head(us.cities)
+```
+
+Now we can add state capitals to the map of the United States. We can use the map() function to access one spatial database and visualize the data therein. For example, in order to plot the United States, we set the database argument to "usa". Spatial points can be easily added to maps using the points() function with their longitude and latitude information as the inputs for the x and y coordinates, respectively. Each state capital is represented by a solid circle whose size is proportional to its population. We can add a title by using the title() function after a map is drawn.
+
+```{r}
+map(database = "usa")
+capitals <- subset(us.cities, capital == 2) # subset state capitals
+## add points proportional to population using latitude and longitude
+points(x = capitals$long, y = capitals$lat, col = "blue",
+cex = capitals$pop / 500000, pch = 19)
+title("US state capitals") # add a title
+```
+
+As another example, we plot the state of California. We use the "state" database, which contains the spatial polygon data about US states, and specify the regions argument to "California".
+
+```{r}
+map(database = "state", regions = "California")
+```
+
+We will add to a map of California the seven cities that have the largest populations. To extract these cities from the data, we use the order() function
+
+```{r}
+cal.cities <- subset(us.cities, subset = (country.etc == "CA"))
+sind <- order(cal.cities$pop, decreasing = TRUE)# order by population
+top7 <- sind[1:7] # seven cities with largest population
+```
+
+We now add these cities to the map using the points() function, as well as their city names using the text() function.
+
+```{r}
+map(database = "state", regions = "California")
+points(x = cal.cities$long[top7], y = cal.cities$lat[top7], pch = 19)
+## add a constant to longitude to avoid overlapping with circles
+text(x = cal.cities$long[top7] + 2.25, y = cal.cities$lat[top7],
+     label = cal.cities$name[top7])
+title("Largest cities of California")
+```
+
+```{r}
+usa <- map(database = "usa", plot = FALSE) # save map
+names(usa)  # list elements
+```
+
+```{r}
+length(usa$x)
+```
+
+We observe that the map of the United States consists of 7252 pairs of coordinates. The map() function connects these points to construct maps.
+
+Spatial data contain information about patterns over space and can be visualized through maps. While spatial point data represent the locations of events as points on a map, spatial polygon data represent geographical areas by connecting points on a map.
+
+```{r}
+head(cbind(usa$x, usa$y)) # first five coordinates of a polygon
+```
+
+### COLORS IN R
+
+We next learn how to color maps. Color is important for visualization in general, not simply for maps. So far, we have been specifying colors using names like "red" or "blue". In fact, R knows the names of 657 different colors. To see them all, look at the output of the colors() function.
+
+```{r}
+allcolors <- colors()
+head(allcolors) # some colors
+```
+
+```{r}
+length(allcolors) # number of color names
+```
+
+In R, the rgb() function helps create hexadecimal color codes from numerical values. The three arguments, red, green, and blue, take the intensity of each color, ranging from 0 to 1, which gets translated into an integer value from 0 to 255 and then represented as a hexadecimal numeral. In addition, we can create more than one color code from rgb() at a time. The arguments can take vectors of length longer than 1. Below are some examples of hexadecimal color code.
+
+```{r}
+red <- rgb(red = 1, green = 0, blue = 0) # red
+green <- rgb(red = 0, green = 1, blue = 0) # green
+blue <- rgb(red = 0, green = 0, blue = 1) # blue
+c(red, green, blue) # results
+```
+
+Black and white can be represented by 0% or 100% for each primary color, respectively.
+
+```{r}
+black <- rgb(red = 0, green = 0, blue = 0) # black
+white <- rgb(red = 1, green = 1, blue = 1) # white
+c(black, white) # results
+```
+
+Finally, we can create purple (50% red and 50% blue) and yellow (100% red and 100% green). The rgb() function can take a vector of inputs, as illustrated in this example.
+
+```{r}
+rgb(red = c(0.5, 1), green = c(0, 1), blue = c(0.5, 0))
+```
+
+Another advantage of using hexadecimal color codes is that we can make the colors (partly) transparent by adding two additional digits, from 00 to FF, to the end of a hexadecimal color code. This enables us to control the level of transparency. Again, it is easier to think about the intensity scale from 0 to 1 and use the rgb() function to transform it to a hexadecimal color code. The function takes a fourth argument alpha, which can be used for this purpose. An example is given here.
+
+```{r}
+## semitransparent blue
+blue.trans <- rgb(red = 0, green = 0, blue = 1, alpha = 0.5)
+## semitransparent black
+black.trans <- rgb(red = 0, green = 0, blue = 0, alpha = 0.5)
+```
+
+Once we know the hexadecimal colors, we can use them (as a character object) in our plots in the same way that we have been using named colors like "red" and "blue". In the following plot, semitransparent circles can be easily distinguished even when they overlap, whereas it is harder to distinguish between nontransparent circles.
+
+```{r}
+## completely colored dots; difficult to distinguish
+plot(x = c(1, 1), y = c(1, 1.2), xlim = c(0.5, 4.5), ylim = c(0.5, 4.5),
+     pch = 16, cex = 5, ann = FALSE, col = black)
+points(x = c(3, 3), y = c(3, 3.2), pch = 16, cex = 5, col = blue)
+## semitransparent; easy to distinguish
+points(x = c(2, 2), y = c(2, 2.2), pch = 16, cex = 5, col = black.trans)
+points(x = c(4, 4), y = c(4, 4.2), pch = 16, cex = 5, col = blue.trans)
+```
+
+### US PRESIDENTIAL ELECTIONS
+
+Here, we color the map of the United States using the 2008 presidential election results. We will color each state in two ways. First, we use blue for the states won by Obama and red for the states won by McCain. The following code chunk loads the data set, computes the two-party vote shares, and sets the RGB color scheme for California based on its two-party vote share.
+
+```{r}
+pres08 <- read.csv("data/csv/pres08.csv")
+## two-party vote share
+pres08$Dem <- pres08$Obama / (pres08$Obama + pres08$McCain)
+pres08$Rep <- pres08$McCain / (pres08$Obama + pres08$McCain)
+## color for California
+cal.color <- rgb(red = pres08$Rep[pres08$state == "CA"],
+                 blue = pres08$Dem[pres08$state == "CA"],
+                 green = 0)
+```
+
+The DT package (an interface to the DataTables JavaScript library) can display R matrices or data frames as interactive HTML tables that support filtering, pagination, and sorting.
+
+```{r}
+library(DT)
+datatable(pres08)
+```
+
+We now color the map of California in two ways. First, we color it as a blue state because Obama won California in 2008. Second, we color it using the RGB color scheme based on the two-party vote share.
+
+```{r}
+## California as a blue state
+map(database = "state", regions = "California", col = "blue",
+    fill = TRUE)
+```
+
+```{r}
+## California as a purple state
+map(database = "state", regions = "California", col = cal.color,
+fill = TRUE)
+```
+
+We will repeat this for all states using a loop. The map does not include Hawaii, Alaska, and Washington DC, so we will skip those states. Note that we will set the add argument to TRUE in order to add a color to each state. A loop is used because we color one state at a time.
+
+-   We first use a dichotomized color scheme where the states Obama won appear blue and those won by McCain are shown as red.
+
+```{r}
+## USA as red and blue states
+map(database = "state") # create a map
+for (i in 1:nrow(pres08)) {
+    if ((pres08$state[i] != "HI") & (pres08$state[i] != "AK") &
+        (pres08$state[i] != "DC")) {
+        map(database = "state", regions = pres08$state.name[i],
+          col = ifelse(pres08$Rep[i] > pres08$Dem[i], "red", "blue"),
+            fill = TRUE, add = TRUE)
+} }
+```
+
+-   In the second map, we use the RGB color scheme based on the two-party vote share for each state. The code chunks used for these two maps are almost identical. The only difference is the way in which color is chosen for each state.
+
+```{r}
+## USA as purple states
+map(database = "state") # create a map
+for (i in 1:nrow(pres08)) {
+    if ((pres08$state[i] != "HI") & (pres08$state[i] != "AK") &
+        (pres08$state[i] != "DC")) {
+        map(database = "state", regions = pres08$state.name[i],
+            col = rgb(red = pres08$Rep[i], blue = pres08$Dem[i],
+                green = 0), fill = TRUE, add = TRUE)
+} }
+```
+
+-   The first map shows that Obama won many states on the West and East Coasts whereas McCain was particularly strong in the Midwest.
+
+-   However, the second map illustrates that no state is completely dominated by either Democrats or Republicans. Each state has both types of voters, and it is the winner-take-all electoral system that is responsible for characterizing each state as either a blue or a red state.
+
+### EXPANSION OF WALMART
+
+Walmart has become one of the largest retail multinational companies in the world. Table shows the names and descriptions of variables in the Walmart store opening data, `walmart.csv`.
+
+```{r}
+walmart <- read.csv("data/csv/walmart.csv")
+## red = Wal-MartStore, green = SuperCenter, blue = DistributionCenter
+walmart$storecolors <- NA # create an empty vector
+walmart$storecolors[walmart$type == "Wal-MartStore"] <-
+    rgb(red = 1, green = 0, blue = 0, alpha = 1/3)
+```
+
+The DT package (an interface to the DataTables JavaScript library) can display R matrices or data frames as interactive HTML tables that support filtering, pagination, and sorting.
+
+```{r}
+library(DT)
+datatable(walmart)
+```
+
+The data set contains three different types of stores, represented by the variable type. Wal-MartStore represents a standard Walmart store, whereas SuperCenter is a standard Walmart store as well as a full supermarket. Walmart Supercenters often include pharma- cies, garden shops, car service centers, and other specialty centers. We also plot DistributionCenter data, representing stores that distribute food and goods to standard Walmart stores and Supercenters.
+
+```{r}
+walmart$storecolors[walmart$type == "SuperCenter"] <-
+    rgb(red = 0, green = 1, blue = 0, alpha = 1/3)
+walmart$storecolors[walmart$type == "DistributionCenter"] <-
+    rgb(red = 0, green = 0, blue = 1, alpha = 1/3)
+## larger circles for DistributionCenter
+walmart$storesize <- ifelse(walmart$type == "DistributionCenter", 1, 0.5)
+```
+
+Finally, we create a map and add Walmart store locations to it. We also include a legend using the legend() function. To use this function, we specify the location of the legend by setting the x and y coordinates and provide a vector of legend texts as the legend argument.
+
+```{r}
+## map with legend
+map(database = "state")
+points(walmart$long, walmart$lat, col = walmart$storecolors,
+       pch = 19, cex = walmart$storesize)
+legend(x = -120, y = 32, bty = "n",
+       legend = c("Walmart", "Supercenter", "Distribution center"),
+       col = c("red", "green", "blue"), pch = 19, # solid circles
+       pt.cex = c(0.5, 0.5, 1)) # size of circles
+```
+
+```{r}
+walmart.map <- function(data, date) {
+    walmart <- subset(data, subset = (opendate <= date))
+    map(database = "state")
+    points(walmart$long, walmart$lat, col = walmart$storecolors,
+pch = 19, cex = walmart$storesize)
+}
+```
+
+```{r}
+walmart$opendate <- as.Date(walmart$opendate)
+walmart.map(walmart, as.Date("1974-12-31"))
+title("1975")
+```
+
+```{r}
+walmart.map(walmart, as.Date("1984-12-31"))
+title("1985")
+```
+
+```{r}
+walmart.map(walmart, as.Date("1994-12-31"))
+title("1995")
+```
+
+```{r}
+walmart.map(walmart, as.Date("2004-12-31"))
+title("2005")
+```
+
+```{r}
+n <- 25 # number of maps to animate
+dates <- seq(from = min(walmart$opendate),
+             to = max(walmart$opendate), length.out = n)
+```
+
+

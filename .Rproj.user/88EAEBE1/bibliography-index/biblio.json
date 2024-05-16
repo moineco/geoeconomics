@@ -1,0 +1,103 @@
+{
+    "sources": [
+        {
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        7
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Grolemund",
+                    "given": "Hadley Wickham and Garrett"
+                }
+            ],
+            "id": "Grolemund_2023",
+            "language": "en-US",
+            "title": "Welcome | R for Data Science",
+            "type": "book"
+        },
+        {
+            "ISBN": "978-0-203-73005-8",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        7
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Lovelace",
+                    "given": "Robin"
+                },
+                {
+                    "family": "Nowosad",
+                    "given": "Jakub"
+                },
+                {
+                    "family": "Muenchow",
+                    "given": "Jannes"
+                }
+            ],
+            "id": "Lovelace_2023",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "title": "Welcome | Geocomputation with R",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "literal": "QGIS"
+                }
+            ],
+            "id": "QGIS_2023",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "title": "QGIS User Guide",
+            "type": ""
+        },
+        {
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        7
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Bank",
+                    "given": "World"
+                }
+            ],
+            "id": "WB_2023",
+            "language": "en-US",
+            "title": "World Bank Official Boundaries",
+            "type": ""
+        }
+    ],
+    "project_biblios": [
+        "geoeconomics.bib"
+    ]
+}

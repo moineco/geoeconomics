@@ -1,0 +1,4 @@
+"0","capitals <- subset(us.cities, capital == 2) # subset state capitals"
+"0","## add points proportional to population using latitude and longitude"
+"0","points(x = capitals$long, y = capitals$lat, col = ""blue"","
+"0","cex = capitals$pop / 500000, pch = 19)"

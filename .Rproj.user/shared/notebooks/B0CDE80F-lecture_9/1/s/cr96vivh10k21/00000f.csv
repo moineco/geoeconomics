@@ -1,0 +1,8 @@
+"0","black <- rgb(red = 0, green = 0, blue = 0) # black"
+"0","white <- rgb(red = 1, green = 1, blue = 1) # white"
+"0","c(black, white) # results"
+"1","[1]"
+"1"," ""#000000"""
+"1"," ""#FFFFFF"""
+"1","
+"

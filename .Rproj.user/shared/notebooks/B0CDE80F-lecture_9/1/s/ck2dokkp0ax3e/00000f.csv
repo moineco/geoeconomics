@@ -1,0 +1,3 @@
+"0","## completely colored dots; difficult to distinguish"
+"0","plot(x = c(1, 1), y = c(1, 1.2), xlim = c(0.5, 4.5), ylim = c(0.5, 4.5),"
+"0","     pch = 16, cex = 5, ann = FALSE, col = black)"

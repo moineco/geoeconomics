@@ -1,0 +1,3 @@
+"0","## California as a purple state"
+"0","map(database = ""state"", regions = ""California"", col = cal.color,"
+"0","fill = TRUE)"

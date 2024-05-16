@@ -1,0 +1,7 @@
+"0","for (i in 1:nrow(pres08)) {"
+"0","    if ((pres08$state[i] != ""HI"") & (pres08$state[i] != ""AK"") &"
+"0","        (pres08$state[i] != ""DC"")) {"
+"0","        map(database = ""state"", regions = pres08$state.name[i],"
+"0","            col = rgb(red = pres08$Rep[i], blue = pres08$Dem[i],"
+"0","                green = 0), fill = TRUE, add = TRUE)"
+"0","} }"

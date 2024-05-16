@@ -1,0 +1,5 @@
+"0","walmart <- read.csv(""data/csv/walmart.csv"")"
+"0","## red = Wal-MartStore, green = SuperCenter, blue = DistributionCenter"
+"0","walmart$storecolors <- NA # create an empty vector"
+"0","walmart$storecolors[walmart$type == ""Wal-MartStore""] <-"
+"0","    rgb(red = 1, green = 0, blue = 0, alpha = 1/3)"

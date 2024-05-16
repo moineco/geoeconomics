@@ -1,0 +1,134 @@
+# Spatial data operations
+
+The following packages will be required for this chapter:
+
+```{r}
+#| warning: false
+#| message: false
+#| code-fold: false
+pacman::p_load(tidyverse, maps, jpndistrict, countrycode)
+```
+
+-   As of January 25, 2021, `jpndistrict` has been removed from CRAN, so if you really want to install it, please install it directly from the github repository. To install, please use the following code in your `Console`:
+
+```{txt}
+#| codcode-fold: false
+install.packages("remotes")
+remotes::install_github("uribo/jpndistrict")
+```
+
+### World map
+
+-   The `maps` package contains data for the world, USA, France, Italy and New Zealand. It contains information such as latitude, longitude, group, region, etc. like this.
+
+-   First call the world map data
+
+-   You can see the data structure by using `head` command.
+
+```{r message=FALSE, warning=FALSE}
+#| code-fold: false
+world_map <- map_data("world")
+head(world_map)
+```
+
+-   By using the `ggplot2` boundaries can be drawn with `geom_polygon()` with latitude and longitude as shown in @fig-mymap-12.1
+
+```{r fig-mymap-12.1, message=FALSE, warning=FALSE}
+#| code-fold: false
+#| fig.cap: "World countries"
+#| fig.height: 4
+world_map %>% 
+  ggplot(aes(x = long, y = lat, group = group)) +
+  geom_polygon(fill = "lightgray", colour = "black", size = 0.1) 
+```
+
+### Japan map
+
+-   If we limit the data with `filter()`, we can also draw a map of specific countries.
+
+-   For instance, we will filter the data for Japan and draw a map as shown in @fig-mymap-12.2
+
+```{r fig-mymap-12.2, message=FALSE, warning=FALSE}
+#| code-fold: false
+#| fig.cap: "Japan"
+#| fig.height: 4
+world_map %>% 
+  filter(region == "Japan") %>% 
+  ggplot(aes(x = long, y = lat, group = group)) +
+  geom_polygon(fill = "lightgray", colour = "black", size = 0.1)
+```
+
+-   Unfortunately `maps` package only have the country level information.
+
+-   If you want to draw a map of prefectures, use the `jpnprefs` package. There is a list of prefectures in the `jpnprefs` attached to the package.
+
+```{r message=FALSE, warning=FALSE}
+#| code-fold: false
+head(jpnprefs)
+```
+
+-   Table 1 represents the prefecture numbers in `jpnprefs` package
+
+    | Prefecture | Code | prefecture | Code | Prefecture | Code |
+    |------------|------|------------|------|------------|------|
+    | Hokkaidō   | 1    | Ishikawa   | 17   | Okayama    | 33   |
+    | Aomori     | 2    | Fukui      | 18   | Hiroshima  | 34   |
+    | Iwate      | 3    | Yamanashi  | 19   | Yamaguchi  | 35   |
+    | Miyagi     | 4    | Nagano     | 20   | Tokushima  | 36   |
+    | Akita      | 5    | Gifu       | 21   | Kagawa     | 37   |
+    | Yamagata   | 6    | Shizuoka   | 22   | Ehime      | 38   |
+    | Fukushima  | 7    | Aichi      | 23   | Kōchi      | 39   |
+    | Ibaraki    | 8    | Mie        | 24   | Fukuoka    | 40   |
+    | Tochigi    | 9    | Shiga      | 25   | Saga       | 41   |
+    | Gunma      | 10   | Kyōto      | 26   | Nagasaki   | 42   |
+    | Saitama    | 11   | Ōsaka      | 27   | Kumamoto   | 43   |
+    | Chiba      | 12   | Hyōgo      | 28   | Ōita       | 44   |
+    | Tōkyō      | 13   | Nara       | 29   | Miyazaki   | 45   |
+    | Kanagawa   | 14   | Wakayama   | 30   | Kagoshima  | 46   |
+    | Niigata    | 15   | Tottori    | 31   | Okinawa    | 47   |
+    | Toyama     | 16   | Shimane    | 32   |            |      |
+
+-   To pull the prefecture data, enter the number of the prefecture corresponding to `jpn_pref()`.
+
+```{r message=FALSE, warning=FALSE}
+#| code-fold: false
+kochi <- jpn_pref(39)
+head(kochi)
+```
+
+-   We use `geom_sf()` because the boundaries of municipalities are a standard called simple features (sf).
+
+-   We can draw a map of Kochi prefecture of Japan which consists all the cities. As shown in @fig-mymap-12.3, we can plot the boundaries of the cities inside Kochi Prefecture.
+
+```{r fig-mymap-12.3, message=FALSE, warning=FALSE}
+#| code-fold: false
+#| fig.cap: "Kochi prefecture of Japan"
+#| fig.height: 4
+kochi %>% 
+  ggplot() + 
+  geom_sf()
+```
+
+-   By using additional feature of `geom_sf`, we can improve the visualization of the map as @fig-mymap-12.4
+
+```{r fig-mymap-12.4, message=FALSE, warning=FALSE}
+#| code-fold: false
+#| fig.cap: "Kochi prefecture of Japan with random color"
+#| fig.height: 4
+kochi %>% 
+  ggplot() + 
+  geom_sf(aes(fill = city), show.legend = FALSE)
+```
+
+-   By using geom_point feature, we can specify the capital of the Kochi prefecture as @fig-mymap-12.5
+
+```{r fig-mymap-12.5, message=FALSE, warning=FALSE}
+#| code-fold: false
+#| fig.cap: "Kochi prefecture of Japan with random color and capital"
+#| fig.height: 4
+kochi %>% 
+  ggplot() + 
+  geom_sf(aes(fill = city), show.legend = FALSE) +
+   geom_point(aes(x = capital_longitude, y = capital_latitude),
+             colour = "black", data = jpnprefs %>% filter(prefecture == "高知県"))
+```
