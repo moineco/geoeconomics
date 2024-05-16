@@ -9,7 +9,7 @@ library(tidyverse)
 library(jpndistrict) # to get the base map of Japan's prefecture
 library(ggthemes) # to use theme_map
 library(rnaturalearth) # to use ne_countries
-library(DT)
+library(DT) # to produce data table
 ```
 
 -   Alternatively, you can use the `pacman` package manager to load necessary R packages from below:
