@@ -1,2 +1,2 @@
-# Lecture notes on Geoeconomics with R and Python
+# Lecture Notes on Geoeconomics with R and Python
 
