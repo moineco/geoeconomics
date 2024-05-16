@@ -88,5 +88,25 @@
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>R packages for GIS</span>"
     ]
+  },
+  {
+    "objectID": "lecture_6.html",
+    "href": "lecture_6.html",
+    "title": "6  Making map of Tokyo",
+    "section": "",
+    "text": "6.1 Population Map of Tokyo\ndf_tokyo_sf &lt;- jpn_pref(13, district = TRUE) %&gt;% \n  dplyr::filter(str_detect(city, \"区\"))\ndf_tokyo_sf %&gt;%\n  ggplot() +\n  geom_sf() +\n  theme_minimal()\nhead(df_tokyo_sf, 23)\n\nSimple feature collection with 23 features and 4 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: 139.5636 ymin: 35.52086 xmax: 139.919 ymax: 35.81758\nGeodetic CRS:  WGS 84\n# A tibble: 23 × 5\n   pref_code prefecture city_code city                                  geometry\n   &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;                       &lt;MULTIPOLYGON [°]&gt;\n 1 13        東京都     13101     千代田区 (((139.7299 35.68555, 139.7333 35.67…\n 2 13        東京都     13102     中央区   (((139.7589 35.65892, 139.7646 35.65…\n 3 13        東京都     13103     港区     (((139.7714 35.62304, 139.7825 35.62…\n 4 13        東京都     13104     新宿区   (((139.6735 35.71852, 139.679 35.718…\n 5 13        東京都     13105     文京区   (((139.7174 35.71455, 139.7232 35.71…\n 6 13        東京都     13106     台東区   (((139.7632 35.72184, 139.7685 35.71…\n 7 13        東京都     13107     墨田区   (((139.8095 35.68689, 139.812 35.688…\n 8 13        東京都     13108     江東区   (((139.7715 35.61667, 139.7712 35.61…\n 9 13        東京都     13109     品川区   (((139.6954 35.60832, 139.6957 35.61…\n10 13        東京都     13110     目黒区   (((139.6664 35.61861, 139.6631 35.61…\n# ℹ 13 more rows\ndf_tokyo_pop &lt;- read_csv(\"data/csv/tokyo_pop.csv\")\ndatatable(df_tokyo_pop)\nmerge_tokyo &lt;- df_tokyo_sf %&gt;% \n  left_join(df_tokyo_pop, by = \"city\") %&gt;% \n  st_as_sf()\nmerge_tokyo %&gt;% \n  head() %&gt;% \n  rmarkdown::paged_table()\nmap_pop_tokyo &lt;- merge_tokyo %&gt;% \n  ggplot() +\n  geom_sf(aes(fill = population)) +\n  scale_fill_distiller(name = \"Population\",\n                       palette = \"Greens\", direction = 1) +\n  theme_map(base_family = \"HiraginoSans-W3\") +\n  theme(legend.position = c(.1, -.1),\n        legend.direction = \"horizontal\",\n        legend.title = element_text(size = 15), \n        legend.text = element_text(size = 15),\n        legend.key.size = unit(1, \"cm\"),\n        legend.key.width = unit(3,\"cm\")) +\n  coord_sf(datum = NA) \n\nmap_pop_tokyo\n\n\n\n\nPopulation of Tokyo, Japan\nmap_pop_tokyo_text &lt;- merge_tokyo %&gt;% \n  mutate(\n    text_x = map_dbl(geometry, ~st_centroid(.x)[[1]]),\n    text_y = map_dbl(geometry, ~st_centroid(.x)[[2]])\n  ) %&gt;% \n  ggplot() +\n  geom_sf(aes(fill = population)) +\n  geom_label(aes(x = text_x, y = text_y, label = city), \n             size = 1.7, family = \"HiraginoSans-W3\") +\n  scale_fill_distiller(name = \"Population\",\n                       palette = \"Greens\", direction = 1) +\n  theme_map(base_family = \"HiraginoSans-W3\") +\n  theme(legend.position = c(.8, .05),\n        legend.title = element_text(size = 10), \n        legend.text = element_text(size = 5),\n        legend.key.size = unit(0.5, \"cm\"),\n        legend.key.width = unit(1,\"cm\")) +\n  coord_sf(datum = NA) \n\nmap_pop_tokyo_text\n\n\n\n\nPopulation of Tokyo, Japan\nggsave(\"fig/map_pop_tokyo_text.png\", map_pop_tokyo_text, width = 13, height = 13)",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Making map of Tokyo</span>"
+    ]
+  },
+  {
+    "objectID": "lecture_6.html#population-map-of-tokyo",
+    "href": "lecture_6.html#population-map-of-tokyo",
+    "title": "6  Making map of Tokyo",
+    "section": "",
+    "text": "The prefecture code for Tokyo is 13. Now we can plot the map of the 23 wards of Tokyo\n\n\n\nDisplay the extracted map of Tokyo’s 23 wards\n\n\n\nCheck your data here\n\n\n\nImport the .CSV data to make an interactive population map of Tokyo\n\n\n\nMerge the spatial data with your population data\n\n\n\nCheck the merged data\n\n\n\nPlot your data with ggplot2\n\n\n\nPlot your population data with the name of the cities in Tokyo\n\n\n\nTo export the above figure, use the following code:",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Making map of Tokyo</span>"
+    ]
   }
 ]

@@ -9,6 +9,7 @@ library(tidyverse)
 library(jpndistrict) # to get the base map of Japan's prefecture
 library(ggthemes) # to use theme_map
 library(rnaturalearth) # to use ne_countries
+library(DT)
 ```
 
 -   Alternatively, you can use the `pacman` package manager to load necessary R packages from below:
@@ -56,15 +57,7 @@ head(df_tokyo_sf, 23)
 ```{r message=FALSE, warning=FALSE}
 #| code-fold: false
 df_tokyo_pop <- read_csv("data/csv/tokyo_pop.csv")
-```
-
--   Check your population data.
-
-    ![CSV population data of Tokyo](figures/14.1.jpg){width="250"}
-
-```{r message=FALSE, warning=FALSE}
-#| code-fold: false
-head(df_tokyo_pop)
+datatable(df_tokyo_pop)
 ```
 
 -   Merge the spatial data with your population data
@@ -138,6 +131,6 @@ map_pop_tokyo_text
 
 -   To export the above figure, use the following code:
 
-```         
+```{txt}         
 ggsave("fig/map_pop_tokyo_text.png", map_pop_tokyo_text, width = 13, height = 13)
 ```
