@@ -1,8 +1,0 @@
-"0","pres08 <- read.csv(""data/csv/pres08.csv"")"
-"0","## two-party vote share"
-"0","pres08$Dem <- pres08$Obama / (pres08$Obama + pres08$McCain)"
-"0","pres08$Rep <- pres08$McCain / (pres08$Obama + pres08$McCain)"
-"0","## color for California"
-"0","cal.color <- rgb(red = pres08$Rep[pres08$state == ""CA""],"
-"0","                 blue = pres08$Dem[pres08$state == ""CA""],"
-"0","                 green = 0)"

@@ -1,2 +1,0 @@
-"0","walmart$opendate <- as.Date(walmart$opendate)"
-"0","walmart.map(walmart, as.Date(""1974-12-31""))"

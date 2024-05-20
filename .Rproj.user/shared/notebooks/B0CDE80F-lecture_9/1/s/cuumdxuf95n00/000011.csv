@@ -1,2 +1,0 @@
-"0","points(walmart$long, walmart$lat, col = walmart$storecolors,"
-"0","       pch = 19, cex = walmart$storesize)"

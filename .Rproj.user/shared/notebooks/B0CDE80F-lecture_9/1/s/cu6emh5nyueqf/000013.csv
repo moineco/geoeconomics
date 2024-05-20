@@ -1,3 +1,0 @@
-"0","## add a constant to longitude to avoid overlapping with circles"
-"0","text(x = cal.cities$long[top7] + 2.25, y = cal.cities$lat[top7],"
-"0","     label = cal.cities$name[top7])"

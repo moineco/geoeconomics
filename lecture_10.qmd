@@ -1,8 +1,16 @@
 # Population density maps
 
--   Load all necessary packages by using `pacman` package manager
+-   Load all necessary packages
 
 ```{r}
+#| message: false
+library(tidyverse)
+library(sf)
+```
+
+-   Alternatively load all necessary packages by using `pacman` package manager
+
+```{txt}
 #| code-fold: false
 pacman::p_load(tidyverse, stringr, sf, RColorBrewer, leaflet, ggplot2, ggthemes, patchwork, plotly, ggrepel)
 ```
@@ -147,7 +155,17 @@ glimpse(bd3_shp_pop)
 
 -   Draw the map ADM1
 
-```{r, warning=FALSE}
+```{r}
+#| code-fold: false
+#| warning: false
+ggplot(bd1_shp_pop) +
+    geom_sf(aes(fill=F_TL), color = "white", lwd = 0.07) +
+    geom_sf_text(aes(label = ADM1_EN), size = 2) +
+    scale_fill_viridis_c(option = "magma", name = "Population")
+```
+- By loading additional package, we can draw for informative maps
+
+```{txt}
 #| code-fold: false
 ggplot(bd1_shp_pop) +
     geom_sf(aes(fill=F_TL), color = "white", lwd = 0.07) +
@@ -160,9 +178,20 @@ ggplot(bd1_shp_pop) +
          caption = "Source of data: BBS")
 ```
 
--   Draw the map ADM2
+- Draw the map ADM2
 
-```{r, warning=FALSE}
+```{r}
+#| code-fold: false
+#| warning: false
+ggplot(bd2_shp_pop) +
+    geom_sf(aes(fill=F_TL), color = "white", lwd = 0.07) +
+    #geom_sf_text(aes(label = ADM2_EN), size = 2) +
+    scale_fill_viridis_c(option = "magma", name = "Population")
+```
+
+- By loading additional package, we can draw for informative maps
+
+```{txt}
 #| code-fold: false
 ggplot(bd2_shp_pop) +
     geom_sf(aes(fill=F_TL), color = "white", lwd = 0.07) +
@@ -178,6 +207,17 @@ ggplot(bd2_shp_pop) +
 -   Draw the map ADM3
 
 ```{r, warning=FALSE}
+#| code-fold: false
+#| warning: false
+ggplot(bd3_shp_pop) +
+    geom_sf(aes(fill=F_TL), color = "white", lwd = 0.07) +
+    #geom_sf_text(aes(label = ADM2_EN), size = 2) +
+    scale_fill_viridis_c(option = "magma", name = "Population")
+```
+
+- By loading additional package, we can draw for informative maps
+
+```{txt}
 #| code-fold: false
 ggplot(bd3_shp_pop) +
     geom_sf(aes(fill=F_TL), color = "white", lwd = 0.07) +

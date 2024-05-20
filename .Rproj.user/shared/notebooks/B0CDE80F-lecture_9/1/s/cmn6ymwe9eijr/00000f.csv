@@ -1,3 +1,0 @@
-"0","## California as a blue state"
-"0","map(database = ""state"", regions = ""California"", col = ""blue"","
-"0","    fill = TRUE)"
