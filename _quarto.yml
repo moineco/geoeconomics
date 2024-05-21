@@ -19,6 +19,7 @@ book:
     - lecture_9.qmd
     - lecture_10.qmd
     - lecture_11.qmd
+    - lecture_12.qmd
     - references.qmd
 
 bibliography: geoeconomics.bib
