@@ -1,4 +1,4 @@
-# Making map of Tokyo
+# Map of Tokyo
 
 List of R packages used in this section:
 
@@ -131,6 +131,6 @@ map_pop_tokyo_text
 
 -   To export the above figure, use the following code:
 
-```{txt}         
+```{txt}
 ggsave("fig/map_pop_tokyo_text.png", map_pop_tokyo_text, width = 13, height = 13)
 ```

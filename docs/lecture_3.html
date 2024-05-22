@@ -203,13 +203,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Population density maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Population density maps of Bangladesh</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Creating a final report</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Administrative maps of Japan</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture_12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Creating a final report</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -287,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li>By using the <code>ggplot2</code> boundaries can be drawn with <code>geom_polygon()</code> with latitude and longitude as shown in <a href="#fig-mymap-12.1" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-mymap-12.1</span></a></li>
+<li>By using the <code>ggplot2</code> boundaries can be drawn with <code>geom_polygon()</code> with latitude and longitude as shown in <a href="#fig-mymap-12.1" class="quarto-xref">Figure&nbsp;<span>3.1</span></a></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>world_map <span class="sc">%&gt;%</span> </span>
@@ -311,7 +317,7 @@ Figure&nbsp;3.1: World countries
 <h3 data-number="3.0.2" class="anchored" data-anchor-id="japan-map"><span class="header-section-number">3.0.2</span> Japan map</h3>
 <ul>
 <li><p>If we limit the data with <code>filter()</code>, we can also draw a map of specific countries.</p></li>
-<li><p>For instance, we will filter the data for Japan and draw a map as shown in <a href="#fig-mymap-12.2" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-mymap-12.2</span></a></p></li>
+<li><p>For instance, we will filter the data for Japan and draw a map as shown in <a href="#fig-mymap-12.2" class="quarto-xref">Figure&nbsp;<span>3.2</span></a></p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>world_map <span class="sc">%&gt;%</span> </span>
@@ -519,7 +525,7 @@ Geodetic CRS:  WGS 84
 </div>
 <ul>
 <li><p>We use <code>geom_sf()</code> because the boundaries of municipalities are a standard called simple features (sf).</p></li>
-<li><p>We can draw a map of Kochi prefecture of Japan which consists all the cities. As shown in <a href="#fig-mymap-12.3" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-mymap-12.3</span></a>, we can plot the boundaries of the cities inside Kochi Prefecture.</p></li>
+<li><p>We can draw a map of Kochi prefecture of Japan which consists all the cities. As shown in <a href="#fig-mymap-12.3" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>, we can plot the boundaries of the cities inside Kochi Prefecture.</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>kochi <span class="sc">%&gt;%</span> </span>
@@ -539,7 +545,7 @@ Figure&nbsp;3.3: Kochi prefecture of Japan
 </div>
 </div>
 <ul>
-<li>By using additional feature of <code>geom_sf</code>, we can improve the visualization of the map as <a href="#fig-mymap-12.4" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-mymap-12.4</span></a></li>
+<li>By using additional feature of <code>geom_sf</code>, we can improve the visualization of the map as <a href="#fig-mymap-12.4" class="quarto-xref">Figure&nbsp;<span>3.4</span></a></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>kochi <span class="sc">%&gt;%</span> </span>
@@ -559,7 +565,7 @@ Figure&nbsp;3.4: Kochi prefecture of Japan with random color
 </div>
 </div>
 <ul>
-<li>By using geom_point feature, we can specify the capital of the Kochi prefecture as <a href="#fig-mymap-12.5" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-mymap-12.5</span></a></li>
+<li>By using geom_point feature, we can specify the capital of the Kochi prefecture as <a href="#fig-mymap-12.5" class="quarto-xref">Figure&nbsp;<span>3.5</span></a></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>kochi <span class="sc">%&gt;%</span> </span>

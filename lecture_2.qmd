@@ -1,4 +1,4 @@
-# Processing Shapefiles in R
+# Processing Shapefiles
 
 ## Shapefile in GIS
 

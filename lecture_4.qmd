@@ -1,4 +1,4 @@
-# Making maps with R
+# GDP maps with R
 
 List of R packages used in this section:
 
