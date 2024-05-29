@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Geoeconomics with R and Python - 12&nbsp; Creating a final report</title>
+<title>Geoeconomics with R and Python - 12&nbsp; naturalearth data use</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./lecture_13.html" rel="next">
 <link href="./lecture_11.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -81,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture_12.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Creating a final report</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture_12.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>naturalearth</code> data use</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -121,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Processing Shapefiles in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Processing Shapefiles</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -133,7 +167,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Making maps with R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GDP maps with R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -145,7 +179,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Making map of Tokyo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Map of Tokyo</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -157,13 +191,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Spatial analysis using <code>sf</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Alaska map with <code>sf</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_9.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Spatial data in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><code>Maps</code> package for GIS</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -181,7 +215,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_12.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Creating a final report</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>naturalearth</code> data use</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture_13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Creating a final report</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -196,22 +236,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#a-quarto-book" id="toc-a-quarto-book" class="nav-link active" data-scroll-target="#a-quarto-book"><span class="header-section-number">12.1</span> A quarto book</a></li>
-  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow"><span class="header-section-number">12.2</span> Workflow</a></li>
-  <li><a href="#book-structure" id="toc-book-structure" class="nav-link" data-scroll-target="#book-structure"><span class="header-section-number">12.3</span> Book Structure</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Creating a final report</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>naturalearth</code> data use</span></h1>
 </div>
 
 
@@ -228,157 +260,2161 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="a-quarto-book" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="a-quarto-book"><span class="header-section-number">12.1</span> A quarto book</h2>
-<p>Quarto Books are combinations of multiple documents (chapters) into a single manuscript. Books can be created in a variety of formats:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
-<li>HTML</li>
-<li>PDF</li>
-<li>MS Word</li>
-<li>EPUB</li>
+<li>naturalearthdata.com provides many open-source maps. I decided to select the world map with country borders on a 1:10m scale (can be found <a href="https://www.naturalearthdata.com/downloads/10m-cultural-vectors/" class="uri">https://www.naturalearthdata.com/downloads/10m-cultural-vectors/</a>)</li>
 </ul>
-</section>
-<section id="workflow" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="workflow"><span class="header-section-number">12.2</span> Workflow</h2>
-<p>We will check the steps to create and edit a simple book with chapters contained in the files <code>index.qmd</code>, <code>intro.qmd</code>, <code>summary.qmd</code>.</p>
-<p><strong>Config File</strong></p>
-<p>A Quarto project file (<code>_quarto.yml</code>) is contained within the book project directory. This file contains the initial configuration for your book. For example:</p>
-<pre><code>---
-project:
-  type: book
-book:
-  title: "GIS with R"
-  author: "Moinul Islam"
-  date: "4/18/2024"
-  chapters:
-    - index.qmd
-    - intro.qmd
-    - summary.qmd
-    - references.qmd
-bibliography: references.bib
-format:
-  html:
-    theme: cosmo
-  pdf:
-    documentclass: scrreprt
-  epub:
-    cover-image: cover.png
----</code></pre>
-</section>
-<section id="book-structure" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="book-structure"><span class="header-section-number">12.3</span> Book Structure</h2>
-<p>The structure of a Quarto book can be as simple as a list of chapters, or can alternatively incorporate multiple parts and/or appendices. Quarto book chapters and sections are automatically numbered (for cross-referencing), however you can also specify that some parts of the book should remain unnumbered.</p>
-<p>The simple book configuration generated by quarto create project book illustrates the basics:</p>
-<pre><code>---
-book:
-  title: "GIS with R"
-  author: "Moinul Islam"
-  date: "5/9/2021"
-  chapters:
-    - index.qmd
-    - intro.qmd
-    - summary.qmd
-    - references.qmd
----</code></pre>
-<p>The <code>index.qmd</code> file is required (because Quarto books also produce a website in HTML format). The <code>references.qmd</code> file will include the generated bibliography.</p>
-<p><strong>Titles</strong></p>
-<p>Since rendering options are provided in _quarto.yml, you’ll typically see a simple level-one header at the top of chapters. For example:</p>
-<pre><code># Introduction</code></pre>
-<p>Note that the following is also still perfectly valid:</p>
-<pre><code>---
-title: "Introduction"
----</code></pre>
-<p>In the absence of a level-one header or a title set in the YAML front matter, the first header in the page will be used as the title.</p>
-<p><strong>Chapter Numbers</strong></p>
-<p>All chapters are numbered by default. If you want a chapter to be unnumbered simply add the .unnumbered class to its main header. For example:</p>
-<pre class="{txt}"><code># Introduction {.unnumbered}</code></pre>
-<p><strong>Section Numbers</strong></p>
-<p>You can set the numbering depth via the number-depth option. For example, to only number sections immediately below the chapter level, use this:</p>
-<pre class="{txt}"><code>number-depth: 1</code></pre>
-<p><strong>Creating an Index</strong></p>
-<p>To add an index to the PDF output for a book, add these include-in-header and include-after-body entries to your pdf format configuration in _quarto.yml: quart</p>
-<pre><code>---
-format:
-  html:
-    theme: cosmo
-  pdf:
-    documentclass: scrreprt
-    include-in-header: 
-      text: |
-        \usepackage{makeidx}
-        \makeindex
-    include-after-body: 
-      text: |
-        \printindex
----</code></pre>
-<p><strong>Parts &amp; Appendices</strong></p>
-<p>You can divide your book into parts using part within the book chapters. For example:</p>
-<pre><code>---
-chapters:
-  - index.qmd
-  - preface.qmd
-  - part: dice.qmd
-    chapters: 
-      - basics.qmd
-      - packages.qmd
-  - part: cards.qmd
-    chapters:
-      - objects.qmd
-      - notation.qmd
-      - modifying.qmd
-      - environments.qmd
----</code></pre>
-<p>You can include appendices by adding an appendices key to your book config. For example:</p>
-<pre><code>---
-book:
-  title: "GIS with R"
-  author: "Moinul Islam"
-  date: "5/9/2024"
-  chapters:
-    - index.qmd
-    - intro.qmd
-    - summary.qmd
-    - references.qmd
-  appendices:
-    - tools.qmd
-    - resources.qmd
----</code></pre>
-<p><strong>Navigation bar</strong></p>
-<p>Options that define the top navigation bar for a book For example:</p>
-<pre><code>---
-book:
-  navbar:
-    search: true
----</code></pre>
-<p><strong>Navigation items</strong></p>
-<p>Nav items appear in the left or right key of navbar definitions, or contents key of sidebar definitions. For example:</p>
-<pre><code>---
-book:
-  navbar:
-    right:
-      - icon: github
-        href: https://github.com/
-        aria-label: GitHub
----</code></pre>
-<p><strong>Sidebar</strong></p>
-<p>Options that define the side navigation area for a book. For example:</p>
-<pre><code>---
-book:
-  sidebar:
-    search: true
----</code></pre>
-<p><strong>Sidebar Tools</strong></p>
-<p>Action buttons that appear on the sidebar. For example:</p>
-<pre><code>---
-book:
-  sidebar:
-    tools:
-      - icon: github
-        href: https://github.com/
----</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>map_data <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/shapefile/ne_10m_admin_0_countries"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `ne_10m_admin_0_countries' from data source 
+  `/Users/moinul/Library/CloudStorage/Dropbox/git_working_directory/geoeconomics_R_python/data/shapefile/ne_10m_admin_0_countries' 
+  using driver `ESRI Shapefile'
+Simple feature collection with 258 features and 168 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -180 ymin: -90 xmax: 180 ymax: 83.6341
+Geodetic CRS:  WGS 84</code></pre>
+</div>
+</div>
+<ul>
+<li>The map_data uses data.frames for its features and saves the geometric features as a list in the column geometry. We can now easily explore the data in map_data, e.g.,The map_data uses data.frames for its features and saves the geometric features as a list in the column geometry. We can now easily explore the data in map_data, e.g.,</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>features_map_data <span class="ot">&lt;-</span> map_data <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>geometry) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(features_map_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">featurecla</th>
+<th style="text-align: right;">scalerank</th>
+<th style="text-align: right;">LABELRANK</th>
+<th style="text-align: left;">SOVEREIGNT</th>
+<th style="text-align: left;">SOV_A3</th>
+<th style="text-align: right;">ADM0_DIF</th>
+<th style="text-align: right;">LEVEL</th>
+<th style="text-align: left;">TYPE</th>
+<th style="text-align: left;">TLC</th>
+<th style="text-align: left;">ADMIN</th>
+<th style="text-align: left;">ADM0_A3</th>
+<th style="text-align: right;">GEOU_DIF</th>
+<th style="text-align: left;">GEOUNIT</th>
+<th style="text-align: left;">GU_A3</th>
+<th style="text-align: right;">SU_DIF</th>
+<th style="text-align: left;">SUBUNIT</th>
+<th style="text-align: left;">SU_A3</th>
+<th style="text-align: right;">BRK_DIFF</th>
+<th style="text-align: left;">NAME</th>
+<th style="text-align: left;">NAME_LONG</th>
+<th style="text-align: left;">BRK_A3</th>
+<th style="text-align: left;">BRK_NAME</th>
+<th style="text-align: left;">BRK_GROUP</th>
+<th style="text-align: left;">ABBREV</th>
+<th style="text-align: left;">POSTAL</th>
+<th style="text-align: left;">FORMAL_EN</th>
+<th style="text-align: left;">FORMAL_FR</th>
+<th style="text-align: left;">NAME_CIAWF</th>
+<th style="text-align: left;">NOTE_ADM0</th>
+<th style="text-align: left;">NOTE_BRK</th>
+<th style="text-align: left;">NAME_SORT</th>
+<th style="text-align: left;">NAME_ALT</th>
+<th style="text-align: right;">MAPCOLOR7</th>
+<th style="text-align: right;">MAPCOLOR8</th>
+<th style="text-align: right;">MAPCOLOR9</th>
+<th style="text-align: right;">MAPCOLOR13</th>
+<th style="text-align: right;">POP_EST</th>
+<th style="text-align: right;">POP_RANK</th>
+<th style="text-align: right;">POP_YEAR</th>
+<th style="text-align: right;">GDP_MD</th>
+<th style="text-align: right;">GDP_YEAR</th>
+<th style="text-align: left;">ECONOMY</th>
+<th style="text-align: left;">INCOME_GRP</th>
+<th style="text-align: left;">FIPS_10</th>
+<th style="text-align: left;">ISO_A2</th>
+<th style="text-align: left;">ISO_A2_EH</th>
+<th style="text-align: left;">ISO_A3</th>
+<th style="text-align: left;">ISO_A3_EH</th>
+<th style="text-align: left;">ISO_N3</th>
+<th style="text-align: left;">ISO_N3_EH</th>
+<th style="text-align: left;">UN_A3</th>
+<th style="text-align: left;">WB_A2</th>
+<th style="text-align: left;">WB_A3</th>
+<th style="text-align: right;">WOE_ID</th>
+<th style="text-align: right;">WOE_ID_EH</th>
+<th style="text-align: left;">WOE_NOTE</th>
+<th style="text-align: left;">ADM0_ISO</th>
+<th style="text-align: left;">ADM0_DIFF</th>
+<th style="text-align: left;">ADM0_TLC</th>
+<th style="text-align: left;">ADM0_A3_US</th>
+<th style="text-align: left;">ADM0_A3_FR</th>
+<th style="text-align: left;">ADM0_A3_RU</th>
+<th style="text-align: left;">ADM0_A3_ES</th>
+<th style="text-align: left;">ADM0_A3_CN</th>
+<th style="text-align: left;">ADM0_A3_TW</th>
+<th style="text-align: left;">ADM0_A3_IN</th>
+<th style="text-align: left;">ADM0_A3_NP</th>
+<th style="text-align: left;">ADM0_A3_PK</th>
+<th style="text-align: left;">ADM0_A3_DE</th>
+<th style="text-align: left;">ADM0_A3_GB</th>
+<th style="text-align: left;">ADM0_A3_BR</th>
+<th style="text-align: left;">ADM0_A3_IL</th>
+<th style="text-align: left;">ADM0_A3_PS</th>
+<th style="text-align: left;">ADM0_A3_SA</th>
+<th style="text-align: left;">ADM0_A3_EG</th>
+<th style="text-align: left;">ADM0_A3_MA</th>
+<th style="text-align: left;">ADM0_A3_PT</th>
+<th style="text-align: left;">ADM0_A3_AR</th>
+<th style="text-align: left;">ADM0_A3_JP</th>
+<th style="text-align: left;">ADM0_A3_KO</th>
+<th style="text-align: left;">ADM0_A3_VN</th>
+<th style="text-align: left;">ADM0_A3_TR</th>
+<th style="text-align: left;">ADM0_A3_ID</th>
+<th style="text-align: left;">ADM0_A3_PL</th>
+<th style="text-align: left;">ADM0_A3_GR</th>
+<th style="text-align: left;">ADM0_A3_IT</th>
+<th style="text-align: left;">ADM0_A3_NL</th>
+<th style="text-align: left;">ADM0_A3_SE</th>
+<th style="text-align: left;">ADM0_A3_BD</th>
+<th style="text-align: left;">ADM0_A3_UA</th>
+<th style="text-align: right;">ADM0_A3_UN</th>
+<th style="text-align: right;">ADM0_A3_WB</th>
+<th style="text-align: left;">CONTINENT</th>
+<th style="text-align: left;">REGION_UN</th>
+<th style="text-align: left;">SUBREGION</th>
+<th style="text-align: left;">REGION_WB</th>
+<th style="text-align: right;">NAME_LEN</th>
+<th style="text-align: right;">LONG_LEN</th>
+<th style="text-align: right;">ABBREV_LEN</th>
+<th style="text-align: right;">TINY</th>
+<th style="text-align: right;">HOMEPART</th>
+<th style="text-align: right;">MIN_ZOOM</th>
+<th style="text-align: right;">MIN_LABEL</th>
+<th style="text-align: right;">MAX_LABEL</th>
+<th style="text-align: right;">LABEL_X</th>
+<th style="text-align: right;">LABEL_Y</th>
+<th style="text-align: right;">NE_ID</th>
+<th style="text-align: left;">WIKIDATAID</th>
+<th style="text-align: left;">NAME_AR</th>
+<th style="text-align: left;">NAME_BN</th>
+<th style="text-align: left;">NAME_DE</th>
+<th style="text-align: left;">NAME_EN</th>
+<th style="text-align: left;">NAME_ES</th>
+<th style="text-align: left;">NAME_FA</th>
+<th style="text-align: left;">NAME_FR</th>
+<th style="text-align: left;">NAME_EL</th>
+<th style="text-align: left;">NAME_HE</th>
+<th style="text-align: left;">NAME_HI</th>
+<th style="text-align: left;">NAME_HU</th>
+<th style="text-align: left;">NAME_ID</th>
+<th style="text-align: left;">NAME_IT</th>
+<th style="text-align: left;">NAME_JA</th>
+<th style="text-align: left;">NAME_KO</th>
+<th style="text-align: left;">NAME_NL</th>
+<th style="text-align: left;">NAME_PL</th>
+<th style="text-align: left;">NAME_PT</th>
+<th style="text-align: left;">NAME_RU</th>
+<th style="text-align: left;">NAME_SV</th>
+<th style="text-align: left;">NAME_TR</th>
+<th style="text-align: left;">NAME_UK</th>
+<th style="text-align: left;">NAME_UR</th>
+<th style="text-align: left;">NAME_VI</th>
+<th style="text-align: left;">NAME_ZH</th>
+<th style="text-align: left;">NAME_ZHT</th>
+<th style="text-align: left;">FCLASS_ISO</th>
+<th style="text-align: left;">TLC_DIFF</th>
+<th style="text-align: left;">FCLASS_TLC</th>
+<th style="text-align: left;">FCLASS_US</th>
+<th style="text-align: left;">FCLASS_FR</th>
+<th style="text-align: left;">FCLASS_RU</th>
+<th style="text-align: left;">FCLASS_ES</th>
+<th style="text-align: left;">FCLASS_CN</th>
+<th style="text-align: left;">FCLASS_TW</th>
+<th style="text-align: left;">FCLASS_IN</th>
+<th style="text-align: left;">FCLASS_NP</th>
+<th style="text-align: left;">FCLASS_PK</th>
+<th style="text-align: left;">FCLASS_DE</th>
+<th style="text-align: left;">FCLASS_GB</th>
+<th style="text-align: left;">FCLASS_BR</th>
+<th style="text-align: left;">FCLASS_IL</th>
+<th style="text-align: left;">FCLASS_PS</th>
+<th style="text-align: left;">FCLASS_SA</th>
+<th style="text-align: left;">FCLASS_EG</th>
+<th style="text-align: left;">FCLASS_MA</th>
+<th style="text-align: left;">FCLASS_PT</th>
+<th style="text-align: left;">FCLASS_AR</th>
+<th style="text-align: left;">FCLASS_JP</th>
+<th style="text-align: left;">FCLASS_KO</th>
+<th style="text-align: left;">FCLASS_VN</th>
+<th style="text-align: left;">FCLASS_TR</th>
+<th style="text-align: left;">FCLASS_ID</th>
+<th style="text-align: left;">FCLASS_PL</th>
+<th style="text-align: left;">FCLASS_GR</th>
+<th style="text-align: left;">FCLASS_IT</th>
+<th style="text-align: left;">FCLASS_NL</th>
+<th style="text-align: left;">FCLASS_SE</th>
+<th style="text-align: left;">FCLASS_BD</th>
+<th style="text-align: left;">FCLASS_UA</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Indonesia</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Sovereign country</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Indonesia</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Indonesia</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Indonesia</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Indonesia</td>
+<td style="text-align: left;">Indonesia</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">Indonesia</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Indo.</td>
+<td style="text-align: left;">INDO</td>
+<td style="text-align: left;">Republic of Indonesia</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Indonesia</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Indonesia</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">270625568</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">1119190</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: left;">4. Emerging region: MIKT</td>
+<td style="text-align: left;">4. Lower middle income</td>
+<td style="text-align: left;">ID</td>
+<td style="text-align: left;">ID</td>
+<td style="text-align: left;">ID</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">360</td>
+<td style="text-align: left;">360</td>
+<td style="text-align: left;">360</td>
+<td style="text-align: left;">ID</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: right;">23424846</td>
+<td style="text-align: right;">23424846</td>
+<td style="text-align: left;">Exact WOE match as country</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: left;">IDN</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: left;">Asia</td>
+<td style="text-align: left;">Asia</td>
+<td style="text-align: left;">South-Eastern Asia</td>
+<td style="text-align: left;">East Asia &amp; Pacific</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.7</td>
+<td style="text-align: right;">6.7</td>
+<td style="text-align: right;">101.89295</td>
+<td style="text-align: right;">-0.954404</td>
+<td style="text-align: right;">1159320845</td>
+<td style="text-align: left;">Q252</td>
+<td style="text-align: left;">إندونيسيا</td>
+<td style="text-align: left;">ইন্দোনেশিয়া</td>
+<td style="text-align: left;">Indonesien</td>
+<td style="text-align: left;">Indonesia</td>
+<td style="text-align: left;">Indonesia</td>
+<td style="text-align: left;">اندونزی</td>
+<td style="text-align: left;">Indonésie</td>
+<td style="text-align: left;">Ινδονησία</td>
+<td style="text-align: left;">אינדונזיה</td>
+<td style="text-align: left;">इंडोनेशिया</td>
+<td style="text-align: left;">Indonézia</td>
+<td style="text-align: left;">Indonesia</td>
+<td style="text-align: left;">Indonesia</td>
+<td style="text-align: left;">インドネシア</td>
+<td style="text-align: left;">인도네시아</td>
+<td style="text-align: left;">Indonesië</td>
+<td style="text-align: left;">Indonezja</td>
+<td style="text-align: left;">Indonésia</td>
+<td style="text-align: left;">Индонезия</td>
+<td style="text-align: left;">Indonesien</td>
+<td style="text-align: left;">Endonezya</td>
+<td style="text-align: left;">Індонезія</td>
+<td style="text-align: left;">انڈونیشیا</td>
+<td style="text-align: left;">Indonesia</td>
+<td style="text-align: left;">印度尼西亚</td>
+<td style="text-align: left;">印度尼西亞</td>
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Sovereign country</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Malay.</td>
+<td style="text-align: left;">MY</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">31949777</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">364681</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: left;">6. Developing region</td>
+<td style="text-align: left;">3. Upper middle income</td>
+<td style="text-align: left;">MY</td>
+<td style="text-align: left;">MY</td>
+<td style="text-align: left;">MY</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">458</td>
+<td style="text-align: left;">458</td>
+<td style="text-align: left;">458</td>
+<td style="text-align: left;">MY</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: right;">23424901</td>
+<td style="text-align: right;">23424901</td>
+<td style="text-align: left;">Exact WOE match as country</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: left;">Asia</td>
+<td style="text-align: left;">Asia</td>
+<td style="text-align: left;">South-Eastern Asia</td>
+<td style="text-align: left;">East Asia &amp; Pacific</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3.0</td>
+<td style="text-align: right;">8.0</td>
+<td style="text-align: right;">113.83708</td>
+<td style="text-align: right;">2.528667</td>
+<td style="text-align: right;">1159321083</td>
+<td style="text-align: left;">Q833</td>
+<td style="text-align: left;">ماليزيا</td>
+<td style="text-align: left;">মালয়েশিয়া</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">Malasia</td>
+<td style="text-align: left;">مالزی</td>
+<td style="text-align: left;">Malaisie</td>
+<td style="text-align: left;">Μαλαισία</td>
+<td style="text-align: left;">מלזיה</td>
+<td style="text-align: left;">मलेशिया</td>
+<td style="text-align: left;">Malajzia</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">マレーシア</td>
+<td style="text-align: left;">말레이시아</td>
+<td style="text-align: left;">Maleisië</td>
+<td style="text-align: left;">Malezja</td>
+<td style="text-align: left;">Malásia</td>
+<td style="text-align: left;">Малайзия</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">Malezya</td>
+<td style="text-align: left;">Малайзія</td>
+<td style="text-align: left;">ملائیشیا</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">马来西亚</td>
+<td style="text-align: left;">馬來西亞</td>
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Sovereign country</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">CL</td>
+<td style="text-align: left;">Republic of Chile</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">18952038</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">282318</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: left;">5. Emerging region: G20</td>
+<td style="text-align: left;">3. Upper middle income</td>
+<td style="text-align: left;">CI</td>
+<td style="text-align: left;">CL</td>
+<td style="text-align: left;">CL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">152</td>
+<td style="text-align: left;">152</td>
+<td style="text-align: left;">152</td>
+<td style="text-align: left;">CL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: right;">23424782</td>
+<td style="text-align: right;">23424782</td>
+<td style="text-align: left;">Exact WOE match as country</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: left;">South America</td>
+<td style="text-align: left;">Americas</td>
+<td style="text-align: left;">South America</td>
+<td style="text-align: left;">Latin America &amp; Caribbean</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.7</td>
+<td style="text-align: right;">6.7</td>
+<td style="text-align: right;">-72.31887</td>
+<td style="text-align: right;">-38.151771</td>
+<td style="text-align: right;">1159320493</td>
+<td style="text-align: left;">Q298</td>
+<td style="text-align: left;">تشيلي</td>
+<td style="text-align: left;">চিলি</td>
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">شیلی</td>
+<td style="text-align: left;">Chili</td>
+<td style="text-align: left;">Χιλή</td>
+<td style="text-align: left;">צ’ילה</td>
+<td style="text-align: left;">चिली</td>
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">Chili</td>
+<td style="text-align: left;">Cile</td>
+<td style="text-align: left;">チリ</td>
+<td style="text-align: left;">칠레</td>
+<td style="text-align: left;">Chili</td>
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">Чили</td>
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">Şili</td>
+<td style="text-align: left;">Чилі</td>
+<td style="text-align: left;">چلی</td>
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">智利</td>
+<td style="text-align: left;">智利</td>
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Sovereign country</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: left;">BO</td>
+<td style="text-align: left;">Plurinational State of Bolivia</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">11513100</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">40895</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: left;">5. Emerging region: G20</td>
+<td style="text-align: left;">4. Lower middle income</td>
+<td style="text-align: left;">BL</td>
+<td style="text-align: left;">BO</td>
+<td style="text-align: left;">BO</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">068</td>
+<td style="text-align: left;">068</td>
+<td style="text-align: left;">068</td>
+<td style="text-align: left;">BO</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: right;">23424762</td>
+<td style="text-align: right;">23424762</td>
+<td style="text-align: left;">Exact WOE match as country</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: left;">South America</td>
+<td style="text-align: left;">Americas</td>
+<td style="text-align: left;">South America</td>
+<td style="text-align: left;">Latin America &amp; Caribbean</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3.0</td>
+<td style="text-align: right;">7.5</td>
+<td style="text-align: right;">-64.59343</td>
+<td style="text-align: right;">-16.666015</td>
+<td style="text-align: right;">1159320439</td>
+<td style="text-align: left;">Q750</td>
+<td style="text-align: left;">بوليفيا</td>
+<td style="text-align: left;">বলিভিয়া</td>
+<td style="text-align: left;">Bolivien</td>
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: left;">بولیوی</td>
+<td style="text-align: left;">Bolivie</td>
+<td style="text-align: left;">Βολιβία</td>
+<td style="text-align: left;">בוליביה</td>
+<td style="text-align: left;">बोलिविया</td>
+<td style="text-align: left;">Bolívia</td>
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: left;">ボリビア</td>
+<td style="text-align: left;">볼리비아</td>
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: left;">Boliwia</td>
+<td style="text-align: left;">Bolívia</td>
+<td style="text-align: left;">Боливия</td>
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: left;">Bolivya</td>
+<td style="text-align: left;">Болівія</td>
+<td style="text-align: left;">بولیویا</td>
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: left;">玻利维亚</td>
+<td style="text-align: left;">玻利維亞</td>
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Sovereign country</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">PE</td>
+<td style="text-align: left;">Republic of Peru</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">32510453</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">226848</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: left;">5. Emerging region: G20</td>
+<td style="text-align: left;">3. Upper middle income</td>
+<td style="text-align: left;">PE</td>
+<td style="text-align: left;">PE</td>
+<td style="text-align: left;">PE</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">604</td>
+<td style="text-align: left;">604</td>
+<td style="text-align: left;">604</td>
+<td style="text-align: left;">PE</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: right;">23424919</td>
+<td style="text-align: right;">23424919</td>
+<td style="text-align: left;">Exact WOE match as country</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: left;">South America</td>
+<td style="text-align: left;">Americas</td>
+<td style="text-align: left;">South America</td>
+<td style="text-align: left;">Latin America &amp; Caribbean</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2.0</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">-72.90016</td>
+<td style="text-align: right;">-12.976679</td>
+<td style="text-align: right;">1159321163</td>
+<td style="text-align: left;">Q419</td>
+<td style="text-align: left;">بيرو</td>
+<td style="text-align: left;">পেরু</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">Perú</td>
+<td style="text-align: left;">پرو</td>
+<td style="text-align: left;">Pérou</td>
+<td style="text-align: left;">Περού</td>
+<td style="text-align: left;">פרו</td>
+<td style="text-align: left;">पेरू</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">Perù</td>
+<td style="text-align: left;">ペルー</td>
+<td style="text-align: left;">페루</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">Перу</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">Перу</td>
+<td style="text-align: left;">پیرو</td>
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">秘鲁</td>
+<td style="text-align: left;">秘魯</td>
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Sovereign country</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Arg.</td>
+<td style="text-align: left;">AR</td>
+<td style="text-align: left;">Argentine Republic</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">44938712</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">445445</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: left;">5. Emerging region: G20</td>
+<td style="text-align: left;">3. Upper middle income</td>
+<td style="text-align: left;">AR</td>
+<td style="text-align: left;">AR</td>
+<td style="text-align: left;">AR</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">032</td>
+<td style="text-align: left;">032</td>
+<td style="text-align: left;">032</td>
+<td style="text-align: left;">AR</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: right;">23424747</td>
+<td style="text-align: right;">23424747</td>
+<td style="text-align: left;">Exact WOE match as country</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: left;">South America</td>
+<td style="text-align: left;">Americas</td>
+<td style="text-align: left;">South America</td>
+<td style="text-align: left;">Latin America &amp; Caribbean</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2.0</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">-64.17333</td>
+<td style="text-align: right;">-33.501159</td>
+<td style="text-align: right;">1159320331</td>
+<td style="text-align: left;">Q414</td>
+<td style="text-align: left;">الأرجنتين</td>
+<td style="text-align: left;">আর্জেন্টিনা</td>
+<td style="text-align: left;">Argentinien</td>
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: left;">آرژانتین</td>
+<td style="text-align: left;">Argentine</td>
+<td style="text-align: left;">Αργεντινή</td>
+<td style="text-align: left;">ארגנטינה</td>
+<td style="text-align: left;">अर्जेण्टीना</td>
+<td style="text-align: left;">Argentína</td>
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: left;">アルゼンチン</td>
+<td style="text-align: left;">아르헨티나</td>
+<td style="text-align: left;">Argentinië</td>
+<td style="text-align: left;">Argentyna</td>
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: left;">Аргентина</td>
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: left;">Arjantin</td>
+<td style="text-align: left;">Аргентина</td>
+<td style="text-align: left;">ارجنٹائن</td>
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: left;">阿根廷</td>
+<td style="text-align: left;">阿根廷</td>
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">United Kingdom</td>
+<td style="text-align: left;">GB1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Dependency</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Dhekelia Sovereign Base Area</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Dhekelia Sovereign Base Area</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Dhekelia Sovereign Base Area</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Dhekelia</td>
+<td style="text-align: left;">Dhekelia</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">Dhekelia</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Dhek.</td>
+<td style="text-align: left;">DH</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">U.K.</td>
+<td style="text-align: left;">U.K. Base</td>
+<td style="text-align: left;">Dhekelia Sovereign Base Area</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">7850</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">314</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: left;">2. Developed region: nonG7</td>
+<td style="text-align: left;">2. High income: nonOECD</td>
+<td style="text-align: left;">-99</td>
+<td style="text-align: left;">-99</td>
+<td style="text-align: left;">-99</td>
+<td style="text-align: left;">-99</td>
+<td style="text-align: left;">-99</td>
+<td style="text-align: left;">-99</td>
+<td style="text-align: left;">-99</td>
+<td style="text-align: left;">-099</td>
+<td style="text-align: left;">-99</td>
+<td style="text-align: left;">-99</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: left;">No WOE equivalent.</td>
+<td style="text-align: left;">-99</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: left;">ESB</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: left;">Asia</td>
+<td style="text-align: left;">Asia</td>
+<td style="text-align: left;">Western Asia</td>
+<td style="text-align: left;">Europe &amp; Central Asia</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">11.0</td>
+<td style="text-align: right;">33.79058</td>
+<td style="text-align: right;">35.011042</td>
+<td style="text-align: right;">1159320709</td>
+<td style="text-align: left;">Q9206745</td>
+<td style="text-align: left;">ديكيليا كانتونمنت</td>
+<td style="text-align: left;">দেখেলিয়া ক্যান্টনমেন্ট</td>
+<td style="text-align: left;">Dekelia</td>
+<td style="text-align: left;">Dhekelia Cantonment</td>
+<td style="text-align: left;">Dekelia</td>
+<td style="text-align: left;">دکلیا</td>
+<td style="text-align: left;">Dhekelia</td>
+<td style="text-align: left;">Ντεκέλια Κάντονμεντ</td>
+<td style="text-align: left;">דקליה</td>
+<td style="text-align: left;">ढेकेलिया छावनी</td>
+<td style="text-align: left;">Dekélia</td>
+<td style="text-align: left;">Dhekelia Cantonment</td>
+<td style="text-align: left;">Base di Dhekelia</td>
+<td style="text-align: left;">デケリア</td>
+<td style="text-align: left;">데켈리아 지역</td>
+<td style="text-align: left;">Dhekelia Cantonment</td>
+<td style="text-align: left;">Dhekelia</td>
+<td style="text-align: left;">Deceleia</td>
+<td style="text-align: left;">Декелия</td>
+<td style="text-align: left;">Dhekelia</td>
+<td style="text-align: left;">Dhekelia Kantonu</td>
+<td style="text-align: left;">Муніципалітет Декелія</td>
+<td style="text-align: left;">دحیکیلیا کانتونمینٹ</td>
+<td style="text-align: left;">Căn cứ quân sự Dhekelia</td>
+<td style="text-align: left;">泽凯利亚军营</td>
+<td style="text-align: left;">德凱利亞軍營</td>
+<td style="text-align: left;">Unrecognized</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Admin-0 dependency</td>
+<td style="text-align: left;">Admin-0 dependency</td>
+<td style="text-align: left;">Admin-0 dependency</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Admin-0 dependency</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Admin-0 dependency</td>
+<td style="text-align: left;">Admin-0 dependency</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Admin-0 dependency</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Admin-0 dependency</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Admin-0 dependency</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Admin-0 dependency</td>
+<td style="text-align: left;">Admin-0 dependency</td>
+<td style="text-align: left;">Admin-0 dependency</td>
+<td style="text-align: left;">Admin-0 dependency</td>
+<td style="text-align: left;">Admin-0 dependency</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Admin-0 dependency</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Cyprus</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Sovereign country</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Cyprus</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Cyprus</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Cyprus</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Cyprus</td>
+<td style="text-align: left;">Cyprus</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">Cyprus</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Cyp.</td>
+<td style="text-align: left;">CY</td>
+<td style="text-align: left;">Republic of Cyprus</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Cyprus</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Cyprus</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1198575</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">24948</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: left;">6. Developing region</td>
+<td style="text-align: left;">2. High income: nonOECD</td>
+<td style="text-align: left;">CY</td>
+<td style="text-align: left;">CY</td>
+<td style="text-align: left;">CY</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">196</td>
+<td style="text-align: left;">196</td>
+<td style="text-align: left;">196</td>
+<td style="text-align: left;">CY</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: right;">-90</td>
+<td style="text-align: right;">23424994</td>
+<td style="text-align: left;">WOE lists as subunit of united Cyprus</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: left;">CYP</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: left;">Asia</td>
+<td style="text-align: left;">Asia</td>
+<td style="text-align: left;">Western Asia</td>
+<td style="text-align: left;">Europe &amp; Central Asia</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4.5</td>
+<td style="text-align: right;">9.5</td>
+<td style="text-align: right;">33.08418</td>
+<td style="text-align: right;">34.913329</td>
+<td style="text-align: right;">1159320533</td>
+<td style="text-align: left;">Q229</td>
+<td style="text-align: left;">قبرص</td>
+<td style="text-align: left;">সাইপ্রাস</td>
+<td style="text-align: left;">Republik Zypern</td>
+<td style="text-align: left;">Cyprus</td>
+<td style="text-align: left;">Chipre</td>
+<td style="text-align: left;">قبرس</td>
+<td style="text-align: left;">Chypre</td>
+<td style="text-align: left;">Κύπρος</td>
+<td style="text-align: left;">קפריסין</td>
+<td style="text-align: left;">साइप्रस</td>
+<td style="text-align: left;">Ciprus</td>
+<td style="text-align: left;">Siprus</td>
+<td style="text-align: left;">Cipro</td>
+<td style="text-align: left;">キプロス</td>
+<td style="text-align: left;">키프로스</td>
+<td style="text-align: left;">Cyprus</td>
+<td style="text-align: left;">Cypr</td>
+<td style="text-align: left;">Chipre</td>
+<td style="text-align: left;">Кипр</td>
+<td style="text-align: left;">Cypern</td>
+<td style="text-align: left;">Kıbrıs Cumhuriyeti</td>
+<td style="text-align: left;">Кіпр</td>
+<td style="text-align: left;">قبرص</td>
+<td style="text-align: left;">Cộng hòa Síp</td>
+<td style="text-align: left;">塞浦路斯</td>
+<td style="text-align: left;">賽普勒斯</td>
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">India</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Sovereign country</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">India</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">India</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">India</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">India</td>
+<td style="text-align: left;">India</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">India</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">India</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">Republic of India</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">India</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">India</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1366417754</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">2868929</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: left;">3. Emerging region: BRIC</td>
+<td style="text-align: left;">4. Lower middle income</td>
+<td style="text-align: left;">IN</td>
+<td style="text-align: left;">IN</td>
+<td style="text-align: left;">IN</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">356</td>
+<td style="text-align: left;">356</td>
+<td style="text-align: left;">356</td>
+<td style="text-align: left;">IN</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: right;">23424848</td>
+<td style="text-align: right;">23424848</td>
+<td style="text-align: left;">Exact WOE match as country</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: left;">IND</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: left;">Asia</td>
+<td style="text-align: left;">Asia</td>
+<td style="text-align: left;">Southern Asia</td>
+<td style="text-align: left;">South Asia</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.7</td>
+<td style="text-align: right;">6.7</td>
+<td style="text-align: right;">79.35810</td>
+<td style="text-align: right;">22.686852</td>
+<td style="text-align: right;">1159320847</td>
+<td style="text-align: left;">Q668</td>
+<td style="text-align: left;">الهند</td>
+<td style="text-align: left;">ভারত</td>
+<td style="text-align: left;">Indien</td>
+<td style="text-align: left;">India</td>
+<td style="text-align: left;">India</td>
+<td style="text-align: left;">هند</td>
+<td style="text-align: left;">Inde</td>
+<td style="text-align: left;">Ινδία</td>
+<td style="text-align: left;">הודו</td>
+<td style="text-align: left;">भारत</td>
+<td style="text-align: left;">India</td>
+<td style="text-align: left;">India</td>
+<td style="text-align: left;">India</td>
+<td style="text-align: left;">インド</td>
+<td style="text-align: left;">인도</td>
+<td style="text-align: left;">India</td>
+<td style="text-align: left;">Indie</td>
+<td style="text-align: left;">Índia</td>
+<td style="text-align: left;">Индия</td>
+<td style="text-align: left;">Indien</td>
+<td style="text-align: left;">Hindistan</td>
+<td style="text-align: left;">Індія</td>
+<td style="text-align: left;">بھارت</td>
+<td style="text-align: left;">Ấn Độ</td>
+<td style="text-align: left;">印度</td>
+<td style="text-align: left;">印度</td>
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">China</td>
+<td style="text-align: left;">CH1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Country</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">China</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">China</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">China</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">China</td>
+<td style="text-align: left;">China</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">China</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">China</td>
+<td style="text-align: left;">CN</td>
+<td style="text-align: left;">People’s Republic of China</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">China</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">China</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1397715000</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">14342903</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: left;">3. Emerging region: BRIC</td>
+<td style="text-align: left;">3. Upper middle income</td>
+<td style="text-align: left;">CH</td>
+<td style="text-align: left;">CN</td>
+<td style="text-align: left;">CN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">156</td>
+<td style="text-align: left;">156</td>
+<td style="text-align: left;">156</td>
+<td style="text-align: left;">CN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: right;">23424781</td>
+<td style="text-align: right;">23424781</td>
+<td style="text-align: left;">Exact WOE match as country</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">TWN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: left;">Asia</td>
+<td style="text-align: left;">Asia</td>
+<td style="text-align: left;">Eastern Asia</td>
+<td style="text-align: left;">East Asia &amp; Pacific</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">-99</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.7</td>
+<td style="text-align: right;">5.7</td>
+<td style="text-align: right;">106.33729</td>
+<td style="text-align: right;">32.498178</td>
+<td style="text-align: right;">1159320471</td>
+<td style="text-align: left;">Q148</td>
+<td style="text-align: left;">الصين</td>
+<td style="text-align: left;">গণচীন</td>
+<td style="text-align: left;">Volksrepublik China</td>
+<td style="text-align: left;">People’s Republic of China</td>
+<td style="text-align: left;">China</td>
+<td style="text-align: left;">جمهوری خلق چین</td>
+<td style="text-align: left;">République populaire de Chine</td>
+<td style="text-align: left;">Λαϊκή Δημοκρατία της Κίνας</td>
+<td style="text-align: left;">הרפובליקה העממית של סין</td>
+<td style="text-align: left;">चीनी जनवादी गणराज्य</td>
+<td style="text-align: left;">Kína</td>
+<td style="text-align: left;">Republik Rakyat Tiongkok</td>
+<td style="text-align: left;">Cina</td>
+<td style="text-align: left;">中華人民共和国</td>
+<td style="text-align: left;">중화인민공화국</td>
+<td style="text-align: left;">Volksrepubliek China</td>
+<td style="text-align: left;">Chińska Republika Ludowa</td>
+<td style="text-align: left;">China</td>
+<td style="text-align: left;">Китайская Народная Республика</td>
+<td style="text-align: left;">Kina</td>
+<td style="text-align: left;">Çin Halk Cumhuriyeti</td>
+<td style="text-align: left;">Китайська Народна Республіка</td>
+<td style="text-align: left;">عوامی جمہوریہ چین</td>
+<td style="text-align: left;">Trung Quốc</td>
+<td style="text-align: left;">中华人民共和国</td>
+<td style="text-align: left;">中華人民共和國</td>
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Admin-0 country</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Unrecognized</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li>For this tutorial we want to focus on a European countries, hence we need to filter the data to only contain the European countries’ info. Fortunately, the map_data contains a feature CONTINTENT, so we can easily filter out the unwanted countries.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>europe_map_data <span class="ot">&lt;-</span> map_data <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(NAME, CONTINENT, SUBREGION, POP_EST) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(CONTINENT <span class="sc">==</span> <span class="st">"Europe"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Lets try to plot a map of European countries. New versions of ggplot2 contain a function geom_sf which supports plotting sf objects directly, so lets try it…</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(europe_map_data) <span class="sc">+</span> <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture_12_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>That does not seem to work… the reason is that, even though we removed the data of non European countries, we never changed the bbox setting of our data. The bbox object sets the longitude and latitude range for our plot, which is still for the whole Europe. To change this we can use the st_crop function as</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>europe_map_data <span class="ot">&lt;-</span> europe_map_data <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_crop</span>(<span class="at">xmin=</span><span class="sc">-</span><span class="dv">25</span>, <span class="at">xmax=</span><span class="dv">55</span>, <span class="at">ymin=</span><span class="dv">35</span>, <span class="at">ymax=</span><span class="dv">71</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: attribute variables are assumed to be spatially constant throughout
+all geometries</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(europe_map_data) <span class="sc">+</span> <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture_12_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>If you’re familiar with the ggplot2 workflow, it is now easy to construct the aesthetic mappings like you’re used to. Our map_data contains a feature SUBREGION and Europe is divided into Northern, Eastern, Southern and Western Europe. We can easily visualize this in our European map as</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(europe_map_data) <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill=</span>SUBREGION)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture_12_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -797,8 +2833,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./lecture_13.html" class="pagination-link" aria-label="Creating a final report">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Creating a final report</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,6 +1,6 @@
-# Plotting U.S.A. Map
+# Plotting USA Map
 
--   We will explore different packages that could help with mapping geographical data, specifically for the U.S. At first we need to load necessary packages to execute the maps for this lecture.
+-   We will explore different packages that could help with mapping geographical data, specifically for the USA. At first we need to load necessary packages to execute the maps for this lecture.
 
 ```{r}
 #| message: false
@@ -19,7 +19,7 @@ pacman::p_load(usmap, maps, mapdata, sf, plotly, tidyverse, mapview, leaflet, tm
 
 ## Using `usmap` package
 
--   This is probably the most continent package to plot a U.S.A. map along with some data. Plot all states of the U.S.A. to create an empty map.
+-   This is probably the most continent package to plot a USA. map along with some data. Plot all states of the USA to create an empty map.
 
 ```{r}
 #| code-fold: false
@@ -31,7 +31,7 @@ plot_usmap(regions = "states") +
   theme(panel.background=element_blank())
 ```
 
--   Besides states, we could also plot all counties of the U.S.A.
+-   Besides states, we could also plot all counties of the USA.
 
 ```{r}
 #| code-fold: false
@@ -81,7 +81,7 @@ plot_usmap(include = c("CT", "ME", "MA", "NH", "VT")) +
 usa <- map_data('usa')
 ```
 
--   Next, we use geom_ploygon function to plot U.S.A. map.
+-   Next, we use geom_ploygon function to plot USA map.
 
 ```{r}
 #| code-fold: false
@@ -95,7 +95,7 @@ ggplot(data=usa, aes(x=long, y=lat, group=group)) +
   coord_fixed(1.3)
 ```
 
--   In order to get more information about U.S.A., now we can add state data to the map. Like above, we obtain data from maps and mapdata packages, and use `ggplot2` to plot.
+-   In order to get more information about USA, now we can add state data to the map. Like above, we obtain data from maps and mapdata packages, and use `ggplot2` to plot.
 
 ```{r}
 #| code-fold: false

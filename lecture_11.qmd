@@ -53,7 +53,7 @@ ggplot(jp0_shp) +
     geom_sf(color = "blue", fill = "white", lwd = 0.07)
 ```
 
-- We can try the `aes()` function to improve the visual of the ADM0. Aesthetics are used to bind plotting parameters to your data. The `aes()` function defines which variables you want to plot, and which plot parameters to map them to.
+-   We can try the `aes()` function to improve the visual of the ADM0. Aesthetics are used to bind plotting parameters to your data. The `aes()` function defines which variables you want to plot, and which plot parameters to map them to.
 
 ```{r}
 ggplot(jp0_shp) +
@@ -68,14 +68,14 @@ ggplot(jp1_shp) +
   geom_sf()
 ```
 
-- Lets change the color of boundary and fill.
+-   Lets change the color of boundary and fill.
 
 ```{r}
 ggplot(jp1_shp) +
     geom_sf(color = "blue",  fill = "white", lwd = 0.07)
 ```
 
-- We can try the `aes()` function to improve the visual of the ADM1.
+-   We can try the `aes()` function to improve the visual of the ADM1.
 
 ```{r}
 ggplot(jp1_shp) +
@@ -90,15 +90,16 @@ ggplot(jp2_shp) +
   geom_sf()
 ```
 
-- Lets change the color of boundary and fill
+-   Lets change the color of boundary and fill
 
 ```{r}
 ggplot(jp2_shp) +
     geom_sf(color = "blue",  fill = "white", lwd = 0.07)
 ```
 
+-   
 
-- - We can try the `aes()` function to improve the visual of the ADM2.
+    -   We can try the `aes()` function to improve the visual of the ADM2.
 
 ```{r}
 ggplot(jp2_shp) +

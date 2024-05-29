@@ -163,7 +163,8 @@ ggplot(bd1_shp_pop) +
     geom_sf_text(aes(label = ADM1_EN), size = 2) +
     scale_fill_viridis_c(option = "magma", name = "Population")
 ```
-- By loading additional package, we can draw for informative maps
+
+-   By loading additional package, we can draw for informative maps
 
 ```{txt}
 #| code-fold: false
@@ -178,7 +179,7 @@ ggplot(bd1_shp_pop) +
          caption = "Source of data: BBS")
 ```
 
-- Draw the map ADM2
+-   Draw the map ADM2
 
 ```{r}
 #| code-fold: false
@@ -189,7 +190,7 @@ ggplot(bd2_shp_pop) +
     scale_fill_viridis_c(option = "magma", name = "Population")
 ```
 
-- By loading additional package, we can draw for informative maps
+-   By loading additional package, we can draw for informative maps
 
 ```{txt}
 #| code-fold: false
@@ -215,7 +216,7 @@ ggplot(bd3_shp_pop) +
     scale_fill_viridis_c(option = "magma", name = "Population")
 ```
 
-- By loading additional package, we can draw for informative maps
+-   By loading additional package, we can draw for informative maps
 
 ```{txt}
 #| code-fold: false
