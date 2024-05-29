@@ -1,6 +1,7 @@
 # `naturalearth` data use
 
 ```{r}
+#| message: false
 library(tidyverse)
 library(sf)
 library(knitr)
@@ -8,7 +9,8 @@ library(knitr)
 
 -   naturalearthdata.com provides many open-source maps. I decided to select the world map with country borders on a 1:10m scale (can be found <https://www.naturalearthdata.com/downloads/10m-cultural-vectors/>)
 
-```{r}
+```{r, results='hide'}
+#| message: false
 map_data <- st_read("data/shapefile/ne_10m_admin_0_countries")
 ```
 
@@ -26,6 +28,7 @@ kable(features_map_data)
 -   For this tutorial we want to focus on a European countries, hence we need to filter the data to only contain the European countries’ info. Fortunately, the map_data contains a feature CONTINTENT, so we can easily filter out the unwanted countries.
 
 ```{r}
+#| warning: false
 europe_map_data <- map_data %>%
     select(NAME, CONTINENT, SUBREGION, POP_EST) %>%
     filter(CONTINENT == "Europe")
@@ -41,6 +44,7 @@ ggplot(europe_map_data) + geom_sf() +
 -   That does not seem to work… the reason is that, even though we removed the data of non European countries, we never changed the bbox setting of our data. The bbox object sets the longitude and latitude range for our plot, which is still for the whole Europe. To change this we can use the st_crop function as
 
 ```{r}
+#| warning: false
 europe_map_data <- europe_map_data %>%
     st_crop(xmin=-25, xmax=55, ymin=35, ymax=71)
 ```

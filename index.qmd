@@ -4,38 +4,6 @@ We have entered the age of geoeconomics, in which the global economy has become 
 
 ![](cover.png){fig-align="center" width="500"}
 
-The "Geoeconomics" course contents are as below:
-
--   Lecture 1: R packages for GIS
-
--   Lecture 2: Processing Shapefiles in R
-
--   Lecture 3: Making maps with R
-
--   Lecture 4: Part 1_Spatial data operations
-
--   Lecture 5: Part 2_Spatial data operations
-
--   Lecture 6: Part 1_Making map of Tokyo
-
--   Lecture 7: Part 2_Making map of Tokyo
-
--   Lecture 8: Part 1_Making map with `sf`
-
--   Lecture 9: Part 2_Making map with `sf`
-
--   Lecture 10: Part 1_Plotting U.S.A. Map
-
--   Lecture 11: Part 2_Plotting U.S.A. Map
-
--   Lecture 12: Part 1_Spatial analysis using `sf`
-
--   Lecture 13: Part 2_Spatial analysis using `sf`
-
--   Lecture 14: Part 3_Spatial analysis using `sf`
-
--   Lecture 15: Population density maps
-
 This lecture is for the readers who want to analyze, visualize and model geographic data with open source software. It is based on **R** that has powerful data processing, visualization and geospatial capabilities. The lecture is divided into three parts:
 
 -   Part I: Foundations, aimed at getting you up-to-speed with geographic data in R
