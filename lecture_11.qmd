@@ -8,18 +8,21 @@ library(tidyverse)
 library(sf)
 ```
 
-- Load the `shapefile` of Japan's administrative divisions
+-   Load the `shapefile` of Japan's administrative divisions
 
 ```{r, results='hide'}
 #| code-fold: false
+#| message: false
 jp0_shp <- st_read("data/shapefile/jp_adm0_shp/jpn_admbnda_adm0_2019.shp")
 jp1_shp <- st_read("data/shapefile/jp_adm1_shp/jpn_admbnda_adm1_2019.shp") 
 jp2_shp <- st_read("data/shapefile/jp_adm2_shp/jpn_admbnda_adm2_2019.shp") 
 ```
+
 -   Observe the data inside the shape file of `adm0`
 
-```{r}
+```{r, results='hide'}
 #| code-fold: false
+#| message: false
 jp0_shp # for admin level 0
 jp1_shp # for admin level 1
 jp2_shp # for admin level 2
@@ -27,8 +30,9 @@ jp2_shp # for admin level 2
 
 -   Check the geographic coordinate system of your `adm0` shapefile
 
-```{r}
+```{r, results='hide'}
 #| code-fold: false
+#| message: false
 st_crs(jp0_shp) # for admin level 0
 st_crs(jp1_shp) # for admin level 1
 st_crs(jp2_shp) # for admin level 2
@@ -42,7 +46,21 @@ ggplot(jp0_shp) +
   geom_sf()
 ```
 
-- Plot the map of Japan admin 1
+-   Change the boundary color and fill it with white color.
+
+```{r}
+ggplot(jp0_shp) +
+    geom_sf(color = "blue", fill = "white", lwd = 0.07)
+```
+
+- We can try the `aes()` function to improve the visual of the ADM0. Aesthetics are used to bind plotting parameters to your data. The `aes()` function defines which variables you want to plot, and which plot parameters to map them to.
+
+```{r}
+ggplot(jp0_shp) +
+    geom_sf(aes(fill = ADM0_PCODE),  show.legend = FALSE)
+```
+
+-   Plot the map of Japan admin 1
 
 ```{r, warning=FALSE}
 #| code-fold: false
@@ -50,10 +68,39 @@ ggplot(jp1_shp) +
   geom_sf()
 ```
 
-- Plot the map of Japan admin 2
+- Lets change the color of boundary and fill.
+
+```{r}
+ggplot(jp1_shp) +
+    geom_sf(color = "blue",  fill = "white", lwd = 0.07)
+```
+
+- We can try the `aes()` function to improve the visual of the ADM1.
+
+```{r}
+ggplot(jp1_shp) +
+    geom_sf(aes(fill = ADM1_PCODE),  show.legend = FALSE)
+```
+
+-   Plot the map of Japan admin 2
 
 ```{r, warning=FALSE}
 #| code-fold: false
 ggplot(jp2_shp) +
   geom_sf()
+```
+
+- Lets change the color of boundary and fill
+
+```{r}
+ggplot(jp2_shp) +
+    geom_sf(color = "blue",  fill = "white", lwd = 0.07)
+```
+
+
+- - We can try the `aes()` function to improve the visual of the ADM2.
+
+```{r}
+ggplot(jp2_shp) +
+    geom_sf(aes(fill = ADM2_PCODE),  show.legend = FALSE)
 ```
