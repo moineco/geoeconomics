@@ -278,5 +278,15 @@
     "crumbs": [
       "References"
     ]
+  },
+  {
+    "objectID": "lecture_14.html",
+    "href": "lecture_14.html",
+    "title": "14  Geospatial data analysis",
+    "section": "",
+    "text": "14.0.1 What is spatial data?\nTechnically “spatial” can refer to non-earth based positions and geographic/geospatial is a subset.\n\n14.0.1.1 Vector spatial data.\nPoints, lines and polygons\nVector data comes in a variety of different file formats\n\nShapefiles\nGeopackages\nGeoJSON\n\n\n\n14.0.1.2 Raster spatial data\nRaster data is a grid of pixels with values. Raster data comes in a variety of different file formats.\n\nIMG\nTIF\nSID\n\n\n\n\n14.0.2 Open a new R script\n\nlibrary(dplyr)\n\n\nRead in US counties near San Francisco\n\n\nlibrary(sf)\nbayarea &lt;- read_sf(\"data/san-francisco/counties-bayarea.shp\")\n\n\nglimpse(bayarea)\n\nRows: 9\nColumns: 4\n$ fipst    &lt;chr&gt; \"06\", \"06\", \"06\", \"06\", \"06\", \"06\", \"06\", \"06\", \"06\"\n$ fipco    &lt;chr&gt; \"097\", \"075\", \"041\", \"055\", \"095\", \"013\", \"085\", \"001\", \"081\"\n$ coname   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA\n$ geometry &lt;MULTIPOLYGON [°]&gt; MULTIPOLYGON (((-122.9351 3..., MULTIPOLYGON (((-122.454 37..…\n\n\n\nMake a quick static map with {tmap}\n\n\nlibrary(tmap)\ntm_shape(bayarea) + \ntm_polygons(col = \"gray\")\n\n\n\n\n\n\n\n\nCompute centroids with {sf}\n\nbayarea_cent &lt;- st_centroid(bayarea)\n\nWarning: st_centroid assumes attributes are constant over geometries\n\n\nMake a quick interactive map with {mapview}\n\nlibrary(mapview)\nmapview(list(bayarea, bayarea_cent))\n\n\n\n\n\n\nSpatial data is more complex than “standard” tabular data\n\n\nCoordinate systems, List columns, Different geometry types, Vector, Raster\n\n\nYou can also read from a URL directly\n\n\n# Topojson\nusa &lt;- read_sf(\"http://bit.ly/2NhznGt\")\n\n\n# Plotting discussed later\nst_geometry(usa) %&gt;% plot()\n\n\n\n\n\n\n\n\nIf you have addresses, you need to “geocode” to get coordinates\n\n# Uses Open Street Map\ntmaptools::geocode_OSM(\"Hilton San Francisco Union Square\", \n        as.sf = TRUE) %&gt;% \n  glimpse()\n\nRows: 1\nColumns: 9\n$ query   &lt;chr&gt; \"Hilton San Francisco Union Square\"\n$ lat     &lt;dbl&gt; 37.78573\n$ lon     &lt;dbl&gt; -122.4104\n$ lat_min &lt;dbl&gt; 37.78519\n$ lat_max &lt;dbl&gt; 37.78612\n$ lon_min &lt;dbl&gt; -122.4112\n$ lon_max &lt;dbl&gt; -122.4096\n$ bbox    &lt;POLYGON [°]&gt; POLYGON ((-122.4112 37.7851...\n$ point   &lt;POINT [°]&gt; POINT (-122.4104 37.78573)\n\n\n\n14.0.2.1 Reading raster data\n\nUse raster() for single-band images (e.g. elevation)\n\n\nlibrary(raster)\n\nLoading required package: sp\n\n\n\nAttaching package: 'raster'\n\n\nThe following object is masked from 'package:dplyr':\n\n    select\n\nluton &lt;- raster(\"data/luton/luton.tif\")\nplot(luton)",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Geospatial data analysis</span>"
+    ]
   }
 ]

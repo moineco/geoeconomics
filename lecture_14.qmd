@@ -1,0 +1,100 @@
+# Geospatial data analysis
+
+### What is spatial data?
+
+Technically "spatial" can refer to non-earth based positions and geographic/geospatial is a subset. 
+
+#### Vector spatial data. 
+
+Points, lines and polygons
+
+Vector data comes in a variety of different file formats
+
+- Shapefiles
+- Geopackages
+- GeoJSON
+
+#### Raster spatial data
+
+Raster data is a grid of pixels with values. Raster data comes in a variety of different file formats.
+
+- IMG
+- TIF
+- SID
+
+### Open a new R script
+
+```{r}
+#| message: false
+library(dplyr)
+```
+
+- Read in US counties near San Francisco
+
+```{r}
+#| message: false
+library(sf)
+bayarea <- read_sf("data/san-francisco/counties-bayarea.shp")
+```
+
+```{r}
+glimpse(bayarea)
+```
+
+- Make a quick static map with {tmap}
+
+```{r}
+#| message: false
+library(tmap)
+tm_shape(bayarea) + 
+tm_polygons(col = "gray")
+```
+
+Compute centroids with {sf}
+
+```{r}
+bayarea_cent <- st_centroid(bayarea)
+```
+
+Make a quick interactive map with {mapview}
+
+```{r}
+library(mapview)
+mapview(list(bayarea, bayarea_cent))
+```
+
+- Spatial data is more complex than "standard" tabular data
+
+> Coordinate systems, List columns, Different geometry types, Vector, Raster
+
+- You can also read from a URL directly
+
+```{r}
+# Topojson
+usa <- read_sf("http://bit.ly/2NhznGt")
+```
+
+```{r}
+# Plotting discussed later
+st_geometry(usa) %>% plot()
+```
+
+If you have addresses, you need to "geocode" to get coordinates
+
+```{r}
+# Uses Open Street Map
+tmaptools::geocode_OSM("Hilton San Francisco Union Square", 
+        as.sf = TRUE) %>% 
+  glimpse()
+```
+
+#### Reading raster data
+
+- Use raster() for single-band images (e.g. elevation)
+
+```{r}
+library(raster)
+luton <- raster("data/luton/luton.tif")
+plot(luton)
+```
+
