@@ -1,4 +1,4 @@
-# `naturalearth` data use
+# $naturalearth$ data use
 
 ```{r}
 #| message: false

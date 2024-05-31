@@ -1,4 +1,4 @@
-# Alaska map with `sf`
+# Alaska map with $sf$
 
 Credit: Reproducible Research Techniques for Synthesis: Matt Jones
 

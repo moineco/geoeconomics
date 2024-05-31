@@ -1,4 +1,4 @@
-# Making map with `sf`
+# Making map with $sf$
 
 We need the following packages to deal with this lecture:
 

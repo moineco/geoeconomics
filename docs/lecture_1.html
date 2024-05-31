@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Geoeconomics with R and Python - 1&nbsp; R packages for GIS</title>
+<title>Geoeconomics with R and Python - 1&nbsp; Packages for GIS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -81,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture_1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R packages for GIS</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture_1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Packages for GIS</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -115,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R packages for GIS</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Packages for GIS</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -139,7 +168,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Making map with <code>sf</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Making map with <span class="math inline">\(sf\)</span></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -157,13 +186,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Alaska map with <code>sf</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Alaska map with <span class="math inline">\(sf\)</span></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_9.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><code>maps</code> package for GIS</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><span class="math inline">\(maps\)</span> package for GIS</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -181,7 +210,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>naturalearth</code> data use</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><span class="math inline">\(naturalearth\)</span> data use</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -228,7 +257,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R packages for GIS</span></h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Packages for GIS</span></h1>
 </div>
 
 
@@ -250,140 +279,140 @@ ul.task-list li input[type="checkbox"] {
 <li><p><strong>RStudio</strong> is probably the most popular Integrated Development Environment (IDE) for <strong>R</strong>. When using RStudio, the <strong>R</strong> interpreter is hidden in the back-end, and <strong>RStudio</strong> is the front-end application that allows you to interact with the interpreter.</p></li>
 <li><p><strong>R</strong> is maintained by an international team of developers who make the language available through the web page of <a href="https://cran.r-project.org">R</a>.</p></li>
 <li><p>Download <a href="https://posit.co/downloads/">RStudio</a> from this link. Just click the “Download RStudio” button and follow the simple instructions.</p></li>
+<li><p>We will represent the packages by using {}.</p></li>
 </ul>
 <section id="r-packages-for-management" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="r-packages-for-management"><span class="header-section-number">1.1</span> <strong>R</strong> packages for management:</h2>
 <ol type="1">
-<li><strong><code>devtools</code></strong></li>
+<li><strong>{devtools}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("devtools")</code></li>
-<li>GitHub <code>devtools::install_github("r-lib/devtools")</code></li>
+<li>CRAN: install.packages(“devtools”)</li>
+<li>GitHub: devtools::install_github(“r-lib/devtools”)</li>
 </ul>
 <ol start="2" type="1">
-<li><strong><code>remotes</code></strong></li>
+<li><strong>{remotes}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("remotes")</code></li>
-<li>GitHub <code>remotes::install_github("r-lib/conflicted")</code></li>
+<li>CRAN: install.packages(“remotes”)</li>
+<li>GitHub: remotes::install_github(“r-lib/conflicted”)</li>
 </ul>
 <ol start="3" type="1">
-<li><strong><code>pak</code></strong></li>
+<li><strong>{pak}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("pak")</code></li>
+<li>CRAN: install.packages(“pak”)</li>
 </ul>
 <ol start="4" type="1">
-<li><strong><code>pacman</code></strong></li>
+<li><strong>{pacman}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("pacman")</code></li>
-<li>GitHub <code>devtools::install_github("r-lib/devtools")</code></li>
+<li>CRAN: install.packages(“pacman”)</li>
+<li>GitHub: devtools::install_github(“r-lib/devtools”)</li>
 </ul>
 <ol start="5" type="1">
-<li><strong><code>stargazer</code></strong></li>
+<li><strong>{stargazer}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages( "stargazer")</code></li>
-<li>GitHub <code>devtools::install_github("ChandlerLutz/stargazer")</code></li>
+<li>CRAN: install.packages( “stargazer”)</li>
+<li>GitHub: devtools::install_github(“ChandlerLutz/stargazer”)</li>
 </ul>
 <ol start="6" type="1">
-<li><strong><code>readxl</code></strong></li>
+<li><strong>{readxl}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("readxl")</code></li>
-<li>GitHub <code>remotes::install_github("hadley/readxl")</code></li>
+<li>CRAN: install.packages(“readxl”)</li>
+<li>GitHub: remotes::install_github(“hadley/readxl”)</li>
 </ul>
 <ol start="7" type="1">
-<li><strong><code>here</code></strong></li>
+<li><strong>{here}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("here")</code></li>
-<li>GitHub <code>devtools::install_github("r-lib/here")</code></li>
+<li>CRAN: install.packages(“here”)</li>
+<li>GitHub: devtools::install_github(“r-lib/here”)</li>
 </ul>
 <ol start="8" type="1">
-<li><strong><code>rvest</code></strong></li>
+<li><strong>{rvest}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("rvest")</code></li>
-<li>GitHub <code>devtools::install_github("tidyverse/rvest")</code></li>
+<li>CRAN: install.packages(“rvest”)</li>
+<li>GitHub: devtools::install_github(“tidyverse/rvest”)</li>
 </ul>
 <ol start="9" type="1">
-<li><strong><code>cowplot</code></strong></li>
+<li><strong>{cowplot}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("cowplot")</code></li>
-<li>GitHub <code>remotes::install_github("wilkelab/cowplot")</code></li>
+<li>CRAN: install.packages(“cowplot”)</li>
+<li>GitHub: remotes::install_github(“wilkelab/cowplot”)</li>
 </ul>
 <ol start="10" type="1">
-<li><strong><code>ggthemes</code></strong></li>
+<li><strong>{ggthemes}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages('ggthemes', dependencies = TRUE)</code></li>
-<li>GitHub <code>devtools::install_github(c("hadley/ggplot2", "jrnold/ggthemes"))</code></li>
+<li>CRAN: install.packages(‘ggthemes’, dependencies = TRUE)</li>
+<li>GitHub: devtools::install_github(c(“hadley/ggplot2”, “jrnold/ggthemes”))</li>
 </ul>
 <ol start="11" type="1">
-<li><strong><code>ggpubr</code></strong></li>
+<li><strong>{ggpubr}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("ggpubr")</code></li>
-<li>GitHub <code>devtools::install_github("kassambara/ggpubr")</code></li>
+<li>CRAN: install.packages(“ggpubr”)</li>
+<li>GitHub: devtools::install_github(“kassambara/ggpubr”)</li>
 </ul>
 <ol start="12" type="1">
-<li><strong><code>plotly</code></strong></li>
+<li><strong>{plotly}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("plotly")</code></li>
-<li>GitHub <code>devtools::install_github("ropensci/plotly")</code></li>
+<li>CRAN: install.packages(“plotly”)</li>
+<li>GitHub: devtools::install_github(“ropensci/plotly”)</li>
 </ul>
 <ol start="13" type="1">
-<li><strong><code>stringr</code></strong></li>
+<li><strong>{stringr}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("stringr")</code></li>
-<li>GitHub <code>devtools::install_github("hadley/stringr")</code></li>
+<li>CRAN: install.packages(“stringr”)</li>
+<li>GitHub: devtools::install_github(“hadley/stringr”)</li>
 </ul>
 <ol start="14" type="1">
-<li><strong><code>patchwork</code></strong></li>
+<li><strong>{patchwork}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("patchwork")</code></li>
-<li>GitHub <code>devtools::install_github("thomasp85/patchwork")</code></li>
+<li>CRAN: install.packages(“patchwork”)</li>
+<li>GitHub: devtools::install_github(“thomasp85/patchwork”)</li>
 </ul>
 <ol start="15" type="1">
-<li><strong><code>magrittr</code></strong></li>
+<li><strong>{magrittr}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("magrittr")</code></li>
-<li>GitHub <code>devtools::install_github("tidyverse/magrittr")</code></li>
+<li>CRAN: install.packages(“magrittr”)</li>
+<li>GitHub: devtools::install_github(“tidyverse/magrittr”)</li>
 </ul>
 <ol start="16" type="1">
-<li><strong><code>DBI</code></strong> [Connect R to database management systems]</li>
+<li><strong>{DBI}</strong> [Connect R to database management systems]</li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("DBI")</code></li>
-<li>GitHub <code>devtools::install_github("rstats-db/DBI")</code></li>
+<li>CRAN: install.packages(“DBI”)</li>
+<li>GitHub: devtools::install_github(“rstats-db/DBI”)</li>
 </ul>
 <ol start="17" type="1">
-<li><strong><code>RSQLite</code></strong> [Easy way to use a database from R because the package itself contains <code>SQLite</code>]</li>
+<li><strong>{RSQLite}</strong> [Easy way to use a database from R because the package itself contains SQLite]</li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("RSQLite")</code></li>
-<li>GitHub <code>devtools::install_github("r-dbi/RSQLite")</code></li>
+<li>CRAN: install.packages(“RSQLite”)</li>
+<li>GitHub: devtools::install_github(“r-dbi/RSQLite”)</li>
 </ul>
 <ol start="18" type="1">
-<li><strong><code>data.table</code></strong> [Extension of <code>data.frame</code> for fast processing of large data]</li>
+<li><strong>{DT}</strong> [Extension of dataframe for fast processing of large data]</li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("data.table")</code></li>
-<li>GitHub <code>install.packages("data.table", repos="https://rdatatable.gitlab.io/data.table")</code></li>
+<li>CRAN: `install.packages(“DT”)</li>
 </ul>
 <ol start="19" type="1">
-<li><strong><code>lubridate</code></strong> [Functions to work with date-times and time-spans]</li>
+<li><strong>{lubridate}</strong> [Functions to work with date-times and time-spans]</li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("lubridate")</code></li>
-<li>GitHub <code>devtools::install_github("tidyverse/lubridate")</code></li>
+<li>CRAN: install.packages(“lubridate”)</li>
+<li>GitHub: devtools::install_github(“tidyverse/lubridate”)</li>
 </ul>
 </section>
 <section id="r-packages-for-gis" class="level2" data-number="1.2">
@@ -391,346 +420,340 @@ ul.task-list li input[type="checkbox"] {
 <section id="basic-data-manipulation" class="level3" data-number="1.2.1">
 <h3 data-number="1.2.1" class="anchored" data-anchor-id="basic-data-manipulation"><span class="header-section-number">1.2.1</span> Basic data manipulation</h3>
 <ol type="1">
-<li><strong><code>sf</code></strong> [for vector data]</li>
+<li><strong>{sf}</strong> [for vector data]</li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("sf")</code></li>
-<li>GitHub <code>remotes::install_github("r-spatial/sf")</code></li>
+<li>CRAN: install.packages(“sf”)</li>
+<li>GitHub: remotes::install_github(“r-spatial/sf”)</li>
 </ul>
-<p><strong>sf</strong> package installation in Windows OS is straight frward. And the above codes should be sufficient to install <code>sf</code>. However, in MacOS and Linux (Ubuntu/Fedora), some additional steps are necessary.</p>
+<p><strong>sf</strong> package installation in Windows OS is straight frward. And the above codes should be sufficient to install {sf}. However, in MacOS and Linux (Ubuntu/Fedora), some additional steps are necessary.</p>
 <ul>
 <li>For MacOS</li>
 </ul>
-<p>– First we need to install <code>gdal</code> and the easiest way to install <code>gdal</code> is using Homebrew.</p>
+<p>– First we need to install {gdal} and the easiest way to install {gdal} is using Homebrew.</p>
 <pre class="{txt}"><code>brew install pkg-config
 brew install gdal</code></pre>
-<p>– Next we need to install <code>sf</code> by using following command.</p>
+<p>– Next we need to install {sf} by using following command.</p>
 <pre class="{txt}"><code>install.packages("sf", type = "source", configure.args = "--with-proj-lib=$(brew --prefix)/lib/")</code></pre>
 <ol start="2" type="1">
-<li><strong><code>raster</code></strong> [for raster data]</li>
+<li><strong>{raster}</strong> [for raster data]</li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("raster")</code></li>
-<li>GitHub <code>remotes::install_github("rspatial/raster")</code></li>
+<li>CRAN: install.packages(“raster”)</li>
+<li>GitHub: remotes::install_github(“rspatial/raster”)</li>
 </ul>
 <ol start="3" type="1">
-<li><strong><code>shapefiles</code></strong></li>
+<li><strong>{shapefiles}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("shapefiles")</code></li>
+<li>CRAN: install.packages(“shapefiles”)</li>
 </ul>
 <ol start="4" type="1">
-<li><strong><code>ncdf4</code></strong></li>
+<li><strong>{ncdf4}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages(“ncdf4”)</code></li>
-<li>GitHub <code>devtools::install_github("mdsumner/ncdf4")</code></li>
+<li>CRAN: install.packages(“ncdf4”)</li>
+<li>GitHub: devtools::install_github(“mdsumner/ncdf4”)</li>
 </ul>
 <ol start="5" type="1">
-<li><strong><code>sp</code></strong></li>
+<li><strong>{sp}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("sp", dependencies=TRUE)</code></li>
-<li>GitHub <code>devtools::install_github("edzer/sp")</code></li>
+<li>CRAN: install.packages(“sp”, dependencies=TRUE)</li>
+<li>GitHub: devtools::install_github(“edzer/sp”)</li>
 </ul>
 </section>
 <section id="cartography-and-data-visualization" class="level3" data-number="1.2.2">
 <h3 data-number="1.2.2" class="anchored" data-anchor-id="cartography-and-data-visualization"><span class="header-section-number">1.2.2</span> Cartography and data visualization</h3>
 <ol type="1">
-<li><strong><code>tidyverse</code></strong> [Includes the packages <code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code>, <code>readr</code>, <code>purrr</code>, <code>tibble</code>, <code>stringr</code>, <code>forcats</code>]</li>
+<li><strong>{tidyverse}</strong> [Includes the packages {ggplot2}, {dplyr}, {tidyr}, {readr}, {purrr}, {tibble}, {stringr}, {forcats}]</li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("tidyverse")</code></li>
-<li>GitHub <code>pak::pak("tidyverse/tidyverse")</code></li>
+<li>CRAN: install.packages(“tidyverse”)</li>
+<li>GitHub: pak::pak(“tidyverse/tidyverse”)</li>
 </ul>
 <ol start="2" type="1">
-<li><strong><code>RColorBrewer</code></strong></li>
+<li><strong>{RColorBrewer}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("RColorBrewer")</code></li>
-<li>GitHub <code>devtools::install_github("cran/RColorBrewer")</code></li>
+<li>CRAN: install.packages(“RColorBrewer”)</li>
+<li>GitHub: devtools::install_github(“cran/RColorBrewer”)</li>
 </ul>
 <ol start="3" type="1">
-<li><strong><code>viridis</code></strong></li>
+<li><strong>{viridis}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("viridis")</code></li>
-<li>GitHub <code>devtools::install_github("sjmgarnier/viridis")</code></li>
+<li>CRAN: install.packages(“viridis”)</li>
+<li>GitHub: devtools::install_github(“sjmgarnier/viridis”)</li>
 </ul>
 <ol start="4" type="1">
-<li><strong><code>tmap</code></strong></li>
+<li><strong>{tmap}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("tmap")</code></li>
-<li>GitHub <code>pak::pak("r-tmap/tmap")</code></li>
+<li>CRAN: install.packages(“tmap”)</li>
+<li>GitHub: pak::pak(“r-tmap/tmap”)</li>
 </ul>
 <ol start="5" type="1">
-<li><strong><code>leaflet</code></strong></li>
+<li><strong>{leaflet}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("leaflet")</code></li>
-<li>GitHub <code>devtools::install_github("rstudio/leaflet")</code></li>
+<li>CRAN: install.packages(“leaflet”)</li>
+<li>GitHub: devtools::install_github(“rstudio/leaflet”)</li>
 </ul>
 <ol start="6" type="1">
-<li><strong><code>mapview</code></strong></li>
+<li><strong>{mapview}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("mapview")</code></li>
-<li>GitHub <code>remotes::install_github("r-spatial/mapview")</code></li>
+<li>CRAN: install.packages(“mapview”)</li>
+<li>GitHub: remotes::install_github(“r-spatial/mapview”)</li>
 </ul>
 <ol start="7" type="1">
-<li><strong><code>cartography</code></strong></li>
+<li><strong>{cartography}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("cartography")</code></li>
-<li>GitHub <code>remotes::install_github("riatelab/cartography")</code></li>
+<li>CRAN: install.packages(“cartography”)</li>
+<li>GitHub: remotes::install_github(“riatelab/cartography”)</li>
 </ul>
 <ol start="8" type="1">
-<li><strong><code>ggmap</code></strong></li>
+<li><strong>{ggmap}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("ggmap")</code></li>
-<li>GitHub <code>remotes::install_github("dkahle/ggmap")</code></li>
+<li>CRAN: install.packages(“ggmap”)</li>
+<li>GitHub: remotes::install_github(“dkahle/ggmap”)</li>
 </ul>
 <ol start="9" type="1">
-<li><strong><code>rayshader</code></strong></li>
+<li><strong>{rayshader}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("rayshader")</code></li>
-<li>GitHub <code>devtools::install_github("tylermorganwall/rayshader")</code></li>
+<li>CRAN: install.packages(“rayshader”)</li>
+<li>GitHub: devtools::install_github(“tylermorganwall/rayshader”)</li>
 </ul>
 <ol start="10" type="1">
-<li><strong><code>geojsonio</code></strong></li>
+<li><strong>{geojsonio}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("geojsonio")</code></li>
-<li>GitHub <code>devtools::install_github("ropensci/geojsonio")</code></li>
+<li>CRAN: install.packages(“geojsonio”)</li>
+<li>GitHub: devtools::install_github(“ropensci/geojsonio”)</li>
 </ul>
 <ol start="11" type="1">
-<li><strong><code>shinyjs</code></strong></li>
+<li><strong>{shinyjs}</strong></li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("shinyjs")</code></li>
-<li>GitHub <code>remotes::install_github("daattali/shinyjs")</code></li>
+<li>CRAN: install.packages(“shinyjs”)</li>
+<li>GitHub: remotes::install_github(“daattali/shinyjs”)</li>
 </ul>
 <ol start="12" type="1">
-<li><strong><code>GGally</code></strong> [Extends <code>ggplot2</code> by adding several functions to reduce the complexity of combining geometric objects with transformed data]</li>
+<li><strong>{GGally}</strong> [Extends {ggplot2} by adding several functions to reduce the complexity of combining geometric objects with transformed data]</li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("GGally")</code></li>
-<li>GitHub <code>devtools::install_github("ggobi/ggally")</code></li>
+<li>CRAN: install.packages(“GGally”)</li>
+<li>GitHub: devtools::install_github(“ggobi/ggally”)</li>
 </ul>
 <ol start="13" type="1">
-<li><strong><code>grid</code></strong> [A set of graphical functions which support a great deal of flexibility in the layout of graphics]</li>
+<li><strong>{grid}</strong> [A set of graphical functions which support a great deal of flexibility in the layout of graphics]</li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("grid")</code></li>
-<li>GitHub <code>devtools::install_github("cran/grid")</code></li>
+<li>CRAN: install.packages(“grid”)</li>
+<li>GitHub: devtools::install_github(“cran/grid”)</li>
 </ul>
 <ol start="14" type="1">
-<li><strong><code>gridExtra</code></strong> [Provides a number of user-level functions to work with “grid” graphics, notably to arrange multiple grid-based plots on a page, and draw tables]</li>
+<li><strong>{gridExtra}</strong> [Provides a number of user-level functions to work with “grid” graphics, notably to arrange multiple grid-based plots on a page, and draw tables]</li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("gridExtra")</code></li>
-<li>GitHub <code>devtools::install_github("cran/gridExtra")</code></li>
+<li>CRAN: install.packages(“gridExtra”)</li>
+<li>GitHub: devtools::install_github(“cran/gridExtra”)</li>
 </ul>
 <ol start="15" type="1">
-<li><strong><code>cartogram</code></strong> [Construct continuous and non-contiguous area cartograms]</li>
+<li><strong>{cartogram}</strong> [Construct continuous and non-contiguous area cartograms]</li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("cartogram")</code></li>
-<li>GitHub <code>devtools::install_github("sjewo/cartogram")</code></li>
+<li>CRAN: install.packages(“cartogram”)</li>
+<li>GitHub: devtools::install_github(“sjewo/cartogram”)</li>
 </ul>
 <ol start="16" type="1">
-<li><strong><code>visNetwork</code></strong> [Use vis.js library for network visualization]</li>
+<li><strong>{visNetwork}</strong> [Use vis.js library for network visualization]</li>
 </ol>
 <ul>
-<li>CRAN <code>install.packages("visNetwork")</code></li>
-<li>GitHub <code>devtools::install_github("datastorm-open/visNetwork")</code></li>
+<li>CRAN: install.packages(“visNetwork”)</li>
+<li>GitHub: devtools::install_github(“datastorm-open/visNetwork”)</li>
 </ul>
 </section>
 <section id="spatial-statistics" class="level3" data-number="1.2.3">
 <h3 data-number="1.2.3" class="anchored" data-anchor-id="spatial-statistics"><span class="header-section-number">1.2.3</span> Spatial statistics</h3>
 <ol type="1">
-<li><strong><code>spatial</code></strong></li>
+<li><strong>{spatial}</strong></li>
 </ol>
 <ul>
-<li>GitHub <code>remotes::install_github("rspatial/rspatial")</code></li>
+<li>GitHub: remotes::install_github(“rspatial/rspatial”)</li>
 </ul>
 <ol start="2" type="1">
-<li><strong><code>spatstat</code></strong></li>
+<li><strong>{spatstat}</strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("spatstat")</code></li>
-<li>GitHub <code>remotes::install_github("spatstat/spatstat")</code></li>
+<li>CRAN: install.packages(“spatstat”)</li>
+<li>GitHub: remotes::install_github(“spatstat/spatstat”)</li>
 </ul>
 <ol start="3" type="1">
-<li><strong><code>gstat</code></strong></li>
+<li><strong>{gstat}</strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("gstat")</code></li>
-<li>GitHub <code>remotes::install_github("r-spatial/gstat")</code></li>
+<li>CRAN: install.packages(“gstat”)</li>
+<li>GitHub: remotes::install_github(“r-spatial/gstat”)</li>
 </ul>
 <ol start="4" type="1">
-<li><strong><code>spdep</code></strong></li>
+<li><strong>{spdep}</strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("spdep", repos="http://R-Forge.R-project.org")</code></li>
-<li>GitHub <code>devtools::install_github("r-spatial/spdep")</code></li>
+<li>CRAN: install.packages(“spdep”, repos=“http://R-Forge.R-project.org”)</li>
+<li>GitHub: devtools::install_github(“r-spatial/spdep”)</li>
 </ul>
 <ol start="5" type="1">
-<li><strong><code>geoshape</code></strong></li>
+<li><p><strong>{geoshape}</strong></p></li>
+<li><p><strong>{ggspatial}</strong></p></li>
 </ol>
 <ul>
-<li>Cran</li>
-<li>GitHub</li>
-</ul>
-<ol start="6" type="1">
-<li><strong><code>ggspatial</code></strong></li>
-</ol>
-<ul>
-<li>Cran <code>install.packages("ggspatial")</code></li>
-<li>GitHub <code>remotes::install_github("paleolimbot/ggspatial")</code></li>
+<li>CRAN: install.packages(“ggspatial”)</li>
+<li>GitHub: remotes::install_github(“paleolimbot/ggspatial”)</li>
 </ul>
 <ol start="7" type="1">
-<li><strong><code>spdep</code></strong> [A collection of functions to create spatial weights matrix objects from polygon]</li>
+<li><strong>{spdep}</strong> [A collection of functions to create spatial weights matrix objects from polygon]</li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("spdep")</code></li>
-<li>GitHub <code>devtools::install_github("r-spatial/spdep")</code></li>
+<li>CRAN: install.packages(“spdep”)</li>
+<li>GitHub: devtools::install_github(“r-spatial/spdep”)</li>
 </ul>
 <ol start="8" type="1">
-<li><strong><code>geogrid</code></strong> [Turn geospatial polygons into regular or hexagonal grids]</li>
+<li><strong>{geogrid}</strong> [Turn geospatial polygons into regular or hexagonal grids]</li>
 </ol>
 <ul>
-<li>GitHub <code>devtools::install_github("jbaileyh/geogrid")</code></li>
+<li>GitHub: devtools::install_github(“jbaileyh/geogrid”)</li>
 </ul>
 <ol start="9" type="1">
-<li><strong><code>GISTools</code></strong> [Some further GIS capabilities for R]</li>
+<li><strong>{GISTools}</strong> [Some further GIS capabilities for R]</li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("GISTools")</code></li>
+<li>CRAN: install.packages(“GISTools”)</li>
 </ul>
 <ol start="10" type="1">
-<li><strong><code>RgoogleMaps</code></strong></li>
+<li><strong>{RgoogleMaps}</strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("RgoogleMaps")</code></li>
-<li>GitHub <code>devtools::install_github("cran/RgoogleMaps")</code></li>
+<li>CRAN: install.packages(“RgoogleMaps”)</li>
+<li>GitHub: devtools::install_github(“cran/RgoogleMaps”)</li>
 </ul>
 </section>
 <section id="data-sources" class="level3" data-number="1.2.4">
 <h3 data-number="1.2.4" class="anchored" data-anchor-id="data-sources"><span class="header-section-number">1.2.4</span> Data sources</h3>
 <ol type="1">
-<li><strong><code>OpenStreetMap</code></strong></li>
+<li><strong>{OpenStreetMap}</strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("OpenStreetMap")</code></li>
-<li>GitHub <code>devtools::install_github("cran/OpenStreetMap")</code></li>
+<li>CRAN: install.packages(“OpenStreetMap”)</li>
+<li>GitHub: devtools::install_github(“cran/OpenStreetMap”)</li>
 </ul>
 <ol start="2" type="1">
-<li><strong><code>rnaturalearth</code></strong></li>
+<li><strong>{rnaturalearth}</strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("rnaturalearth", dependencies = TRUE)</code></li>
-<li>GitHub <code>devtools::install_github("ropensci/rnaturalearth")</code></li>
+<li>CRAN: install.packages(“rnaturalearth”, dependencies = TRUE)</li>
+<li>GitHub: devtools::install_github(“ropensci/rnaturalearth”)</li>
 </ul>
 <ol start="3" type="1">
-<li><strong><code>rnaturalearthdata</code></strong></li>
+<li><strong>{rnaturalearthdata}</strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("rnaturalearthdata")</code></li>
-<li>GitHub <code>devtools::install_github("ropensci/rnaturalearthdata")</code></li>
+<li>CRAN: install.packages(“rnaturalearthdata”)</li>
+<li>GitHub: devtools::install_github(“ropensci/rnaturalearthdata”)</li>
 </ul>
 <ol start="4" type="1">
-<li><strong><code>rastervis</code></strong></li>
+<li><strong>{rastervis}</strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("rasterVis")</code></li>
-<li>GitHub <code>devtools::install_github("oscarperpinan/rasterVis")</code></li>
+<li>CRAN: install.packages(“rasterVis”)</li>
+<li>GitHub: devtools::install_github(“oscarperpinan/rasterVis”)</li>
 </ul>
 <ol start="5" type="1">
-<li><strong><code>maps</code></strong></li>
+<li><strong>{maps}</strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("maps")</code></li>
+<li>CRAN: install.packages(“maps”)</li>
 </ul>
 <ol start="6" type="1">
-<li><strong><code>spData</code></strong></li>
+<li><strong>{spData}</strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("spData")</code></li>
-<li>GitHub <code>devtools::install_github("nowosad/spData")</code></li>
+<li>CRAN: install.packages(“spData”)</li>
+<li>GitHub: devtools::install_github(“nowosad/spData”)</li>
 </ul>
 <ol start="7" type="1">
-<li><strong><code>rgeos</code></strong></li>
+<li><strong>{rgeos}</strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("rgeos", repos="http://R-Forge.R-project.org")</code></li>
-<li>GitHub <code>devtools::install_github("cran/rgeos")</code></li>
+<li>CRAN: install.packages(“rgeos”, repos=“http://R-Forge.R-project.org”)</li>
+<li>GitHub: devtools::install_github(“cran/rgeos”)</li>
 </ul>
 <ol start="8" type="1">
-<li><strong><code>jpndistrict</code></strong></li>
+<li><strong>{jpndistrict}</strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("jpndistrict")</code></li>
-<li>GitHub <code>devtools::install_github("uribo/jpndistrict", force=TRUE)</code></li>
+<li>CRAN: install.packages(“jpndistrict”)</li>
+<li>GitHub: devtools::install_github(“uribo/jpndistrict”, force=TRUE)</li>
 </ul>
 <ol start="9" type="1">
-<li><strong><code>countrycode</code></strong></li>
+<li><strong>{countrycode}</strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("countrycode")</code></li>
-<li>GitHub <code>install_github('vincentarelbundock/countrycode')</code></li>
+<li>CRAN: install.packages(“countrycode”)</li>
+<li>GitHub: install_github(‘vincentarelbundock/countrycode’)</li>
 </ul>
 <ol start="10" type="1">
-<li><strong><code>tmaptools</code></strong></li>
+<li><strong>{tmaptools}</strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("tmaptools")</code></li>
-<li>GitHub <code>devtools::install_github("mtennekes/tmaptools")</code></li>
+<li>CRAN: install.packages(“tmaptools”)</li>
+<li>GitHub: devtools::install_github(“mtennekes/tmaptools”)</li>
 </ul>
 <ol start="11" type="1">
 <li><strong><code>DT</code></strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("DT")</code></li>
-<li>GitHub <code>remotes::install_github("rstudio/DT")</code></li>
+<li>CRAN: install.packages(“DT”)</li>
+<li>GitHub: remotes::install_github(“rstudio/DT”)</li>
 </ul>
 <ol start="12" type="1">
-<li><strong><code>usmap</code></strong></li>
+<li><strong>{usmap}</strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("usmap")</code></li>
-<li>GitHub <code>devtools::install_github("pdil/usmap")</code></li>
+<li>CRAN: install.packages(“usmap”)</li>
+<li>GitHub: devtools::install_github(“pdil/usmap”)</li>
 </ul>
 <ol start="13" type="1">
-<li><strong><code>tigris</code></strong></li>
+<li><strong>{tigris}</strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("tigris")</code></li>
-<li>GitHub <code>devtools::install_github("walkerke/tigris")</code></li>
+<li>CRAN: install.packages(“tigris”)</li>
+<li>GitHub: devtools::install_github(“walkerke/tigris”)</li>
 </ul>
 <ol start="14" type="1">
-<li><strong><code>scales</code></strong></li>
+<li><strong>{scales}</strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("scales")</code></li>
-<li>GitHub <code>devtools::install_github("r-lib/scales")</code></li>
+<li>CRAN: install.packages(“scales”)</li>
+<li>GitHub: devtools::install_github(“r-lib/scales”)</li>
 </ul>
 <ol start="15" type="1">
-<li><strong><code>ggrepel</code></strong></li>
+<li><strong>{ggrepel}</strong></li>
 </ol>
 <ul>
-<li>Cran <code>install.packages("ggrepel")</code></li>
-<li>GitHub <code>devtools::install_github("slowkow/ggrepel")</code></li>
+<li>CRAN: install.packages(“ggrepel”)</li>
+<li>GitHub: devtools::install_github(“slowkow/ggrepel”)</li>
 </ul>
 <ol start="16" type="1">
-<li><strong><code>tidycensus</code></strong></li>
+<li><strong>{tidycensus}</strong></li>
 </ol>
 <ul>
-<li><p>Cran <code>install.packages("tidycensus")</code></p></li>
-<li><p>GitHub <code>remotes::install_github("walkerke/tidycensus")</code></p></li>
+<li>CRAN: install.packages(“tidycensus”)</li>
+<li>GitHub: remotes::install_github(“walkerke/tidycensus”)</li>
 </ul>
 
 

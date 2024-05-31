@@ -1,4 +1,4 @@
-# `maps` package for GIS
+# $maps$ package for GIS
 
 Spatial data are best analyzed by visualization through maps. This chapter covers two types of spatial data. One is spatial point data, which can be plotted as a set of points on a map. The other is spatial polygon data, which represent a sequence of connected points on a map corresponding to the boundaries of certain areas such as counties, districts, and provinces. We also consider spatial–temporal data, which are a set of spatial point or polygon data recorded over time, revealing changes in spatial patterns over time.
 

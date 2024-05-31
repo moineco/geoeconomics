@@ -1,4 +1,4 @@
-# R packages for GIS
+# Packages for GIS
 
 -   **R** is one of the most widely used programming languages nowadays, along with Python, especially in geographic and satellite data science.
 
@@ -8,356 +8,353 @@
 
 -   Download [RStudio](https://posit.co/downloads/) from this link. Just click the "Download RStudio" button and follow the simple instructions.
 
+-   We will represent the packages by using {}.
+
 ## **R** packages for management:
 
-1.  **`devtools`**
+1.  **{devtools}**
 
--   CRAN `install.packages("devtools")`
--   GitHub `devtools::install_github("r-lib/devtools")`
+-   CRAN: install.packages("devtools")
+-   GitHub: devtools::install_github("r-lib/devtools")
 
-2.  **`remotes`**
+2.  **{remotes}**
 
--   CRAN `install.packages("remotes")`
--   GitHub `remotes::install_github("r-lib/conflicted")`
+-   CRAN: install.packages("remotes")
+-   GitHub: remotes::install_github("r-lib/conflicted")
 
-3.  **`pak`**
+3.  **{pak}**
 
--   CRAN `install.packages("pak")`
+-   CRAN: install.packages("pak")
 
-4.  **`pacman`**
+4.  **{pacman}**
 
--   CRAN `install.packages("pacman")`
--   GitHub `devtools::install_github("r-lib/devtools")`
+-   CRAN: install.packages("pacman")
+-   GitHub: devtools::install_github("r-lib/devtools")
 
-5.  **`stargazer`**
+5.  **{stargazer}**
 
--   CRAN `install.packages( "stargazer")`
--   GitHub `devtools::install_github("ChandlerLutz/stargazer")`
+-   CRAN: install.packages( "stargazer")
+-   GitHub: devtools::install_github("ChandlerLutz/stargazer")
 
-6.  **`readxl`**
+6.  **{readxl}**
 
--   CRAN `install.packages("readxl")`
--   GitHub `remotes::install_github("hadley/readxl")`
+-   CRAN: install.packages("readxl")
+-   GitHub: remotes::install_github("hadley/readxl")
 
-7.  **`here`**
+7.  **{here}**
 
--   CRAN `install.packages("here")`
--   GitHub `devtools::install_github("r-lib/here")`
+-   CRAN: install.packages("here")
+-   GitHub: devtools::install_github("r-lib/here")
 
-8.  **`rvest`**
+8.  **{rvest}**
 
--   CRAN `install.packages("rvest")`
--   GitHub `devtools::install_github("tidyverse/rvest")`
+-   CRAN: install.packages("rvest")
+-   GitHub: devtools::install_github("tidyverse/rvest")
 
-9.  **`cowplot`**
+9.  **{cowplot}**
 
--   CRAN `install.packages("cowplot")`
--   GitHub `remotes::install_github("wilkelab/cowplot")`
+-   CRAN: install.packages("cowplot")
+-   GitHub: remotes::install_github("wilkelab/cowplot")
 
-10. **`ggthemes`**
+10. **{ggthemes}**
 
--   CRAN `install.packages('ggthemes', dependencies = TRUE)`
--   GitHub `devtools::install_github(c("hadley/ggplot2", "jrnold/ggthemes"))`
+-   CRAN: install.packages('ggthemes', dependencies = TRUE)
+-   GitHub: devtools::install_github(c("hadley/ggplot2", "jrnold/ggthemes"))
 
-11. **`ggpubr`**
+11. **{ggpubr}**
 
--   CRAN `install.packages("ggpubr")`
--   GitHub `devtools::install_github("kassambara/ggpubr")`
+-   CRAN: install.packages("ggpubr")
+-   GitHub: devtools::install_github("kassambara/ggpubr")
 
-12. **`plotly`**
+12. **{plotly}**
 
--   CRAN `install.packages("plotly")`
--   GitHub `devtools::install_github("ropensci/plotly")`
+-   CRAN: install.packages("plotly")
+-   GitHub: devtools::install_github("ropensci/plotly")
 
-13. **`stringr`**
+13. **{stringr}**
 
--   CRAN `install.packages("stringr")`
--   GitHub `devtools::install_github("hadley/stringr")`
+-   CRAN: install.packages("stringr")
+-   GitHub: devtools::install_github("hadley/stringr")
 
-14. **`patchwork`**
+14. **{patchwork}**
 
--   CRAN `install.packages("patchwork")`
--   GitHub `devtools::install_github("thomasp85/patchwork")`
+-   CRAN: install.packages("patchwork")
+-   GitHub: devtools::install_github("thomasp85/patchwork")
 
-15. **`magrittr`**
+15. **{magrittr}**
 
--   CRAN `install.packages("magrittr")`
--   GitHub `devtools::install_github("tidyverse/magrittr")`
+-   CRAN: install.packages("magrittr")
+-   GitHub: devtools::install_github("tidyverse/magrittr")
 
-16. **`DBI`** \[Connect R to database management systems\]
+16. **{DBI}** \[Connect R to database management systems\]
 
--   CRAN `install.packages("DBI")`
--   GitHub `devtools::install_github("rstats-db/DBI")`
+-   CRAN: install.packages("DBI")
+-   GitHub: devtools::install_github("rstats-db/DBI")
 
-17. **`RSQLite`** \[Easy way to use a database from R because the package itself contains `SQLite`\]
+17. **{RSQLite}** \[Easy way to use a database from R because the package itself contains SQLite\]
 
--   CRAN `install.packages("RSQLite")`
--   GitHub `devtools::install_github("r-dbi/RSQLite")`
+-   CRAN: install.packages("RSQLite")
+-   GitHub: devtools::install_github("r-dbi/RSQLite")
 
-18. **`data.table`** \[Extension of `data.frame` for fast processing of large data\]
+18. **{DT}** \[Extension of dataframe for fast processing of large data\]
 
--   CRAN `install.packages("data.table")`
--   GitHub `install.packages("data.table", repos="https://rdatatable.gitlab.io/data.table")`
+-   CRAN: `install.packages("DT")
 
-19. **`lubridate`** \[Functions to work with date-times and time-spans\]
+19. **{lubridate}** \[Functions to work with date-times and time-spans\]
 
--   CRAN `install.packages("lubridate")`
--   GitHub `devtools::install_github("tidyverse/lubridate")`
+-   CRAN: install.packages("lubridate")
+-   GitHub: devtools::install_github("tidyverse/lubridate")
 
 ## **R** packages for GIS:
 
 ### Basic data manipulation
 
-1.  **`sf`** \[for vector data\]
+1.  **{sf}** \[for vector data\]
 
--   CRAN `install.packages("sf")`
--   GitHub `remotes::install_github("r-spatial/sf")`
+-   CRAN: install.packages("sf")
+-   GitHub: remotes::install_github("r-spatial/sf")
 
-**sf** package installation in Windows OS is straight frward. And the above codes should be sufficient to install `sf`. However, in MacOS and Linux (Ubuntu/Fedora), some additional steps are necessary.
+**sf** package installation in Windows OS is straight frward. And the above codes should be sufficient to install {sf}. However, in MacOS and Linux (Ubuntu/Fedora), some additional steps are necessary.
 
 -   For MacOS
 
--- First we need to install `gdal` and the easiest way to install `gdal` is using Homebrew.
+-- First we need to install {gdal} and the easiest way to install {gdal} is using Homebrew.
 
 ```{txt}
 brew install pkg-config
 brew install gdal
 ```
 
--- Next we need to install `sf` by using following command.
+-- Next we need to install {sf} by using following command.
 
 ```{txt}
 install.packages("sf", type = "source", configure.args = "--with-proj-lib=$(brew --prefix)/lib/")
 ```
 
-2.  **`raster`** \[for raster data\]
+2.  **{raster}** \[for raster data\]
 
--   CRAN `install.packages("raster")`
--   GitHub `remotes::install_github("rspatial/raster")`
+-   CRAN: install.packages("raster")
+-   GitHub: remotes::install_github("rspatial/raster")
 
-3.  **`shapefiles`**
+3.  **{shapefiles}**
 
--   CRAN `install.packages("shapefiles")`
+-   CRAN: install.packages("shapefiles")
 
-4.  **`ncdf4`**
+4.  **{ncdf4}**
 
--   CRAN `install.packages(“ncdf4”)`
--   GitHub `devtools::install_github("mdsumner/ncdf4")`
+-   CRAN: install.packages(“ncdf4”)
+-   GitHub: devtools::install_github("mdsumner/ncdf4")
 
-5.  **`sp`**
+5.  **{sp}**
 
--   CRAN `install.packages("sp", dependencies=TRUE)`
--   GitHub `devtools::install_github("edzer/sp")`
+-   CRAN: install.packages("sp", dependencies=TRUE)
+-   GitHub: devtools::install_github("edzer/sp")
 
 ### Cartography and data visualization
 
-1.  **`tidyverse`** \[Includes the packages `ggplot2`, `dplyr`, `tidyr`, `readr`, `purrr`, `tibble`, `stringr`, `forcats`\]
+1.  **{tidyverse}** \[Includes the packages {ggplot2}, {dplyr}, {tidyr}, {readr}, {purrr}, {tibble}, {stringr}, {forcats}\]
 
--   CRAN `install.packages("tidyverse")`
--   GitHub `pak::pak("tidyverse/tidyverse")`
+-   CRAN: install.packages("tidyverse")
+-   GitHub: pak::pak("tidyverse/tidyverse")
 
-2.  **`RColorBrewer`**
+2.  **{RColorBrewer}**
 
--   CRAN `install.packages("RColorBrewer")`
--   GitHub `devtools::install_github("cran/RColorBrewer")`
+-   CRAN: install.packages("RColorBrewer")
+-   GitHub: devtools::install_github("cran/RColorBrewer")
 
-3.  **`viridis`**
+3.  **{viridis}**
 
--   CRAN `install.packages("viridis")`
--   GitHub `devtools::install_github("sjmgarnier/viridis")`
+-   CRAN: install.packages("viridis")
+-   GitHub: devtools::install_github("sjmgarnier/viridis")
 
-4.  **`tmap`**
+4.  **{tmap}**
 
--   CRAN `install.packages("tmap")`
--   GitHub `pak::pak("r-tmap/tmap")`
+-   CRAN: install.packages("tmap")
+-   GitHub: pak::pak("r-tmap/tmap")
 
-5.  **`leaflet`**
+5.  **{leaflet}**
 
--   CRAN `install.packages("leaflet")`
--   GitHub `devtools::install_github("rstudio/leaflet")`
+-   CRAN: install.packages("leaflet")
+-   GitHub: devtools::install_github("rstudio/leaflet")
 
-6.  **`mapview`**
+6.  **{mapview}**
 
--   CRAN `install.packages("mapview")`
--   GitHub `remotes::install_github("r-spatial/mapview")`
+-   CRAN: install.packages("mapview")
+-   GitHub: remotes::install_github("r-spatial/mapview")
 
-7.  **`cartography`**
+7.  **{cartography}**
 
--   CRAN `install.packages("cartography")`
--   GitHub `remotes::install_github("riatelab/cartography")`
+-   CRAN: install.packages("cartography")
+-   GitHub: remotes::install_github("riatelab/cartography")
 
-8.  **`ggmap`**
+8.  **{ggmap}**
 
--   CRAN `install.packages("ggmap")`
--   GitHub `remotes::install_github("dkahle/ggmap")`
+-   CRAN: install.packages("ggmap")
+-   GitHub: remotes::install_github("dkahle/ggmap")
 
-9.  **`rayshader`**
+9.  **{rayshader}**
 
--   CRAN `install.packages("rayshader")`
--   GitHub `devtools::install_github("tylermorganwall/rayshader")`
+-   CRAN: install.packages("rayshader")
+-   GitHub: devtools::install_github("tylermorganwall/rayshader")
 
-10. **`geojsonio`**
+10. **{geojsonio}**
 
--   CRAN `install.packages("geojsonio")`
--   GitHub `devtools::install_github("ropensci/geojsonio")`
+-   CRAN: install.packages("geojsonio")
+-   GitHub: devtools::install_github("ropensci/geojsonio")
 
-11. **`shinyjs`**
+11. **{shinyjs}**
 
--   CRAN `install.packages("shinyjs")`
--   GitHub `remotes::install_github("daattali/shinyjs")`
+-   CRAN: install.packages("shinyjs")
+-   GitHub: remotes::install_github("daattali/shinyjs")
 
-12. **`GGally`** \[Extends `ggplot2` by adding several functions to reduce the complexity of combining geometric objects with transformed data\]
+12. **{GGally}** \[Extends {ggplot2} by adding several functions to reduce the complexity of combining geometric objects with transformed data\]
 
--   CRAN `install.packages("GGally")`
--   GitHub `devtools::install_github("ggobi/ggally")`
+-   CRAN: install.packages("GGally")
+-   GitHub: devtools::install_github("ggobi/ggally")
 
-13. **`grid`** \[A set of graphical functions which support a great deal of flexibility in the layout of graphics\]
+13. **{grid}** \[A set of graphical functions which support a great deal of flexibility in the layout of graphics\]
 
--   CRAN `install.packages("grid")`
--   GitHub `devtools::install_github("cran/grid")`
+-   CRAN: install.packages("grid")
+-   GitHub: devtools::install_github("cran/grid")
 
-14. **`gridExtra`** \[Provides a number of user-level functions to work with "grid" graphics, notably to arrange multiple grid-based plots on a page, and draw tables\]
+14. **{gridExtra}** \[Provides a number of user-level functions to work with "grid" graphics, notably to arrange multiple grid-based plots on a page, and draw tables\]
 
--   CRAN `install.packages("gridExtra")`
--   GitHub `devtools::install_github("cran/gridExtra")`
+-   CRAN: install.packages("gridExtra")
+-   GitHub: devtools::install_github("cran/gridExtra")
 
-15. **`cartogram`** \[Construct continuous and non-contiguous area cartograms\]
+15. **{cartogram}** \[Construct continuous and non-contiguous area cartograms\]
 
--   CRAN `install.packages("cartogram")`
--   GitHub `devtools::install_github("sjewo/cartogram")`
+-   CRAN: install.packages("cartogram")
+-   GitHub: devtools::install_github("sjewo/cartogram")
 
-16. **`visNetwork`** \[Use vis.js library for network visualization\]
+16. **{visNetwork}** \[Use vis.js library for network visualization\]
 
--   CRAN `install.packages("visNetwork")`
--   GitHub `devtools::install_github("datastorm-open/visNetwork")`
+-   CRAN: install.packages("visNetwork")
+-   GitHub: devtools::install_github("datastorm-open/visNetwork")
 
 ### Spatial statistics
 
-1.  **`spatial`**
+1.  **{spatial}**
 
--   GitHub `remotes::install_github("rspatial/rspatial")`
+-   GitHub: remotes::install_github("rspatial/rspatial")
 
-2.  **`spatstat`**
+2.  **{spatstat}**
 
--   Cran `install.packages("spatstat")`
--   GitHub `remotes::install_github("spatstat/spatstat")`
+-   CRAN: install.packages("spatstat")
+-   GitHub: remotes::install_github("spatstat/spatstat")
 
-3.  **`gstat`**
+3.  **{gstat}**
 
--   Cran `install.packages("gstat")`
--   GitHub `remotes::install_github("r-spatial/gstat")`
+-   CRAN: install.packages("gstat")
+-   GitHub: remotes::install_github("r-spatial/gstat")
 
-4.  **`spdep`**
+4.  **{spdep}**
 
--   Cran `install.packages("spdep", repos="http://R-Forge.R-project.org")`
--   GitHub `devtools::install_github("r-spatial/spdep")`
+-   CRAN: install.packages("spdep", repos="http://R-Forge.R-project.org")
+-   GitHub: devtools::install_github("r-spatial/spdep")
 
-5.  **`geoshape`**
+5.  **{geoshape}**
 
--   Cran
--   GitHub
+6.  **{ggspatial}**
 
-6.  **`ggspatial`**
+-   CRAN: install.packages("ggspatial")
+-   GitHub: remotes::install_github("paleolimbot/ggspatial")
 
--   Cran `install.packages("ggspatial")`
--   GitHub `remotes::install_github("paleolimbot/ggspatial")`
+7.  **{spdep}** \[A collection of functions to create spatial weights matrix objects from polygon\]
 
-7.  **`spdep`** \[A collection of functions to create spatial weights matrix objects from polygon\]
+-   CRAN: install.packages("spdep")
+-   GitHub: devtools::install_github("r-spatial/spdep")
 
--   Cran `install.packages("spdep")`
--   GitHub `devtools::install_github("r-spatial/spdep")`
+8.  **{geogrid}** \[Turn geospatial polygons into regular or hexagonal grids\]
 
-8.  **`geogrid`** \[Turn geospatial polygons into regular or hexagonal grids\]
+-   GitHub: devtools::install_github("jbaileyh/geogrid")
 
--   GitHub `devtools::install_github("jbaileyh/geogrid")`
+9.  **{GISTools}** \[Some further GIS capabilities for R\]
 
-9.  **`GISTools`** \[Some further GIS capabilities for R\]
+-   CRAN: install.packages("GISTools")
 
--   Cran `install.packages("GISTools")`
+10. **{RgoogleMaps}**
 
-10. **`RgoogleMaps`**
-
--   Cran `install.packages("RgoogleMaps")`
--   GitHub `devtools::install_github("cran/RgoogleMaps")`
+-   CRAN: install.packages("RgoogleMaps")
+-   GitHub: devtools::install_github("cran/RgoogleMaps")
 
 ### Data sources
 
-1.  **`OpenStreetMap`**
+1.  **{OpenStreetMap}**
 
--   Cran `install.packages("OpenStreetMap")`
--   GitHub `devtools::install_github("cran/OpenStreetMap")`
+-   CRAN: install.packages("OpenStreetMap")
+-   GitHub: devtools::install_github("cran/OpenStreetMap")
 
-2.  **`rnaturalearth`**
+2.  **{rnaturalearth}**
 
--   Cran `install.packages("rnaturalearth", dependencies = TRUE)`
--   GitHub `devtools::install_github("ropensci/rnaturalearth")`
+-   CRAN: install.packages("rnaturalearth", dependencies = TRUE)
+-   GitHub: devtools::install_github("ropensci/rnaturalearth")
 
-3.  **`rnaturalearthdata`**
+3.  **{rnaturalearthdata}**
 
--   Cran `install.packages("rnaturalearthdata")`
--   GitHub `devtools::install_github("ropensci/rnaturalearthdata")`
+-   CRAN: install.packages("rnaturalearthdata")
+-   GitHub: devtools::install_github("ropensci/rnaturalearthdata")
 
-4.  **`rastervis`**
+4.  **{rastervis}**
 
--   Cran `install.packages("rasterVis")`
--   GitHub `devtools::install_github("oscarperpinan/rasterVis")`
+-   CRAN: install.packages("rasterVis")
+-   GitHub: devtools::install_github("oscarperpinan/rasterVis")
 
-5.  **`maps`**
+5.  **{maps}**
 
--   Cran `install.packages("maps")`
+-   CRAN: install.packages("maps")
 
-6.  **`spData`**
+6.  **{spData}**
 
--   Cran `install.packages("spData")`
--   GitHub `devtools::install_github("nowosad/spData")`
+-   CRAN: install.packages("spData")
+-   GitHub: devtools::install_github("nowosad/spData")
 
-7.  **`rgeos`**
+7.  **{rgeos}**
 
--   Cran `install.packages("rgeos", repos="http://R-Forge.R-project.org")`
--   GitHub `devtools::install_github("cran/rgeos")`
+-   CRAN: install.packages("rgeos", repos="http://R-Forge.R-project.org")
+-   GitHub: devtools::install_github("cran/rgeos")
 
-8.  **`jpndistrict`**
+8.  **{jpndistrict}**
 
--   Cran `install.packages("jpndistrict")`
--   GitHub `devtools::install_github("uribo/jpndistrict", force=TRUE)`
+-   CRAN: install.packages("jpndistrict")
+-   GitHub: devtools::install_github("uribo/jpndistrict", force=TRUE)
 
-9.  **`countrycode`**
+9.  **{countrycode}**
 
--   Cran `install.packages("countrycode")`
--   GitHub `install_github('vincentarelbundock/countrycode')`
+-   CRAN: install.packages("countrycode")
+-   GitHub: install_github('vincentarelbundock/countrycode')
 
-10. **`tmaptools`**
+10. **{tmaptools}**
 
--   Cran `install.packages("tmaptools")`
--   GitHub `devtools::install_github("mtennekes/tmaptools")`
+-   CRAN: install.packages("tmaptools")
+-   GitHub: devtools::install_github("mtennekes/tmaptools")
 
 11. **`DT`**
 
--   Cran `install.packages("DT")`
--   GitHub `remotes::install_github("rstudio/DT")`
+-   CRAN: install.packages("DT")
+-   GitHub: remotes::install_github("rstudio/DT")
 
-12. **`usmap`**
+12. **{usmap}**
 
--   Cran `install.packages("usmap")`
--   GitHub `devtools::install_github("pdil/usmap")`
+-   CRAN: install.packages("usmap")
+-   GitHub: devtools::install_github("pdil/usmap")
 
-13. **`tigris`**
+13. **{tigris}**
 
--   Cran `install.packages("tigris")`
--   GitHub `devtools::install_github("walkerke/tigris")`
+-   CRAN: install.packages("tigris")
+-   GitHub: devtools::install_github("walkerke/tigris")
 
-14. **`scales`**
+14. **{scales}**
 
--   Cran `install.packages("scales")`
--   GitHub `devtools::install_github("r-lib/scales")`
+-   CRAN: install.packages("scales")
+-   GitHub: devtools::install_github("r-lib/scales")
 
-15. **`ggrepel`**
+15. **{ggrepel}**
 
--   Cran `install.packages("ggrepel")`
--   GitHub `devtools::install_github("slowkow/ggrepel")`
+-   CRAN: install.packages("ggrepel")
+-   GitHub: devtools::install_github("slowkow/ggrepel")
 
-16. **`tidycensus`**
+16. **{tidycensus}**
 
--   Cran `install.packages("tidycensus")`
-
--   GitHub `remotes::install_github("walkerke/tidycensus")`
+-   CRAN: install.packages("tidycensus")
+-   GitHub: remotes::install_github("walkerke/tidycensus")
