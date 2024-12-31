@@ -3,7 +3,7 @@ project:
   output-dir: docs
    
 book:
-  title: "Economic Geography with R"
+  title: "Human Geography with R"
   author: "Moinul Islam"
   date: today
   chapters:
