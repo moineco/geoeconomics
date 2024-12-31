@@ -3,9 +3,9 @@ project:
   output-dir: docs
    
 book:
-  title: "Geoeconomics with R and Python"
+  title: "Economic Geography with R"
   author: "Moinul Islam"
-  date: "1/1/2024"
+  date: today
   chapters:
     - index.qmd
     - lecture_1.qmd
@@ -20,8 +20,6 @@ book:
     - lecture_10.qmd
     - lecture_11.qmd
     - lecture_12.qmd
-    - lecture_13.qmd
-    - lecture_14.qmd
     - references.qmd
 
 bibliography: geoeconomics.bib

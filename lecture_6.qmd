@@ -11,6 +11,10 @@ library(ggthemes) # to use theme_map
 library(rnaturalearth) # to use ne_countries
 library(DT) # to produce data table
 ```
+- If you dont find japandistrict, use following:
+
+install.packages("remotes")
+remotes::install_github("uribo/jpndistrict")
 
 -   Alternatively, you can use the `pacman` package manager to load necessary R packages from below:
 

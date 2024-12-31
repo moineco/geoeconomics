@@ -64,7 +64,7 @@ world_map %>%
 
 ```{r message=FALSE, warning=FALSE}
 #| code-fold: false
-head(jpnprefs)
+#head(jpnprefs)
 ```
 
 -   Table 1 represents the prefecture numbers in `jpnprefs` package
@@ -92,8 +92,8 @@ head(jpnprefs)
 
 ```{r message=FALSE, warning=FALSE}
 #| code-fold: false
-kochi <- jpn_pref(39)
-head(kochi)
+#kochi <- jpn_pref(39)
+#head(kochi)
 ```
 
 -   We use `geom_sf()` because the boundaries of municipalities are a standard called simple features (sf).
@@ -104,9 +104,9 @@ head(kochi)
 #| code-fold: false
 #| fig.cap: "Kochi prefecture of Japan"
 #| fig.height: 4
-kochi %>% 
-  ggplot() + 
-  geom_sf()
+#kochi %>% 
+  # ggplot() + 
+  # geom_sf()
 ```
 
 -   By using additional feature of `geom_sf`, we can improve the visualization of the map as @fig-mymap-12.4
@@ -115,9 +115,9 @@ kochi %>%
 #| code-fold: false
 #| fig.cap: "Kochi prefecture of Japan with random color"
 #| fig.height: 4
-kochi %>% 
-  ggplot() + 
-  geom_sf(aes(fill = city), show.legend = FALSE)
+#kochi %>% 
+  # ggplot() + 
+  # geom_sf(aes(fill = city), show.legend = FALSE)
 ```
 
 -   By using geom_point feature, we can specify the capital of the Kochi prefecture as @fig-mymap-12.5
@@ -126,9 +126,9 @@ kochi %>%
 #| code-fold: false
 #| fig.cap: "Kochi prefecture of Japan with random color and capital"
 #| fig.height: 4
-kochi %>% 
-  ggplot() + 
-  geom_sf(aes(fill = city), show.legend = FALSE) +
-   geom_point(aes(x = capital_longitude, y = capital_latitude),
-             colour = "black", data = jpnprefs %>% filter(prefecture == "高知県"))
+#kochi %>% 
+  # ggplot() + 
+  # geom_sf(aes(fill = city), show.legend = FALSE) +
+  #  geom_point(aes(x = capital_longitude, y = capital_latitude),
+  #            colour = "black", data = jpnprefs %>% filter(prefecture == "高知県"))
 ```

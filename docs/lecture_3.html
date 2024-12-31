@@ -254,18 +254,6 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture_13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Creating a final report</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lecture_14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Geospatial data analysis</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -388,20 +376,7 @@ Figure&nbsp;3.2: Japan
 <li><p>If you want to draw a map of prefectures, use the <code>jpnprefs</code> package. There is a list of prefectures in the <code>jpnprefs</code> attached to the package.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(jpnprefs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 11
-  jis_code prefecture capital region major_island prefecture_en capital_en  
-  &lt;chr&gt;    &lt;fct&gt;      &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;       
-1 01       北海道     札幌市  北海道 北海道       Hokkaido      Sapporo-shi 
-2 02       青森県     青森市  東北   本州         Aomori-ken    Aomori-shi  
-3 03       岩手県     盛岡市  東北   本州         Iwate-ken     Morioka-shi 
-4 04       宮城県     仙台市  東北   本州         Miyagi-ken    Sendai-shi  
-5 05       秋田県     秋田市  東北   本州         Akita-ken     Akita-shi   
-6 06       山形県     山形市  東北   本州         Yamagata-ken  Yamagata-shi
-# ℹ 4 more variables: region_en &lt;chr&gt;, major_island_en &lt;chr&gt;,
-#   capital_latitude &lt;dbl&gt;, capital_longitude &lt;dbl&gt;</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#head(jpnprefs)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p>Table 1 represents the prefecture numbers in <code>jpnprefs</code> package</p>
@@ -550,87 +525,35 @@ Figure&nbsp;3.2: Japan
 <li><p>To pull the prefecture data, enter the number of the prefecture corresponding to <code>jpn_pref()</code>.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>kochi <span class="ot">&lt;-</span> <span class="fu">jpn_pref</span>(<span class="dv">39</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(kochi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 6 features and 4 fields
-Geometry type: MULTIPOLYGON
-Dimension:     XY
-Bounding box:  xmin: 133.1751 ymin: 33.24061 xmax: 134.2378 ymax: 33.72044
-Geodetic CRS:  WGS 84
-# A tibble: 6 × 5
-  pref_code prefecture city_code city                                   geometry
-  &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;                        &lt;MULTIPOLYGON [°]&gt;
-1 39        高知県     39201     高知市 (((133.4129 33.58615, 133.4009 33.59435…
-2 39        高知県     39202     室戸市 (((134.0336 33.3771, 134.0337 33.37847,…
-3 39        高知県     39203     安芸市 (((133.8213 33.5194, 133.8251 33.52551,…
-4 39        高知県     39204     南国市 (((133.5803 33.6502, 133.5793 33.64468,…
-5 39        高知県     39205     土佐市 (((133.4554 33.41864, 133.4556 33.4188,…
-6 39        高知県     39206     須崎市 (((133.3155 33.32523, 133.3165 33.32524…</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#kochi &lt;- jpn_pref(39)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#head(kochi)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p>We use <code>geom_sf()</code> because the boundaries of municipalities are a standard called simple features (sf).</p></li>
-<li><p>We can draw a map of Kochi prefecture of Japan which consists all the cities. As shown in <a href="#fig-mymap-12.3" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>, we can plot the boundaries of the cities inside Kochi Prefecture.</p></li>
+<li><p>We can draw a map of Kochi prefecture of Japan which consists all the cities. As shown in <span class="quarto-unresolved-ref">?fig-mymap-12.3</span>, we can plot the boundaries of the cities inside Kochi Prefecture.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>kochi <span class="sc">%&gt;%</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div id="fig-mymap-12.3" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-mymap-12.3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="lecture_3_files/figure-html/fig-mymap-12.3-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mymap-12.3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.3: Kochi prefecture of Japan
-</figcaption>
-</figure>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#kochi %&gt;% </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ggplot() + </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_sf()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>By using additional feature of <code>geom_sf</code>, we can improve the visualization of the map as <a href="#fig-mymap-12.4" class="quarto-xref">Figure&nbsp;<span>3.4</span></a></li>
+<li>By using additional feature of <code>geom_sf</code>, we can improve the visualization of the map as <span class="quarto-unresolved-ref">?fig-mymap-12.4</span></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>kochi <span class="sc">%&gt;%</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> city), <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div id="fig-mymap-12.4" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-mymap-12.4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="lecture_3_files/figure-html/fig-mymap-12.4-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mymap-12.4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.4: Kochi prefecture of Japan with random color
-</figcaption>
-</figure>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#kochi %&gt;% </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ggplot() + </span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_sf(aes(fill = city), show.legend = FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>By using geom_point feature, we can specify the capital of the Kochi prefecture as <a href="#fig-mymap-12.5" class="quarto-xref">Figure&nbsp;<span>3.5</span></a></li>
+<li>By using geom_point feature, we can specify the capital of the Kochi prefecture as <span class="quarto-unresolved-ref">?fig-mymap-12.5</span></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>kochi <span class="sc">%&gt;%</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> city), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> capital_longitude, <span class="at">y =</span> capital_latitude),</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">data =</span> jpnprefs <span class="sc">%&gt;%</span> <span class="fu">filter</span>(prefecture <span class="sc">==</span> <span class="st">"高知県"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div id="fig-mymap-12.5" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-mymap-12.5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="lecture_3_files/figure-html/fig-mymap-12.5-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mymap-12.5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.5: Kochi prefecture of Japan with random color and capital
-</figcaption>
-</figure>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#kochi %&gt;% </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ggplot() + </span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_sf(aes(fill = city), show.legend = FALSE) +</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#  geom_point(aes(x = capital_longitude, y = capital_latitude),</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#            colour = "black", data = jpnprefs %&gt;% filter(prefecture == "高知県"))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

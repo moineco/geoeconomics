@@ -12,9 +12,7 @@ This lecture is for the readers who want to analyze, visualize and model geograp
 
 Geo-computation with **R** will equip you with knowledge and skills to tackle a wide range of issues, including those with scientific, societal and environmental implications, manifested in geographic data.
 
-### Course logistic
-
-Class schedule in 1Q:
+### Class schedule in 1Q:
 
 -   Monday from 10:30 AM to 12:00 PM
 -   Thursday from 10:30 AM to 12:00 PM
@@ -37,8 +35,8 @@ Regarding the assignments, you have to write in English to get evaluated. Writin
 
 ### Instructor
 
-Moinul Islam, Assistant Professor, Research Institute for Future Design & School of Economics and Management, Kochi University of Technology, Japan.
+Moinul Islam, Associate Professor, Research Institute for Future Design & School of Economics and Management, Kochi University of Technology, Japan.
 
-### geoinformatics.moinul\@gmail.com
+geoinformatics.moinul\@gmail.com
 
 Office hours: By appointment, please email.
