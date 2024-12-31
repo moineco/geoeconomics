@@ -98,7 +98,7 @@
 
 18. **{DT}** \[Extension of dataframe for fast processing of large data\]
 
--   CRAN: `install.packages("DT")
+-   CRAN: \`install.packages("DT")
 
 19. **{lubridate}** \[Functions to work with date-times and time-spans\]
 
@@ -120,14 +120,14 @@
 
 -- First we need to install {gdal} and the easiest way to install {gdal} is using Homebrew.
 
-```{txt}
+```
 brew install pkg-config
 brew install gdal
 ```
 
 -- Next we need to install {sf} by using following command.
 
-```{txt}
+```
 install.packages("sf", type = "source", configure.args = "--with-proj-lib=$(brew --prefix)/lib/")
 ```
 

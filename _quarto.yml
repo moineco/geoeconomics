@@ -28,9 +28,9 @@ bibliography: geoeconomics.bib
 
 format:
   html:
-    theme: cosmo
-    code-fold: false
-    code-summary: "Show the code"
+    theme: 
+       light: cosmo
+       dark: darkly
   pdf:
     documentclass: scrreprt
 
