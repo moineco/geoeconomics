@@ -1,4 +1,4 @@
-# Plotting USA Map
+# US states and regions
 
 -   We will explore different packages that could help with mapping geographical data, specifically for the USA. At first we need to load necessary packages to execute the maps for this lecture.
 

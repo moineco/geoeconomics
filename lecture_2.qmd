@@ -1,4 +1,4 @@
-# Processing Shapefiles
+# Processing shapefiles
 
 ## Shapefile in GIS
 

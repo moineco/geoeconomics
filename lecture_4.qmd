@@ -1,4 +1,4 @@
-# GDP maps with R
+# Income distribution of nations
 
 List of R packages used in this section:
 

@@ -1,4 +1,4 @@
-# Administrative maps of Japan
+# Administrative regions of Japan
 
 -   Load all necessary packages
 

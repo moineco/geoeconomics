@@ -3,12 +3,12 @@ project:
   output-dir: docs
    
 book:
-  title: "Human Geography with R"
+  title: "Human Geography with R and Python"
   author: "Moinul Islam"
   date: today
   chapters:
     - index.qmd
-    - lecture_1.qmd
+    #- lecture_1.qmd
     - lecture_2.qmd
     - lecture_3.qmd
     - lecture_4.qmd
@@ -27,8 +27,8 @@ bibliography: geoeconomics.bib
 format:
   html:
     theme: 
-       light: cosmo
        dark: darkly
+       light: cosmo
   pdf:
     documentclass: scrreprt
 

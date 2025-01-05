@@ -1,4 +1,4 @@
-# Alaska map with $sf$
+# Population distribution of Alaska
 
 Credit: Reproducible Research Techniques for Synthesis: Matt Jones
 

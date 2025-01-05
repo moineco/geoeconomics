@@ -1,4 +1,4 @@
-# `naturalearth` data use
+# Europian regions with `naturalearth` data
 
 ```{r}
 #| message: false

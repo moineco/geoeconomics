@@ -1,4 +1,4 @@
-# Population density maps of Bangladesh
+# Population density of Bangladesh
 
 -   Load all necessary packages
 

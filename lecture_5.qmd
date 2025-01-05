@@ -1,4 +1,4 @@
-# Making map with $sf$
+# World and continents with `sf`
 
 We need the following packages to deal with this lecture:
 
@@ -18,7 +18,7 @@ pacman::p_load(sf, tidyverse, rnaturalearth)
 
 The above command will install all dependencies required to reproduce the entire lecture
 
--   Use the package **sf**
+-   Use the package `sf`
 
 -   We will use the world dataset provided by `spData`, to show what sf objects are and how they work. `world` is an 'sf data frame' containing spatial and attribute columns, the names of which are returned by the function names() (the last column in this example contains the geographic information):
 
