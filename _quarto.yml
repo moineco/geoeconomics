@@ -3,7 +3,7 @@ project:
   output-dir: docs
    
 book:
-  title: "Human Geography with R and Python"
+  title: "Geoinformation with R"
   author: "Moinul Islam"
   date: today
   chapters:
