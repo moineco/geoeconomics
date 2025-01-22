@@ -1,1 +1,1 @@
-{"headings":["world-map","japan-map"],"entries":[{"order":{"section":[2,0,2,0,0,0,0],"number":2},"caption":"Japan","key":"fig-mymap-12.2"},{"order":{"section":[2,0,1,0,0,0,0],"number":1},"caption":"World countries","key":"fig-mymap-12.1"}],"options":{"chapters":true}}
+{"entries":[{"caption":"Japan","key":"fig-mymap-12.2","order":{"number":2,"section":[2,0,2,0,0,0,0]}},{"caption":"World countries","key":"fig-mymap-12.1","order":{"number":1,"section":[2,0,1,0,0,0,0]}}],"headings":["world-map","japan-map"],"options":{"chapters":true}}
