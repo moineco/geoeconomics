@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.43">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Geoinformation with R – 5&nbsp; Population distribution of Tokyo</title>
+<title>5&nbsp; Population distribution of Tokyo – Geoinformation with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,12 +71,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-2db5a64a0f9238d29502e24e892d8c52.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c1966a8c70583a3816b1e3a216c1caf1.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -355,8 +355,8 @@ Geodetic CRS:  WGS 84
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_tokyo_pop <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/csv/tokyo_pop.csv"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(df_tokyo_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-ba94045955efcaeb8fd5" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-ba94045955efcaeb8fd5">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"],["足立区","荒川区","文京区","千代田区","中央区","江戸川区","板橋区","葛飾区","北区","江東区","目黒区","港区","中野区","練馬区","大田区","世田谷区","渋谷区","品川区","新宿区","杉並区","墨田区","台東区","豊島区"],["Adachi-ku","Arakawa-ku","Bunkyō-ku","Chiyoda-ku","Chūō-ku","Edogawa-ku","Itabashi-ku","Katsushika-ku","Kita-ku","Kōtō-ku","Meguro-ku","Minato-ku","Nakano-ku","Nerima-ku","Ōta-ku","Setagaya-ku","Shibuya-ku","Shinagawa-ku","Shinjuku-ku","Suginami-ku","Sumida-ku","Taitō-ku","Toshima-ku"],[674067,213648,223389,59441,147620,685899,569225,447140,345063,502579,280283,248071,332902,726748,722608,910868,227850,392492,339211,570483,260358,200486,294673]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>city<\/th>\n      <th>city_eng<\/th>\n      <th>population<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"city","targets":1},{"name":"city_eng","targets":2},{"name":"population","targets":3}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-9cb989889f1a8c49cb34" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-9cb989889f1a8c49cb34">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"],["足立区","荒川区","文京区","千代田区","中央区","江戸川区","板橋区","葛飾区","北区","江東区","目黒区","港区","中野区","練馬区","大田区","世田谷区","渋谷区","品川区","新宿区","杉並区","墨田区","台東区","豊島区"],["Adachi-ku","Arakawa-ku","Bunkyō-ku","Chiyoda-ku","Chūō-ku","Edogawa-ku","Itabashi-ku","Katsushika-ku","Kita-ku","Kōtō-ku","Meguro-ku","Minato-ku","Nakano-ku","Nerima-ku","Ōta-ku","Setagaya-ku","Shibuya-ku","Shinagawa-ku","Shinjuku-ku","Suginami-ku","Sumida-ku","Taitō-ku","Toshima-ku"],[674067,213648,223389,59441,147620,685899,569225,447140,345063,502579,280283,248071,332902,726748,722608,910868,227850,392492,339211,570483,260358,200486,294673]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>city<\/th>\n      <th>city_eng<\/th>\n      <th>population<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"city","targets":1},{"name":"city_eng","targets":2},{"name":"population","targets":3}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <ul>
@@ -590,7 +590,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = true;
+  const darkModeDefault = false;
   let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
@@ -680,8 +680,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -792,7 +790,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

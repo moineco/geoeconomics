@@ -27,8 +27,8 @@ bibliography: geoeconomics.bib
 format:
   html:
     theme: 
+       light: journal
        dark: darkly
-       light: cosmo
   pdf:
     documentclass: scrreprt
 
