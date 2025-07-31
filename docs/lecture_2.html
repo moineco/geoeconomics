@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture_2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Processing shapefiles</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture_2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Spatial data operations</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -160,61 +160,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_2.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Processing shapefiles</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Spatial data operations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Spatial data operations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Income distribution of nations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Income distribution of nations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">World and continents with <code>sf</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">World and continents with <code>sf</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Population distribution of Tokyo</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Population distribution of Tokyo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">US states and regions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">US states and regions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Population distribution of Alaska</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Population distribution of Alaska</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">US cities and walmart locations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_9.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">US cities and walmart locations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Population density of Bangladesh</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Population density of Bangladesh</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Administrative regions of Japan</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Administrative regions of Japan</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Europian regions with <code>naturalearth</code> data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -292,7 +292,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li>By using the <code>ggplot2</code> boundaries can be drawn with <code>geom_polygon()</code> with latitude and longitude as shown in <a href="#fig-mymap-12.1" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-mymap-12.1</span></a></li>
+<li>By using the <code>ggplot2</code> boundaries can be drawn with <code>geom_polygon()</code> with latitude and longitude as shown in <a href="#fig-mymap-12.1" class="quarto-xref">Figure&nbsp;<span>2.1</span></a></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>world_map <span class="sc">%&gt;%</span> </span>
@@ -316,7 +316,7 @@ Figure&nbsp;2.1: World countries
 <h3 data-number="2.0.2" class="anchored" data-anchor-id="japan-map"><span class="header-section-number">2.0.2</span> Japan map</h3>
 <ul>
 <li><p>If we limit the data with <code>filter()</code>, we can also draw a map of specific countries.</p></li>
-<li><p>For instance, we will filter the data for Japan and draw a map as shown in <a href="#fig-mymap-12.2" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-mymap-12.2</span></a></p></li>
+<li><p>For instance, we will filter the data for Japan and draw a map as shown in <a href="#fig-mymap-12.2" class="quarto-xref">Figure&nbsp;<span>2.2</span></a></p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>world_map <span class="sc">%&gt;%</span> </span>
@@ -495,7 +495,7 @@ Figure&nbsp;2.2: Japan
 </div>
 <ul>
 <li><p>We use <code>geom_sf()</code> because the boundaries of municipalities are a standard called simple features (sf).</p></li>
-<li><p>We can draw a map of Kochi prefecture of Japan which consists all the cities. As shown in <a href="#fig-mymap-12.3" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-mymap-12.3</span></a>, we can plot the boundaries of the cities inside Kochi Prefecture.</p></li>
+<li><p>We can draw a map of Kochi prefecture of Japan which consists all the cities. As shown in <span class="quarto-unresolved-ref">?fig-mymap-12.3</span>, we can plot the boundaries of the cities inside Kochi Prefecture.</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#kochi %&gt;% </span></span>
@@ -503,7 +503,7 @@ Figure&nbsp;2.2: Japan
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_sf()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>By using additional feature of <code>geom_sf</code>, we can improve the visualization of the map as <a href="#fig-mymap-12.4" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-mymap-12.4</span></a></li>
+<li>By using additional feature of <code>geom_sf</code>, we can improve the visualization of the map as <span class="quarto-unresolved-ref">?fig-mymap-12.4</span></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#kochi %&gt;% </span></span>
@@ -511,7 +511,7 @@ Figure&nbsp;2.2: Japan
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_sf(aes(fill = city), show.legend = FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>By using geom_point feature, we can specify the capital of the Kochi prefecture as <a href="#fig-mymap-12.5" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-mymap-12.5</span></a></li>
+<li>By using geom_point feature, we can specify the capital of the Kochi prefecture as <span class="quarto-unresolved-ref">?fig-mymap-12.5</span></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#kochi %&gt;% </span></span>
@@ -1093,8 +1093,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./lecture_3.html" class="pagination-link" aria-label="Spatial data operations">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Spatial data operations</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./lecture_3.html" class="pagination-link" aria-label="Income distribution of nations">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Income distribution of nations</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
