@@ -1,140 +1,148 @@
-# Population distribution of Tokyo
+# US states and regions
 
-List of R packages used in this section:
+-   We will explore different packages that could help with mapping geographical data, specifically for the USA. At first we need to load necessary packages to execute the maps for this lecture.
 
-```{r message=FALSE, warning=FALSE}
-#| code-fold: false
-library(sf)
+```{r}
+#| message: false
+library(usmap)
 library(tidyverse)
-library(jpndistrict) # to get the base map of Japan's prefecture
-library(ggthemes) # to use theme_map
-library(rnaturalearth) # to use ne_countries
-library(DT) # to produce data table
 ```
 
--   If you dont find japandistrict, use following:
-
-install.packages("remotes") remotes::install_github("uribo/jpndistrict")
-
--   Alternatively, you can use the `pacman` package manager to load necessary R packages from below:
+-   Alternatively you can use the pacman package manager for loading the necessary packages for this lecture.
 
 ```{txt}
-pacman::p_load(sf, tidyverse, jpndistrict, ggthemes, rnaturalearth)
-```
-
--   Name the data world_map
-
-```{r message=FALSE, warning=FALSE}
 #| code-fold: false
-global_map <- ne_countries(scale = "small", returnclass = "sf")
+#| warning: false
+#| message: false
+pacman::p_load(usmap, maps, mapdata, sf, plotly, tidyverse, mapview, leaflet, tmap, tmaptools, tigris)
 ```
 
-## Population Map of Tokyo
+## Using `usmap` package
 
--   The prefecture code for Tokyo is 13. Now we can plot the map of the 23 wards of Tokyo
+-   This is probably the most continent package to plot a USA. map along with some data. Plot all states of the USA to create an empty map.
 
-```{r message=FALSE, warning=FALSE}
+```{r}
 #| code-fold: false
-df_tokyo_sf <- jpn_pref(13, district = TRUE) %>% 
-  dplyr::filter(str_detect(city, "区")) 
+#| warning: false
+#| message: false
+plot_usmap(regions = "states") + 
+  labs(title = "United States",
+       subtitle = "This is a map of the United States.") + 
+  theme(panel.background=element_blank())
 ```
 
--   Display the extracted map of Tokyo's 23 wards
+-   Besides states, we could also plot all counties of the USA.
 
-```{r message=FALSE, warning=FALSE}
+```{r}
 #| code-fold: false
-df_tokyo_sf %>%
-  ggplot() +
-  geom_sf() +
-  theme_minimal()
+#| warning: false
+#| message: false
+plot_usmap(regions = "counties") + 
+  labs(title = "U.S.A. counties",
+       subtitle = "This is a map of the United States.") + 
+  theme(panel.background=element_blank())
 ```
 
--   Check your data here
+-   `usmap` also provides many different regions to select
 
-```{r message=FALSE, warning=FALSE}
+```{r}
 #| code-fold: false
-head(df_tokyo_sf, 23)
+#| warning: false
+#| message: false
+plot_usmap(include = .south_region, exclude = c("VA"), labels = TRUE)
 ```
 
--   Import the .CSV data to make an interactive population map of Tokyo
+-   `usmap` also provides north regions map
 
-```{r message=FALSE, warning=FALSE}
+```{r}
 #| code-fold: false
-df_tokyo_pop <- read_csv("data/csv/tokyo_pop.csv")
-datatable(df_tokyo_pop)
+#| warning: false
+#| message: false
+plot_usmap(include = .south_region, exclude = c("VA"), labels = TRUE)
 ```
 
--   Merge the spatial data with your population data
+-   We can also select certain states by using *state abbreviations*
 
-```{r message=FALSE, warning=FALSE}
+```{r}
 #| code-fold: false
-merge_tokyo <- df_tokyo_sf %>% 
-  left_join(df_tokyo_pop, by = "city") %>% 
-  st_as_sf()
+#| warning: false
+#| message: false
+plot_usmap(include = c("CT", "ME", "MA", "NH", "VT")) +
+  labs(title = "New England Region") +
+  theme(panel.background = element_rect(color = "black"))
 ```
 
--   Check the merged data
+## Using `ggplot2` package
 
-```{r message=FALSE, warning=FALSE}
+```{r}
 #| code-fold: false
-merge_tokyo %>% 
-  head() %>% 
-  rmarkdown::paged_table()
+#| warning: false
+#| message: false
+usa <- map_data('usa')
 ```
 
--   Plot your data with ggplot2
+-   Next, we use geom_ploygon function to plot USA map.
 
-```{r message=FALSE, warning=FALSE}
+```{r}
 #| code-fold: false
-#| fig.cap: "Population of Tokyo, Japan"
-#| fig.height: 4
-map_pop_tokyo <- merge_tokyo %>% 
-  ggplot() +
-  geom_sf(aes(fill = population)) +
-  scale_fill_distiller(name = "Population",
-                       palette = "Greens", direction = 1) +
-  theme_map(base_family = "HiraginoSans-W3") +
-  theme(legend.position = c(.1, -.1),
-        legend.direction = "horizontal",
-        legend.title = element_text(size = 15), 
-        legend.text = element_text(size = 15),
-        legend.key.size = unit(1, "cm"),
-        legend.key.width = unit(3,"cm")) +
-  coord_sf(datum = NA) 
-
-map_pop_tokyo
+#| warning: false
+#| message: false
+ggplot(data=usa, aes(x=long, y=lat, group=group)) + 
+  geom_polygon(fill='lightblue') + 
+  theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + 
+  ggtitle('U.S.A. Map') + 
+  coord_fixed(1.3)
 ```
 
--   Plot your population data with the name of the cities in Tokyo
+-   In order to get more information about USA, now we can add state data to the map. Like above, we obtain data from maps and mapdata packages, and use `ggplot2` to plot.
 
-```{r message=FALSE, warning=FALSE}
+```{r}
 #| code-fold: false
-#| fig.cap: "Population of Tokyo, Japan"
-#| fig.height: 4
-map_pop_tokyo_text <- merge_tokyo %>% 
-  mutate(
-    text_x = map_dbl(geometry, ~st_centroid(.x)[[1]]),
-    text_y = map_dbl(geometry, ~st_centroid(.x)[[2]])
-  ) %>% 
-  ggplot() +
-  geom_sf(aes(fill = population)) +
-  geom_label(aes(x = text_x, y = text_y, label = city), 
-             size = 1.7, family = "HiraginoSans-W3") +
-  scale_fill_distiller(name = "Population",
-                       palette = "Greens", direction = 1) +
-  theme_map(base_family = "HiraginoSans-W3") +
-  theme(legend.position = c(.8, .05),
-        legend.title = element_text(size = 10), 
-        legend.text = element_text(size = 5),
-        legend.key.size = unit(0.5, "cm"),
-        legend.key.width = unit(1,"cm")) +
-  coord_sf(datum = NA) 
-
-map_pop_tokyo_text
+#| warning: false
+#| message: false
+state <- map_data("state")
 ```
 
--   To export the above figure, use the following code:
+-   Plot the states with `ggplot2`
 
-```{txt}
-ggsave("fig/map_pop_tokyo_text.png", map_pop_tokyo_text, width = 13, height = 13)
+```{r}
+#| code-fold: false
+#| warning: false
+#| message: false
+ggplot(data=state, aes(x=long, y=lat, fill=region, group=group)) + 
+  geom_polygon(color = "white") + 
+  guides(fill=FALSE) + 
+  theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + 
+  ggtitle('U.S.A. Map with States') + 
+  coord_fixed(1.3)
+```
+
+-   What if we only care about one state? Definitely, we can draw one state map using `ggplot2`. Firstly we need to filter data.
+
+```{r}
+#| code-fold: false
+#| warning: false
+#| message: false
+washington <- subset(state, region=="washington")
+counties <- map_data("county")
+washington_county <- subset(counties, region=="washington")
+```
+
+-   Plot Washington
+
+```{r}
+#| code-fold: false
+#| warning: false
+#| message: false
+ca_map <- ggplot(data=washington, mapping=aes(x=long, y=lat, group=group)) + 
+  coord_fixed(1.3) + 
+  geom_polygon(color="black", fill="gray") + 
+  geom_polygon(data=washington_county, fill=NA, color="white") + 
+  geom_polygon(color="black", fill=NA) + 
+  ggtitle('Washington Map with Counties') + 
+  theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())
+ca_map
 ```

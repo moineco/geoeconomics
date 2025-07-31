@@ -1,1 +1,1 @@
-{"options":{"chapters":true},"headings":["r-packages-for-management","r-packages-for-gis","basic-data-manipulation","cartography-and-data-visualization","spatial-statistics","data-sources"],"entries":[]}
+{"entries":[],"headings":["shapefile-in-gis","shapefile-and-r","using-sf-package-to-make-map","using-shapefile-to-make-map"],"options":{"chapters":true}}

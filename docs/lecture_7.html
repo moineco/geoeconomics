@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; US states and regions – Geoinformation with R</title>
+<title>7&nbsp; Population distribution of Alaska – Geoinformation with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,8 +71,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-2db5a64a0f9238d29502e24e892d8c52.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture_7.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">US states and regions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture_7.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Population distribution of Alaska</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -153,67 +153,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture_2.html" class="sidebar-item-text sidebar-link">
+  <a href="./lecture_1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Processing shapefiles</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture_3.html" class="sidebar-item-text sidebar-link">
+  <a href="./lecture_2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Spatial data operations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture_4.html" class="sidebar-item-text sidebar-link">
+  <a href="./lecture_3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Income distribution of nations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture_5.html" class="sidebar-item-text sidebar-link">
+  <a href="./lecture_4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">World and continents with <code>sf</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture_6.html" class="sidebar-item-text sidebar-link">
+  <a href="./lecture_5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Population distribution of Tokyo</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture_7.html" class="sidebar-item-text sidebar-link active">
+  <a href="./lecture_6.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">US states and regions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture_8.html" class="sidebar-item-text sidebar-link">
+  <a href="./lecture_7.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Population distribution of Alaska</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture_9.html" class="sidebar-item-text sidebar-link">
+  <a href="./lecture_8.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">US cities and walmart locations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture_10.html" class="sidebar-item-text sidebar-link">
+  <a href="./lecture_9.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Population density of Bangladesh</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture_11.html" class="sidebar-item-text sidebar-link">
+  <a href="./lecture_10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Administrative regions of Japan</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture_12.html" class="sidebar-item-text sidebar-link">
+  <a href="./lecture_11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Europian regions with <code>naturalearth</code> data</span></span></a>
   </div>
 </li>
@@ -228,22 +228,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#using-usmap-package" id="toc-using-usmap-package" class="nav-link active" data-scroll-target="#using-usmap-package"><span class="header-section-number">6.1</span> Using <code>usmap</code> package</a></li>
-  <li><a href="#using-ggplot2-package" id="toc-using-ggplot2-package" class="nav-link" data-scroll-target="#using-ggplot2-package"><span class="header-section-number">6.2</span> Using <code>ggplot2</code> package</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">US states and regions</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Population distribution of Alaska</span></h1>
 </div>
 
 
@@ -260,86 +253,150 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>Credit: Reproducible Research Techniques for Synthesis: Matt Jones</p>
+<p>The sf package is an R implementation of Simple Features. This package incorporates:</p>
 <ul>
-<li>We will explore different packages that could help with mapping geographical data, specifically for the USA. At first we need to load necessary packages to execute the maps for this lecture.</li>
+<li>a new spatial data class system in R</li>
+<li>functions for reading and writing data</li>
+<li>tools for spatial operations on vectors</li>
 </ul>
+<p>Most of the functions in this package starts with prefix st_ which stands for spatial and temporal.</p>
+<p>Our goal is to use a shapefile of Alaska regions and data on population in Alaska by community to create a map.</p>
+<p>Load necessary packages with <code>pacman</code> package manager</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usmap)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(sf, dplyr, ggplot2, scales, ggmap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>Alternatively you can use the pacman package manager for loading the necessary packages for this lecture.</li>
+<li>Plot the shapefile of Alaska</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pacman::p_load(usmap, maps, mapdata, sf, plotly, tidyverse, mapview, leaflet, tmap, tmaptools, tigris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="using-usmap-package" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="using-usmap-package"><span class="header-section-number">6.1</span> Using <code>usmap</code> package</h2>
-<ul>
-<li>This is probably the most continent package to plot a USA. map along with some data. Plot all states of the USA to create an empty map.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_usmap</span>(<span class="at">regions =</span> <span class="st">"states"</span>) <span class="sc">+</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"United States"</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"This is a map of the United States."</span>) <span class="sc">+</span> </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background=</span><span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Read in shapefile using sf</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ak_regions <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data/shapefile/alaska/ak_regions_simp.shp"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ak_regions)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lecture_7_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lecture_7_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <ul>
-<li>Besides states, we could also plot all counties of the USA.</li>
+<li>Examine it’s class.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_usmap</span>(<span class="at">regions =</span> <span class="st">"counties"</span>) <span class="sc">+</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"U.S.A. counties"</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"This is a map of the United States."</span>) <span class="sc">+</span> </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background=</span><span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="lecture_7_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(ak_regions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "sf"         "tbl_df"     "tbl"        "data.frame"</code></pre>
 </div>
 </div>
 <ul>
-<li><code>usmap</code> also provides many different regions to select</li>
+<li>See the data structure</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_usmap</span>(<span class="at">include =</span> .south_region, <span class="at">exclude =</span> <span class="fu">c</span>(<span class="st">"VA"</span>), <span class="at">labels =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="lecture_7_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ak_regions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 6 features and 3 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -179.2296 ymin: 51.15702 xmax: 179.8567 ymax: 71.43957
+Geodetic CRS:  WGS 84
+# A tibble: 6 × 4
+  region_id region           mgmt_area                                  geometry
+      &lt;int&gt; &lt;chr&gt;                &lt;dbl&gt;                        &lt;MULTIPOLYGON [°]&gt;
+1         1 Aleutian Islands         3 (((-171.1345 52.44974, -171.1686 52.4174…
+2         2 Arctic                   4 (((-139.9552 68.70597, -139.9893 68.7051…
+3         3 Bristol Bay              3 (((-159.8745 58.62778, -159.8654 58.6137…
+4         4 Chignik                  3 (((-155.8282 55.84638, -155.8049 55.8655…
+5         5 Copper River             2 (((-143.8874 59.93931, -143.9165 59.9403…
+6         6 Kodiak                   3 (((-151.9997 58.83077, -152.0358 58.8271…</code></pre>
 </div>
 </div>
 <ul>
-<li><code>usmap</code> also provides north regions map</li>
+<li>View what crs is set by using the function st_crs</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_usmap</span>(<span class="at">include =</span> .south_region, <span class="at">exclude =</span> <span class="fu">c</span>(<span class="st">"VA"</span>), <span class="at">labels =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="lecture_7_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(ak_regions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Coordinate Reference System:
+  User input: WGS 84 
+  wkt:
+GEOGCRS["WGS 84",
+    DATUM["World Geodetic System 1984",
+        ELLIPSOID["WGS 84",6378137,298.257223563,
+            LENGTHUNIT["metre",1]]],
+    PRIMEM["Greenwich",0,
+        ANGLEUNIT["degree",0.0174532925199433]],
+    CS[ellipsoidal,2],
+        AXIS["latitude",north,
+            ORDER[1],
+            ANGLEUNIT["degree",0.0174532925199433]],
+        AXIS["longitude",east,
+            ORDER[2],
+            ANGLEUNIT["degree",0.0174532925199433]],
+    ID["EPSG",4326]]</code></pre>
 </div>
 </div>
 <ul>
-<li>We can also select certain states by using <em>state abbreviations</em></li>
+<li>This data has a greographic coordinate system (WGS84) with no projection. Let us use the Alaska Albers projection, with an EPSG code of 3338.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_usmap</span>(<span class="at">include =</span> <span class="fu">c</span>(<span class="st">"CT"</span>, <span class="st">"ME"</span>, <span class="st">"MA"</span>, <span class="st">"NH"</span>, <span class="st">"VT"</span>)) <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"New England Region"</span>) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"black"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ak_regions_3338 <span class="ot">&lt;-</span> ak_regions <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="at">crs =</span> <span class="dv">3338</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(ak_regions_3338)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Coordinate Reference System:
+  User input: EPSG:3338 
+  wkt:
+PROJCRS["NAD83 / Alaska Albers",
+    BASEGEOGCRS["NAD83",
+        DATUM["North American Datum 1983",
+            ELLIPSOID["GRS 1980",6378137,298.257222101,
+                LENGTHUNIT["metre",1]]],
+        PRIMEM["Greenwich",0,
+            ANGLEUNIT["degree",0.0174532925199433]],
+        ID["EPSG",4269]],
+    CONVERSION["Alaska Albers (meter)",
+        METHOD["Albers Equal Area",
+            ID["EPSG",9822]],
+        PARAMETER["Latitude of false origin",50,
+            ANGLEUNIT["degree",0.0174532925199433],
+            ID["EPSG",8821]],
+        PARAMETER["Longitude of false origin",-154,
+            ANGLEUNIT["degree",0.0174532925199433],
+            ID["EPSG",8822]],
+        PARAMETER["Latitude of 1st standard parallel",55,
+            ANGLEUNIT["degree",0.0174532925199433],
+            ID["EPSG",8823]],
+        PARAMETER["Latitude of 2nd standard parallel",65,
+            ANGLEUNIT["degree",0.0174532925199433],
+            ID["EPSG",8824]],
+        PARAMETER["Easting at false origin",0,
+            LENGTHUNIT["metre",1],
+            ID["EPSG",8826]],
+        PARAMETER["Northing at false origin",0,
+            LENGTHUNIT["metre",1],
+            ID["EPSG",8827]]],
+    CS[Cartesian,2],
+        AXIS["easting (X)",east,
+            ORDER[1],
+            LENGTHUNIT["metre",1]],
+        AXIS["northing (Y)",north,
+            ORDER[2],
+            LENGTHUNIT["metre",1]],
+    USAGE[
+        SCOPE["Topographic mapping (small scale)."],
+        AREA["United States (USA) - Alaska."],
+        BBOX[51.3,172.42,71.4,-129.99]],
+    ID["EPSG",3338]]</code></pre>
+</div>
+</div>
+<ul>
+<li>Plot it with Alaska Albers projection</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ak_regions_3338)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -348,87 +405,300 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section>
-<section id="using-ggplot2-package" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="using-ggplot2-package"><span class="header-section-number">6.2</span> Using <code>ggplot2</code> package</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>usa <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">'usa'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ak_regions_3338)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   region_id     region            mgmt_area          geometry 
+ Min.   : 1   Length:13          Min.   :1   MULTIPOLYGON :13  
+ 1st Qu.: 4   Class :character   1st Qu.:2   epsg:3338    : 0  
+ Median : 7   Mode  :character   Median :3   +proj=aea ...: 0  
+ Mean   : 7                      Mean   :3                     
+ 3rd Qu.:10                      3rd Qu.:4                     
+ Max.   :13                      Max.   :4                     </code></pre>
+</div>
 </div>
 <ul>
-<li>Next, we use geom_ploygon function to plot USA map.</li>
+<li>Since sf objects are dataframes, they play nicely with packages in the tidyverse. Here are a couple of simple examples:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>usa, <span class="fu">aes</span>(<span class="at">x=</span>long, <span class="at">y=</span>lat, <span class="at">group=</span>group)) <span class="sc">+</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">fill=</span><span class="st">'lightblue'</span>) <span class="sc">+</span> </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_blank</span>(), <span class="at">axis.text.x=</span><span class="fu">element_blank</span>(), <span class="at">axis.ticks.x=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(), <span class="at">axis.text.y=</span><span class="fu">element_blank</span>(), <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">'U.S.A. Map'</span>) <span class="sc">+</span> </span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>(<span class="fl">1.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ak_regions_3338 <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 13 features and 1 field
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -2175328 ymin: 405653 xmax: 1579226 ymax: 2383770
+Projected CRS: NAD83 / Alaska Albers
+# A tibble: 13 × 2
+   region                                                               geometry
+   &lt;chr&gt;                                                      &lt;MULTIPOLYGON [m]&gt;
+ 1 Aleutian Islands     (((-1156666 420855.1, -1159837 417990.3, -1161898 41694…
+ 2 Arctic               (((571289.9 2143072, 569941.5 2142691, 569158.2 2142146…
+ 3 Bristol Bay          (((-339688.6 973904.9, -339302 972297.3, -339229.2 9710…
+ 4 Chignik              (((-114381.9 649966.8, -112866.8 652065.8, -108836.8 65…
+ 5 Copper River         (((561012 1148301, 559393.7 1148169, 557797.7 1148492, …
+ 6 Kodiak               (((115112.5 983293, 113051.3 982825.9, 110801.3 983211.…
+ 7 Kotzebue             (((-678815.3 1819519, -677555.2 1820698, -675557.8 1821…
+ 8 Kuskokwim            (((-1030125 1281198, -1029858 1282333, -1028980 1284032…
+ 9 Cook Inlet           (((35214.98 1002457, 36660.3 1002038, 36953.11 1001186,…
+10 Norton Sound         (((-848357 1636692, -846510 1635203, -840513.7 1632225,…
+11 Prince William Sound (((426007.1 1087250, 426562.5 1088591, 427711.6 1089991…
+12 Southeast            (((1287777 744574.1, 1290183 745970.8, 1292940 746262.7…
+13 Yukon                (((-375318 1473998, -373723.9 1473487, -373064.8 147393…</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ak_regions_3338 <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region <span class="sc">==</span> <span class="st">"Southeast"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 1 feature and 3 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 559475.7 ymin: 722450 xmax: 1579226 ymax: 1410576
+Projected CRS: NAD83 / Alaska Albers
+# A tibble: 1 × 4
+  region_id region    mgmt_area                                         geometry
+*     &lt;int&gt; &lt;chr&gt;         &lt;dbl&gt;                               &lt;MULTIPOLYGON [m]&gt;
+1        12 Southeast         1 (((1287777 744574.1, 1290183 745970.8, 1292940 …</code></pre>
+</div>
+</div>
+<ul>
+<li>How many people live in each of these Alaska regions? Let us check the data:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/csv/alaska_population.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Although it isn’t said anywhere explicitly in the file, let’s assume that the coordinate system used to reference the latitude longitude coordinates is WGS84, which has a crs number of 4236.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pop_4326 <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(pop, </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">'lng'</span>, <span class="st">'lat'</span>),</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">crs =</span> <span class="dv">4326</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">remove =</span> F)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pop_4326)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 6 features and 5 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -176.6581 ymin: 51.88 xmax: -154.1703 ymax: 62.68889
+Geodetic CRS:  WGS 84
+  year     city      lat       lng population                   geometry
+1 2015     Adak 51.88000 -176.6581        122    POINT (-176.6581 51.88)
+2 2015   Akhiok 56.94556 -154.1703         84 POINT (-154.1703 56.94556)
+3 2015 Akiachak 60.90944 -161.4314        562 POINT (-161.4314 60.90944)
+4 2015    Akiak 60.91222 -161.2139        399 POINT (-161.2139 60.91222)
+5 2015   Akutan 54.13556 -165.7731        899 POINT (-165.7731 54.13556)
+6 2015 Alakanuk 62.68889 -164.6153        777 POINT (-164.6153 62.68889)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pop_joined &lt;- st_join(pop_4326, ak_regions_3338, join = st_within)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>This gives an error!</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pop_3338 <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(pop_4326, <span class="at">crs =</span> <span class="dv">3338</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Turns out, this won’t work right now because our coordinate reference systems are not the same. Luckily, this is easily resolved using st_transform, and projecting our population object into Alaska Albers.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>pop_joined <span class="ot">&lt;-</span> <span class="fu">st_join</span>(pop_3338, ak_regions_3338, <span class="at">join =</span> st_within)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pop_joined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 6 features and 8 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -1537925 ymin: 472626.9 xmax: -10340.71 ymax: 1456223
+Projected CRS: NAD83 / Alaska Albers
+  year     city      lat       lng population region_id           region
+1 2015     Adak 51.88000 -176.6581        122         1 Aleutian Islands
+2 2015   Akhiok 56.94556 -154.1703         84         6           Kodiak
+3 2015 Akiachak 60.90944 -161.4314        562         8        Kuskokwim
+4 2015    Akiak 60.91222 -161.2139        399         8        Kuskokwim
+5 2015   Akutan 54.13556 -165.7731        899         1 Aleutian Islands
+6 2015 Alakanuk 62.68889 -164.6153        777        13            Yukon
+  mgmt_area                   geometry
+1         3  POINT (-1537925 472626.9)
+2         3 POINT (-10340.71 770998.4)
+3         4  POINT (-400885.5 1236460)
+4         4  POINT (-389165.7 1235475)
+5         3 POINT (-766425.7 526057.8)
+6         4  POINT (-539724.9 1456223)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pop_region <span class="ot">&lt;-</span> pop_joined <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_pop =</span> <span class="fu">sum</span>(population))</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pop_region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  region           total_pop
+  &lt;chr&gt;                &lt;int&gt;
+1 Aleutian Islands      8840
+2 Arctic                8419
+3 Bristol Bay           6947
+4 Chignik                311
+5 Cook Inlet          408254
+6 Copper River          2294</code></pre>
+</div>
+</div>
+<ul>
+<li>And use a regular left_join to get the information back to the Alaska region shapefile.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pop_region_3338 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(ak_regions_3338, pop_region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(region)`</code></pre>
+</div>
+</div>
+<ul>
+<li>Plot to check</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot to check</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pop_region_3338[<span class="st">"total_pop"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lecture_7_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lecture_7_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <ul>
-<li>In order to get more information about USA, now we can add state data to the map. Like above, we obtain data from maps and mapdata packages, and use <code>ggplot2</code> to plot.</li>
+<li>Say we want to calculate the population by Alaska management area, as opposed to region.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>state <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"state"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>Plot the states with <code>ggplot2</code></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>state, <span class="fu">aes</span>(<span class="at">x=</span>long, <span class="at">y=</span>lat, <span class="at">fill=</span>region, <span class="at">group=</span>group)) <span class="sc">+</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_blank</span>(), <span class="at">axis.text.x=</span><span class="fu">element_blank</span>(), <span class="at">axis.ticks.x=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(), <span class="at">axis.text.y=</span><span class="fu">element_blank</span>(), <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">'U.S.A. Map with States'</span>) <span class="sc">+</span> </span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>(<span class="fl">1.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>pop_mgmt_338 <span class="ot">&lt;-</span> pop_region_3338 <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(mgmt_area) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_pop =</span> <span class="fu">sum</span>(total_pop))</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pop_mgmt_338[<span class="st">"total_pop"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lecture_7_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lecture_7_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <ul>
-<li>What if we only care about one state? Definitely, we can draw one state map using <code>ggplot2</code>. Firstly we need to filter data.</li>
+<li>Notice that the region geometries were combined into a single polygon for each management area. If we don’t want to combine geometries, we can specifcy do_union = F as an argument.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>washington <span class="ot">&lt;-</span> <span class="fu">subset</span>(state, region<span class="sc">==</span><span class="st">"washington"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>counties <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"county"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>washington_county <span class="ot">&lt;-</span> <span class="fu">subset</span>(counties, region<span class="sc">==</span><span class="st">"washington"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>Plot Washington</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ca_map <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>washington, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>long, <span class="at">y=</span>lat, <span class="at">group=</span>group)) <span class="sc">+</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>(<span class="fl">1.3</span>) <span class="sc">+</span> </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"gray"</span>) <span class="sc">+</span> </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">data=</span>washington_county, <span class="at">fill=</span><span class="cn">NA</span>, <span class="at">color=</span><span class="st">"white"</span>) <span class="sc">+</span> </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="cn">NA</span>) <span class="sc">+</span> </span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">'Washington Map with Counties'</span>) <span class="sc">+</span> </span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_blank</span>(), <span class="at">axis.text.x=</span><span class="fu">element_blank</span>(), <span class="at">axis.ticks.x=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(), <span class="at">axis.text.y=</span><span class="fu">element_blank</span>(), <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>())</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>ca_map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pop_mgmt_3338 <span class="ot">&lt;-</span> pop_region_3338 <span class="sc">%&gt;%</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(mgmt_area) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_pop =</span> <span class="fu">sum</span>(total_pop), <span class="at">do_union =</span> F)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pop_mgmt_3338[<span class="st">"total_pop"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lecture_7_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lecture_7_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>write_sf(pop_region_3338, "shapefiles/ak_regions_population.shp", delete_layer = TRUE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Visualize with ggplot. It now has integrated functionality to plot sf objects using geom_sf(). We can plot sf objects just like regular data.frames using geom_sf.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pop_region_3338) <span class="sc">+</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> total_pop)) <span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Total Population"</span>) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">low =</span> <span class="st">"khaki"</span>, <span class="at">high =</span>  <span class="st">"firebrick"</span>, <span class="at">labels =</span> comma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture_7_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>The rivers shapefile is a simplified version of Jared Kibele and Jeanette Clark.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>rivers_3338 <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data/shapefile/alaska/ak_rivers_simp.shp"</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(rivers_3338)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Coordinate Reference System:
+  User input: Albers 
+  wkt:
+PROJCRS["Albers",
+    BASEGEOGCRS["GCS_GRS 1980(IUGG, 1980)",
+        DATUM["unknown",
+            ELLIPSOID["GRS80",6378137,298.257222101,
+                LENGTHUNIT["metre",1,
+                    ID["EPSG",9001]]]],
+        PRIMEM["Greenwich",0,
+            ANGLEUNIT["Degree",0.0174532925199433]]],
+    CONVERSION["unnamed",
+        METHOD["Albers Equal Area",
+            ID["EPSG",9822]],
+        PARAMETER["Latitude of false origin",50,
+            ANGLEUNIT["Degree",0.0174532925199433],
+            ID["EPSG",8821]],
+        PARAMETER["Longitude of false origin",-154,
+            ANGLEUNIT["Degree",0.0174532925199433],
+            ID["EPSG",8822]],
+        PARAMETER["Latitude of 1st standard parallel",55,
+            ANGLEUNIT["Degree",0.0174532925199433],
+            ID["EPSG",8823]],
+        PARAMETER["Latitude of 2nd standard parallel",65,
+            ANGLEUNIT["Degree",0.0174532925199433],
+            ID["EPSG",8824]],
+        PARAMETER["Easting at false origin",0,
+            LENGTHUNIT["metre",1],
+            ID["EPSG",8826]],
+        PARAMETER["Northing at false origin",0,
+            LENGTHUNIT["metre",1],
+            ID["EPSG",8827]]],
+    CS[Cartesian,2],
+        AXIS["(E)",east,
+            ORDER[1],
+            LENGTHUNIT["metre",1,
+                ID["EPSG",9001]]],
+        AXIS["(N)",north,
+            ORDER[2],
+            LENGTHUNIT["metre",1,
+                ID["EPSG",9001]]]]</code></pre>
+</div>
+</div>
+<ul>
+<li>Note that although no EPSG code is set explicitly, with some sluething we can determine that this is EPSG:3338. This site is helpful for looking up EPSG codes.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> pop_region_3338, <span class="fu">aes</span>(<span class="at">fill =</span> total_pop)) <span class="sc">+</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rivers_3338, <span class="fu">aes</span>(<span class="at">size =</span> StrOrder), <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> pop_3338, <span class="fu">aes</span>(), <span class="at">size =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.2</span>), <span class="at">guide =</span> F) <span class="sc">+</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Total Population"</span>) <span class="sc">+</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">low =</span> <span class="st">"khaki"</span>, <span class="at">high =</span>  <span class="st">"firebrick"</span>, <span class="at">labels =</span> comma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture_7_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -994,13 +1264,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./lecture_6.html" class="pagination-link" aria-label="Population distribution of Tokyo">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Population distribution of Tokyo</span></span>
+      <a href="./lecture_6.html" class="pagination-link" aria-label="US states and regions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">US states and regions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./lecture_8.html" class="pagination-link" aria-label="Population distribution of Alaska">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Population distribution of Alaska</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./lecture_8.html" class="pagination-link" aria-label="US cities and walmart locations">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">US cities and walmart locations</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

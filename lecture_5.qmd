@@ -1,132 +1,143 @@
-# World and continents with `sf`
+# Population distribution of Tokyo
 
-We need the following packages to deal with this lecture:
+List of R packages used in this section:
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 #| code-fold: false
 library(sf)
 library(tidyverse)
-library(rnaturalearth)
-library(rnaturalearthdata)
+library(jpndistrict) # to get the base map of Japan's prefecture
+library(ggthemes) # to use theme_map
+library(rnaturalearth) # to use ne_countries
+library(DT) # to produce data table
+```
+
+-   If you dont find japandistrict, use following:
+
+```default
+    install.packages("remotes") # Install the 'remotes' package first if you don't have it
+    remotes::install_github("uribo/jpndistrict")
 ```
 
 -   Alternatively, you can use the `pacman` package manager to load necessary R packages from below:
 
 ```{txt}
-pacman::p_load(sf, tidyverse, rnaturalearth)
+pacman::p_load(sf, tidyverse, jpndistrict, ggthemes, rnaturalearth)
 ```
 
-The above command will install all dependencies required to reproduce the entire lecture
+-   Name the data world_map
 
--   Use the package `sf`
-
--   We will use the world dataset provided by `spData`, to show what sf objects are and how they work. `world` is an 'sf data frame' containing spatial and attribute columns, the names of which are returned by the function names() (the last column in this example contains the geographic information):
-
-```{r}
+```{r message=FALSE, warning=FALSE}
 #| code-fold: false
-#| warning: false
-#| message: false
-world <- ne_countries(scale = "medium", returnclass = "sf")
-class(world)
-names(world)
+global_map <- ne_countries(scale = "small", returnclass = "sf")
 ```
 
--   Make sophistocated and professional looking map of World
+## Population Map of Tokyo
 
-```{r}
+-   The prefecture code for Tokyo is 13. Now we can plot the map of the 23 wards of Tokyo
+
+```{r message=FALSE, warning=FALSE}
 #| code-fold: false
-#| warning: false
-#| message: false
-world.plot = ggplot() +               
-  geom_sf(data = world)
-world.plot 
+df_tokyo_sf <- jpn_pref(13, district = TRUE) %>% 
+  dplyr::filter(str_detect(city, "区")) 
 ```
 
--   We will begin to get to know the basics of geographic data in R by using the "world" dataset in the package.
+-   Display the extracted map of Tokyo's 23 wards
 
--   First let's see what information is in the "world" dataset. Get the names of the variables in the world dataset.
-
--   Filter the population and GDP data from World map for better understanding the data structure.
-
--   Plot the GDP percapita map of the world:
-
--   Prepare Africa map by highlighting Zambia
-
-```{r}
+```{r message=FALSE, warning=FALSE}
 #| code-fold: false
-#| warning: false
-#| message: false
-# Select just the continent of Africa
-africa <- world %>% 
-  filter(region_un %in% "Africa")
-```
-
--   Check the type of data
-
-```{r}
-#| code-fold: false
-#| warning: false
-#| message: false
-class(africa)
-names(africa)
-```
-
--   Make professional looking map of `Asia`
-
-```{r}
-#| code-fold: false
-#| warning: false
-#| message: false
-asia <- world[which(world$continent == "Asia"),]
-asia.plot = ggplot() +               
-  geom_sf(data = asia)  
-asia.plot 
-```
-
--   Make professional looking map of `Africa`
-
-```{r}
-#| code-fold: false
-#| warning: false
-#| message: false
-africa <- world[which(world$continent == "Africa"),]
-africa.plot = ggplot() +               
-  geom_sf(data = africa)  
-africa.plot 
-```
-
--   Make professional looking map of `Europe`
-
-```{r}
-#| code-fold: false
-#| warning: false
-#| message: false
-europe <- world[which(world$continent == "Europe"),]
-ggplot(europe) +
+df_tokyo_sf %>%
+  ggplot() +
   geom_sf() +
-  coord_sf(xlim = c(-25,50), ylim = c(35,70), expand = FALSE)
+  theme_minimal()
 ```
 
--   Make professional looking map of `Oceania`
+-   Check your data here
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 #| code-fold: false
-#| warning: false
-#| message: false
-oceania <- world[which(world$continent == "Oceania"),]
-ggplot(oceania) +
-  geom_sf() +
-  coord_sf(xlim = c(105,180), ylim = c(-50,0), expand = FALSE)
+head(df_tokyo_sf, 23)
 ```
 
--   Make professional looking map of `North America`
+-   Import the .CSV data to make an interactive population map of Tokyo
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 #| code-fold: false
-#| warning: false
-#| message: false
-north_america <- world[which(world$continent == "North America"),]
-ggplot(north_america) +
-  geom_sf() +
-  coord_sf(xlim = c(-180,-15), ylim = c(0,90), expand = FALSE)
+df_tokyo_pop <- read_csv("data/csv/tokyo_pop.csv")
+datatable(df_tokyo_pop)
+```
+
+-   Merge the spatial data with your population data
+
+```{r message=FALSE, warning=FALSE}
+#| code-fold: false
+merge_tokyo <- df_tokyo_sf %>% 
+  left_join(df_tokyo_pop, by = "city") %>% 
+  st_as_sf()
+```
+
+-   Check the merged data
+
+```{r message=FALSE, warning=FALSE}
+#| code-fold: false
+merge_tokyo %>% 
+  head() %>% 
+  rmarkdown::paged_table()
+```
+
+-   Plot your data with ggplot2
+
+```{r message=FALSE, warning=FALSE}
+#| code-fold: false
+#| fig.cap: "Population of Tokyo, Japan"
+#| fig.height: 4
+map_pop_tokyo <- merge_tokyo %>% 
+  ggplot() +
+  geom_sf(aes(fill = population)) +
+  scale_fill_distiller(name = "Population",
+                       palette = "Greens", direction = 1) +
+  theme_map(base_family = "HiraginoSans-W3") +
+  theme(legend.position = c(.1, -.1),
+        legend.direction = "horizontal",
+        legend.title = element_text(size = 15), 
+        legend.text = element_text(size = 15),
+        legend.key.size = unit(1, "cm"),
+        legend.key.width = unit(3,"cm")) +
+  coord_sf(datum = NA) 
+
+map_pop_tokyo
+```
+
+-   Plot your population data with the name of the cities in Tokyo
+
+```{r message=FALSE, warning=FALSE}
+#| code-fold: false
+#| fig.cap: "Population of Tokyo, Japan"
+#| fig.height: 4
+map_pop_tokyo_text <- merge_tokyo %>% 
+  mutate(
+    text_x = map_dbl(geometry, ~st_centroid(.x)[[1]]),
+    text_y = map_dbl(geometry, ~st_centroid(.x)[[2]])
+  ) %>% 
+  ggplot() +
+  geom_sf(aes(fill = population)) +
+  geom_label(aes(x = text_x, y = text_y, label = city), 
+             size = 1.7, family = "HiraginoSans-W3") +
+  scale_fill_distiller(name = "Population",
+                       palette = "Greens", direction = 1) +
+  theme_map(base_family = "HiraginoSans-W3") +
+  theme(legend.position = c(.8, .05),
+        legend.title = element_text(size = 10), 
+        legend.text = element_text(size = 5),
+        legend.key.size = unit(0.5, "cm"),
+        legend.key.width = unit(1,"cm")) +
+  coord_sf(datum = NA) 
+
+map_pop_tokyo_text
+```
+
+-   To export the above figure, use the following code:
+
+```{txt}
+ggsave("fig/map_pop_tokyo_text.png", map_pop_tokyo_text, width = 13, height = 13)
 ```

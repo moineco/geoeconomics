@@ -2,14 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Moinul Islam">
-<meta name="dcterms.date" content="2025-01-24">
 
-<title>1&nbsp; Processing shapefiles – Geoinformation with R</title>
+<title>2&nbsp; Spatial data operations – Geoinformation with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,18 +65,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./lecture_3.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./lecture_1.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-2db5a64a0f9238d29502e24e892d8c52.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-c1966a8c70583a3816b1e3a216c1caf1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-dark-c1966a8c70583a3816b1e3a216c1caf1.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -119,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture_2.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Processing shapefiles</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture_2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Processing shapefiles</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -155,68 +153,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture_2.html" class="sidebar-item-text sidebar-link active">
+  <a href="./lecture_1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Processing shapefiles</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./lecture_2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Processing shapefiles</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./lecture_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Spatial data operations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Spatial data operations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Income distribution of nations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Income distribution of nations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">World and continents with <code>sf</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">World and continents with <code>sf</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Population distribution of Tokyo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Population distribution of Tokyo</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">US states and regions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">US states and regions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Population distribution of Alaska</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Population distribution of Alaska</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_9.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">US cities and walmart locations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">US cities and walmart locations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Population density of Bangladesh</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Population density of Bangladesh</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Administrative regions of Japan</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lecture_12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Europian regions with <code>naturalearth</code> data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Administrative regions of Japan</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -235,10 +233,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#shapefile-in-gis" id="toc-shapefile-in-gis" class="nav-link active" data-scroll-target="#shapefile-in-gis"><span class="header-section-number">1.1</span> Shapefile in GIS</a></li>
-  <li><a href="#shapefile-and-r" id="toc-shapefile-and-r" class="nav-link" data-scroll-target="#shapefile-and-r"><span class="header-section-number">1.2</span> Shapefile and R</a></li>
-  <li><a href="#using-sf-package-to-make-map" id="toc-using-sf-package-to-make-map" class="nav-link" data-scroll-target="#using-sf-package-to-make-map"><span class="header-section-number">1.3</span> Using <code>sf</code> package to make map</a></li>
-  <li><a href="#using-shapefile-to-make-map" id="toc-using-shapefile-to-make-map" class="nav-link" data-scroll-target="#using-shapefile-to-make-map"><span class="header-section-number">1.4</span> Using <code>Shapefile</code> to make map</a></li>
+  <li><a href="#world-map" id="toc-world-map" class="nav-link active" data-scroll-target="#world-map"><span class="header-section-number">2.0.1</span> World map</a></li>
+  <li><a href="#japan-map" id="toc-japan-map" class="nav-link" data-scroll-target="#japan-map"><span class="header-section-number">2.0.2</span> Japan map</a></li>
   </ul>
 </nav>
     </div>
@@ -247,26 +243,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Processing shapefiles</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Spatial data operations</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Moinul Islam </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">January 24, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -276,104 +260,265 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="shapefile-in-gis" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="shapefile-in-gis"><span class="header-section-number">1.1</span> Shapefile in GIS</h2>
-<p>Shapefile is important for GIS (Geographic Information System) due to its widespread use and compatibility with various software applications. Here are a few key reasons:</p>
-<p><strong>Data Representation:</strong> Shapefile is a popular file format for storing and sharing geospatial data. It allows the representation of complex geographic features such as points, lines, and polygons, along with their attributes.</p>
-<p><strong>Interoperability:</strong> Shapefile is supported by a wide range of GIS software, making it highly inter-operable. It enables data exchange between different systems and facilitates collaboration among users who may be using different GIS platforms.</p>
-<p><strong>Attribute Management:</strong> Shapefile supports the storage of attribute data associated with geographic features. This allows for the integration of non-spatial information, such as population, land use, or temperature, with spatial data, enabling comprehensive analysis and visualization.</p>
-<p><strong>Compact and Efficient:</strong> Shapefiles are relatively small in size compared to other data formats, making them efficient for storing and transferring geospatial data. They are also capable of handling large data-sets without compromising performance.</p>
-<p><strong>Historical Significance:</strong> Shapefile has been in use for several decades and has become a standard in the GIS community. Many legacy datasets and applications are based on shapefiles, making them crucial for historical data preservation and compatibility.</p>
-</section>
-<section id="shapefile-and-r" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="shapefile-and-r"><span class="header-section-number">1.2</span> Shapefile and R</h2>
-<p>Shapefile is commonly used with R, a powerful programming language and software environment for statistical computing and graphics. Here’s why shapefile is often preferred for use with R:</p>
-<p><strong>Native Support:</strong> R has built-in support for reading, writing, and manipulating shapefiles. The “sf” package in R provides functions specifically designed for working with spatial data, including shapefiles. This native support simplifies the process of loading shapefiles into R and performing various spatial analyses.</p>
-<p><strong>Visualization Capabilities:</strong> R offers extensive visualization capabilities for geospatial data. Packages like “ggplot2” and “leaflet” enable you to create high-quality maps and interactive visualizations using shapefiles as the data source. R’s flexibility in customizing plots allows for advanced geospatial visualizations and exploration.</p>
-<blockquote class="blockquote">
-<p>While shapefile is a common choice for working with spatial data in R, it’s important to note that R also supports other geospatial file formats, such as GeoJSON and Geopackage. These formats may offer advantages like improved data compression, support for more advanced spatial features, and better inter-operability with certain software ecosystems.</p>
-</blockquote>
-<ul>
-<li><p>Use <code>pacman</code> to manage the R packages</p></li>
-<li><p>Using <code>packman</code> package enables us to install and load a package without typing <code>install.packges()</code> at Console on your RStudio</p></li>
-<li><p>You need to type the following command at Console on your RStudio</p></li>
-</ul>
+<p>The following packages will be required for this chapter:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>install.packages("pacman")</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, maps, jpndistrict, countrycode)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>The installation of necessary R packages:</li>
+<li>As of January 25, 2021, <code>jpndistrict</code> has been removed from CRAN, so if you really want to install it, please install it directly from the github repository. To install, please use the following code in your <code>Console</code>:</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(sf, tidyverse, rnaturalearth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-codcode-fold="false">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>install.packages("remotes")</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>remotes::install_github("uribo/jpndistrict")</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="using-sf-package-to-make-map" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="using-sf-package-to-make-map"><span class="header-section-number">1.3</span> Using <code>sf</code> package to make map</h2>
+<section id="world-map" class="level3" data-number="2.0.1">
+<h3 data-number="2.0.1" class="anchored" data-anchor-id="world-map"><span class="header-section-number">2.0.1</span> World map</h3>
 <ul>
-<li>Create data for world</li>
+<li><p>The <code>maps</code> package contains data for the world, USA, France, Italy and New Zealand. It contains information such as latitude, longitude, group, region, etc. like this.</p></li>
+<li><p>First call the world map data</p></li>
+<li><p>You can see the data structure by using <code>head</code> command.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">"small"</span>, <span class="at">returnclass =</span> <span class="st">"sf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>world_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"world"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(world_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       long      lat group order region subregion
+1 -69.89912 12.45200     1     1  Aruba      &lt;NA&gt;
+2 -69.89571 12.42300     1     2  Aruba      &lt;NA&gt;
+3 -69.94219 12.43853     1     3  Aruba      &lt;NA&gt;
+4 -70.00415 12.50049     1     4  Aruba      &lt;NA&gt;
+5 -70.06612 12.54697     1     5  Aruba      &lt;NA&gt;
+6 -70.05088 12.59707     1     6  Aruba      &lt;NA&gt;</code></pre>
+</div>
 </div>
 <ul>
-<li>First we use the familiar ggplot2 syntax. Like in any other ggplot, we have an x and a y axis, though in this case the correspond to longitude and latitude. Knowing this, we can use other ggplot2 commands to make our map more complex. Below we draw a horizontal line where the <code>yintercept</code> is at the equator.</li>
+<li>By using the <code>ggplot2</code> boundaries can be drawn with <code>geom_polygon()</code> with latitude and longitude as shown in <a href="#fig-mymap-12.1" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-mymap-12.1</span></a></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>world <span class="sc">%&gt;%</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>world_map <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">fill =</span> <span class="st">"lightgray"</span>, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">0.1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="lecture_2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div id="fig-mymap-12.1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mymap-12.1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture_2_files/figure-html/fig-mymap-12.1-1.png" class="img-fluid figure-img" width="672">
 </div>
-</div>
-</div>
-<ul>
-<li>World map with income groups</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>world <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income_grp =</span> <span class="fu">factor</span>(income_grp, <span class="at">ordered =</span> T)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> income_grp)) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Income Group:"</span>) <span class="sc">+</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">nrow=</span><span class="dv">2</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="lecture_2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mymap-12.1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: World countries
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="using-shapefile-to-make-map" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="using-shapefile-to-make-map"><span class="header-section-number">1.4</span> Using <code>Shapefile</code> to make map</h2>
+<section id="japan-map" class="level3" data-number="2.0.2">
+<h3 data-number="2.0.2" class="anchored" data-anchor-id="japan-map"><span class="header-section-number">2.0.2</span> Japan map</h3>
 <ul>
-<li>First we will download the available shapefile of Japan from following website:</li>
-</ul>
-<p>https://data.humdata.org/dataset/cod-ab-jpn?</p>
-<ul>
-<li><p>Save the downloaded data into your GIS project inside a folder name <code>data</code>.</p></li>
-<li><p>We will read the shapefile and provide a name <code>shapefile_jpn</code>.</p></li>
-<li><p>We will plot the shapefile named <code>shapefile_jpn</code>.</p></li>
+<li><p>If we limit the data with <code>filter()</code>, we can also draw a map of specific countries.</p></li>
+<li><p>For instance, we will filter the data for Japan and draw a map as shown in <a href="#fig-mymap-12.2" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-mymap-12.2</span></a></p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>shapefile_jpn <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data/jpn_shp_adm/jpn_admbnda_adm1_2019.shp"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(shapefile_jpn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>world_map <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region <span class="sc">==</span> <span class="st">"Japan"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group)) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">fill =</span> <span class="st">"lightgray"</span>, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="lecture_2_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<div id="fig-mymap-12.2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mymap-12.2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lecture_2_files/figure-html/fig-mymap-12.2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mymap-12.2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: Japan
+</figcaption>
 </figure>
 </div>
 </div>
+</div>
+<ul>
+<li><p>Unfortunately <code>maps</code> package only have the country level information.</p></li>
+<li><p>If you want to draw a map of prefectures, use the <code>jpnprefs</code> package. There is a list of prefectures in the <code>jpnprefs</code> attached to the package.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#head(jpnprefs)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p>Table 1 represents the prefecture numbers in <code>jpnprefs</code> package</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Prefecture</th>
+<th>Code</th>
+<th>prefecture</th>
+<th>Code</th>
+<th>Prefecture</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hokkaidō</td>
+<td>1</td>
+<td>Ishikawa</td>
+<td>17</td>
+<td>Okayama</td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td>Aomori</td>
+<td>2</td>
+<td>Fukui</td>
+<td>18</td>
+<td>Hiroshima</td>
+<td>34</td>
+</tr>
+<tr class="odd">
+<td>Iwate</td>
+<td>3</td>
+<td>Yamanashi</td>
+<td>19</td>
+<td>Yamaguchi</td>
+<td>35</td>
+</tr>
+<tr class="even">
+<td>Miyagi</td>
+<td>4</td>
+<td>Nagano</td>
+<td>20</td>
+<td>Tokushima</td>
+<td>36</td>
+</tr>
+<tr class="odd">
+<td>Akita</td>
+<td>5</td>
+<td>Gifu</td>
+<td>21</td>
+<td>Kagawa</td>
+<td>37</td>
+</tr>
+<tr class="even">
+<td>Yamagata</td>
+<td>6</td>
+<td>Shizuoka</td>
+<td>22</td>
+<td>Ehime</td>
+<td>38</td>
+</tr>
+<tr class="odd">
+<td>Fukushima</td>
+<td>7</td>
+<td>Aichi</td>
+<td>23</td>
+<td>Kōchi</td>
+<td>39</td>
+</tr>
+<tr class="even">
+<td>Ibaraki</td>
+<td>8</td>
+<td>Mie</td>
+<td>24</td>
+<td>Fukuoka</td>
+<td>40</td>
+</tr>
+<tr class="odd">
+<td>Tochigi</td>
+<td>9</td>
+<td>Shiga</td>
+<td>25</td>
+<td>Saga</td>
+<td>41</td>
+</tr>
+<tr class="even">
+<td>Gunma</td>
+<td>10</td>
+<td>Kyōto</td>
+<td>26</td>
+<td>Nagasaki</td>
+<td>42</td>
+</tr>
+<tr class="odd">
+<td>Saitama</td>
+<td>11</td>
+<td>Ōsaka</td>
+<td>27</td>
+<td>Kumamoto</td>
+<td>43</td>
+</tr>
+<tr class="even">
+<td>Chiba</td>
+<td>12</td>
+<td>Hyōgo</td>
+<td>28</td>
+<td>Ōita</td>
+<td>44</td>
+</tr>
+<tr class="odd">
+<td>Tōkyō</td>
+<td>13</td>
+<td>Nara</td>
+<td>29</td>
+<td>Miyazaki</td>
+<td>45</td>
+</tr>
+<tr class="even">
+<td>Kanagawa</td>
+<td>14</td>
+<td>Wakayama</td>
+<td>30</td>
+<td>Kagoshima</td>
+<td>46</td>
+</tr>
+<tr class="odd">
+<td>Niigata</td>
+<td>15</td>
+<td>Tottori</td>
+<td>31</td>
+<td>Okinawa</td>
+<td>47</td>
+</tr>
+<tr class="even">
+<td>Toyama</td>
+<td>16</td>
+<td>Shimane</td>
+<td>32</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>To pull the prefecture data, enter the number of the prefecture corresponding to <code>jpn_pref()</code>.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#kochi &lt;- jpn_pref(39)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#head(kochi)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p>We use <code>geom_sf()</code> because the boundaries of municipalities are a standard called simple features (sf).</p></li>
+<li><p>We can draw a map of Kochi prefecture of Japan which consists all the cities. As shown in <a href="#fig-mymap-12.3" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-mymap-12.3</span></a>, we can plot the boundaries of the cities inside Kochi Prefecture.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#kochi %&gt;% </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ggplot() + </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_sf()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>By using additional feature of <code>geom_sf</code>, we can improve the visualization of the map as <a href="#fig-mymap-12.4" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-mymap-12.4</span></a></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#kochi %&gt;% </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ggplot() + </span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_sf(aes(fill = city), show.legend = FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>By using geom_point feature, we can specify the capital of the Kochi prefecture as <a href="#fig-mymap-12.5" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-mymap-12.5</span></a></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#kochi %&gt;% </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ggplot() + </span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_sf(aes(fill = city), show.legend = FALSE) +</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#  geom_point(aes(x = capital_longitude, y = capital_latitude),</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#            colour = "black", data = jpnprefs %&gt;% filter(prefecture == "高知県"))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -516,7 +661,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = true;
+  const darkModeDefault = false;
   let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
@@ -943,13 +1088,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Preface">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      <a href="./lecture_1.html" class="pagination-link" aria-label="Processing shapefiles">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Processing shapefiles</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./lecture_3.html" class="pagination-link" aria-label="Spatial data operations">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Spatial data operations</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Spatial data operations</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

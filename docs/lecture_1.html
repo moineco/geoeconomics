@@ -2,12 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.43">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Moinul Islam">
+<meta name="dcterms.date" content="2025-07-31">
 
-<title>Human Geography with R and Python – 1&nbsp; Packages for GIS</title>
+<title>1&nbsp; Processing shapefiles – Geoinformation with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -37,12 +73,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-2db5a64a0f9238d29502e24e892d8c52.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c1966a8c70583a3816b1e3a216c1caf1.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -71,35 +107,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -112,7 +119,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture_1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Packages for GIS</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture_1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Processing shapefiles</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -127,7 +134,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Human Geography with R and Python</a> 
+      <a href="./">Geoinformation with R</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
@@ -149,13 +156,13 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Packages for GIS</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Processing shapefiles</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Processing Shapefiles</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Processing shapefiles</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -167,55 +174,49 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GDP maps with R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Income distribution of nations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Making map with <span class="math inline">\(sf\)</span></span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">World and continents with <code>sf</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Map of Tokyo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Population distribution of Tokyo</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Plotting USA Map</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">US states and regions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Alaska map with <span class="math inline">\(sf\)</span></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Population distribution of Alaska</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_9.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><code>maps</code> package for GIS</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">US cities and walmart locations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Population density maps of Bangladesh</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Population density of Bangladesh</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Administrative maps of Japan</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lecture_12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><code>naturalearth</code> data use</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Administrative regions of Japan</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -234,14 +235,10 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#r-packages-for-management" id="toc-r-packages-for-management" class="nav-link active" data-scroll-target="#r-packages-for-management"><span class="header-section-number">1.1</span> <strong>R</strong> packages for management:</a></li>
-  <li><a href="#r-packages-for-gis" id="toc-r-packages-for-gis" class="nav-link" data-scroll-target="#r-packages-for-gis"><span class="header-section-number">1.2</span> <strong>R</strong> packages for GIS:</a>
-  <ul class="collapse">
-  <li><a href="#basic-data-manipulation" id="toc-basic-data-manipulation" class="nav-link" data-scroll-target="#basic-data-manipulation"><span class="header-section-number">1.2.1</span> Basic data manipulation</a></li>
-  <li><a href="#cartography-and-data-visualization" id="toc-cartography-and-data-visualization" class="nav-link" data-scroll-target="#cartography-and-data-visualization"><span class="header-section-number">1.2.2</span> Cartography and data visualization</a></li>
-  <li><a href="#spatial-statistics" id="toc-spatial-statistics" class="nav-link" data-scroll-target="#spatial-statistics"><span class="header-section-number">1.2.3</span> Spatial statistics</a></li>
-  <li><a href="#data-sources" id="toc-data-sources" class="nav-link" data-scroll-target="#data-sources"><span class="header-section-number">1.2.4</span> Data sources</a></li>
-  </ul></li>
+  <li><a href="#shapefile-in-gis" id="toc-shapefile-in-gis" class="nav-link active" data-scroll-target="#shapefile-in-gis"><span class="header-section-number">1.1</span> Shapefile in GIS</a></li>
+  <li><a href="#shapefile-and-r" id="toc-shapefile-and-r" class="nav-link" data-scroll-target="#shapefile-and-r"><span class="header-section-number">1.2</span> Shapefile and R</a></li>
+  <li><a href="#using-sf-package-to-make-map" id="toc-using-sf-package-to-make-map" class="nav-link" data-scroll-target="#using-sf-package-to-make-map"><span class="header-section-number">1.3</span> Using <code>sf</code> package to make map</a></li>
+  <li><a href="#using-shapefile-to-make-map" id="toc-using-shapefile-to-make-map" class="nav-link" data-scroll-target="#using-shapefile-to-make-map"><span class="header-section-number">1.4</span> Using <code>Shapefile</code> to make map</a></li>
   </ul>
 </nav>
     </div>
@@ -250,14 +247,26 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Packages for GIS</span></h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Processing shapefiles</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Moinul Islam </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 31, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -267,490 +276,107 @@ window.Quarto = {
 </header>
 
 
-<ul>
-<li><p><strong>R</strong> is one of the most widely used programming languages nowadays, along with Python, especially in geographic and satellite data science.</p></li>
-<li><p><strong>RStudio</strong> is probably the most popular Integrated Development Environment (IDE) for <strong>R</strong>. When using RStudio, the <strong>R</strong> interpreter is hidden in the back-end, and <strong>RStudio</strong> is the front-end application that allows you to interact with the interpreter.</p></li>
-<li><p><strong>R</strong> is maintained by an international team of developers who make the language available through the web page of <a href="https://cran.r-project.org">R</a>.</p></li>
-<li><p>Download <a href="https://posit.co/downloads/">RStudio</a> from this link. Just click the “Download RStudio” button and follow the simple instructions.</p></li>
-<li><p>We will represent the packages by using {}.</p></li>
-</ul>
-<section id="r-packages-for-management" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="r-packages-for-management"><span class="header-section-number">1.1</span> <strong>R</strong> packages for management:</h2>
-<ol type="1">
-<li><strong>{devtools}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“devtools”)</li>
-<li>GitHub: devtools::install_github(“r-lib/devtools”)</li>
-</ul>
-<ol start="2" type="1">
-<li><strong>{remotes}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“remotes”)</li>
-<li>GitHub: remotes::install_github(“r-lib/conflicted”)</li>
-</ul>
-<ol start="3" type="1">
-<li><strong>{pak}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“pak”)</li>
-</ul>
-<ol start="4" type="1">
-<li><strong>{pacman}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“pacman”)</li>
-<li>GitHub: devtools::install_github(“r-lib/devtools”)</li>
-</ul>
-<ol start="5" type="1">
-<li><strong>{stargazer}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages( “stargazer”)</li>
-<li>GitHub: devtools::install_github(“ChandlerLutz/stargazer”)</li>
-</ul>
-<ol start="6" type="1">
-<li><strong>{readxl}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“readxl”)</li>
-<li>GitHub: remotes::install_github(“hadley/readxl”)</li>
-</ul>
-<ol start="7" type="1">
-<li><strong>{here}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“here”)</li>
-<li>GitHub: devtools::install_github(“r-lib/here”)</li>
-</ul>
-<ol start="8" type="1">
-<li><strong>{rvest}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“rvest”)</li>
-<li>GitHub: devtools::install_github(“tidyverse/rvest”)</li>
-</ul>
-<ol start="9" type="1">
-<li><strong>{cowplot}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“cowplot”)</li>
-<li>GitHub: remotes::install_github(“wilkelab/cowplot”)</li>
-</ul>
-<ol start="10" type="1">
-<li><strong>{ggthemes}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(‘ggthemes’, dependencies = TRUE)</li>
-<li>GitHub: devtools::install_github(c(“hadley/ggplot2”, “jrnold/ggthemes”))</li>
-</ul>
-<ol start="11" type="1">
-<li><strong>{ggpubr}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“ggpubr”)</li>
-<li>GitHub: devtools::install_github(“kassambara/ggpubr”)</li>
-</ul>
-<ol start="12" type="1">
-<li><strong>{plotly}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“plotly”)</li>
-<li>GitHub: devtools::install_github(“ropensci/plotly”)</li>
-</ul>
-<ol start="13" type="1">
-<li><strong>{stringr}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“stringr”)</li>
-<li>GitHub: devtools::install_github(“hadley/stringr”)</li>
-</ul>
-<ol start="14" type="1">
-<li><strong>{patchwork}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“patchwork”)</li>
-<li>GitHub: devtools::install_github(“thomasp85/patchwork”)</li>
-</ul>
-<ol start="15" type="1">
-<li><strong>{magrittr}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“magrittr”)</li>
-<li>GitHub: devtools::install_github(“tidyverse/magrittr”)</li>
-</ul>
-<ol start="16" type="1">
-<li><strong>{DBI}</strong> [Connect R to database management systems]</li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“DBI”)</li>
-<li>GitHub: devtools::install_github(“rstats-db/DBI”)</li>
-</ul>
-<ol start="17" type="1">
-<li><strong>{RSQLite}</strong> [Easy way to use a database from R because the package itself contains SQLite]</li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“RSQLite”)</li>
-<li>GitHub: devtools::install_github(“r-dbi/RSQLite”)</li>
-</ul>
-<ol start="18" type="1">
-<li><strong>{DT}</strong> [Extension of dataframe for fast processing of large data]</li>
-</ol>
-<ul>
-<li>CRAN: `install.packages(“DT”)</li>
-</ul>
-<ol start="19" type="1">
-<li><strong>{lubridate}</strong> [Functions to work with date-times and time-spans]</li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“lubridate”)</li>
-<li>GitHub: devtools::install_github(“tidyverse/lubridate”)</li>
-</ul>
+<section id="shapefile-in-gis" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="shapefile-in-gis"><span class="header-section-number">1.1</span> Shapefile in GIS</h2>
+<p>Shapefile is important for GIS (Geographic Information System) due to its widespread use and compatibility with various software applications. Here are a few key reasons:</p>
+<p><strong>Data Representation:</strong> Shapefile is a popular file format for storing and sharing geospatial data. It allows the representation of complex geographic features such as points, lines, and polygons, along with their attributes.</p>
+<p><strong>Interoperability:</strong> Shapefile is supported by a wide range of GIS software, making it highly inter-operable. It enables data exchange between different systems and facilitates collaboration among users who may be using different GIS platforms.</p>
+<p><strong>Attribute Management:</strong> Shapefile supports the storage of attribute data associated with geographic features. This allows for the integration of non-spatial information, such as population, land use, or temperature, with spatial data, enabling comprehensive analysis and visualization.</p>
+<p><strong>Compact and Efficient:</strong> Shapefiles are relatively small in size compared to other data formats, making them efficient for storing and transferring geospatial data. They are also capable of handling large data-sets without compromising performance.</p>
+<p><strong>Historical Significance:</strong> Shapefile has been in use for several decades and has become a standard in the GIS community. Many legacy datasets and applications are based on shapefiles, making them crucial for historical data preservation and compatibility.</p>
 </section>
-<section id="r-packages-for-gis" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="r-packages-for-gis"><span class="header-section-number">1.2</span> <strong>R</strong> packages for GIS:</h2>
-<section id="basic-data-manipulation" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="basic-data-manipulation"><span class="header-section-number">1.2.1</span> Basic data manipulation</h3>
-<ol type="1">
-<li><strong>{sf}</strong> [for vector data]</li>
-</ol>
+<section id="shapefile-and-r" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="shapefile-and-r"><span class="header-section-number">1.2</span> Shapefile and R</h2>
+<p>Shapefile is commonly used with R, a powerful programming language and software environment for statistical computing and graphics. Here’s why shapefile is often preferred for use with R:</p>
+<p><strong>Native Support:</strong> R has built-in support for reading, writing, and manipulating shapefiles. The “sf” package in R provides functions specifically designed for working with spatial data, including shapefiles. This native support simplifies the process of loading shapefiles into R and performing various spatial analyses.</p>
+<p><strong>Visualization Capabilities:</strong> R offers extensive visualization capabilities for geospatial data. Packages like “ggplot2” and “leaflet” enable you to create high-quality maps and interactive visualizations using shapefiles as the data source. R’s flexibility in customizing plots allows for advanced geospatial visualizations and exploration.</p>
+<blockquote class="blockquote">
+<p>While shapefile is a common choice for working with spatial data in R, it’s important to note that R also supports other geospatial file formats, such as GeoJSON and Geopackage. These formats may offer advantages like improved data compression, support for more advanced spatial features, and better inter-operability with certain software ecosystems.</p>
+</blockquote>
 <ul>
-<li>CRAN: install.packages(“sf”)</li>
-<li>GitHub: remotes::install_github(“r-spatial/sf”)</li>
+<li><p>Use <code>pacman</code> to manage the R packages</p></li>
+<li><p>Using <code>packman</code> package enables us to install and load a package without typing <code>install.packges()</code> at Console on your RStudio</p></li>
+<li><p>You need to type the following command at Console on your RStudio</p></li>
 </ul>
-<p><strong>sf</strong> package installation in Windows OS is straight frward. And the above codes should be sufficient to install {sf}. However, in MacOS and Linux (Ubuntu/Fedora), some additional steps are necessary.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>install.packages("pacman")</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
-<li>For MacOS</li>
+<li>The installation of necessary R packages:</li>
 </ul>
-<p>– First we need to install {gdal} and the easiest way to install {gdal} is using Homebrew.</p>
-<pre><code>brew install pkg-config
-brew install gdal</code></pre>
-<p>– Next we need to install {sf} by using following command.</p>
-<pre><code>install.packages("sf", type = "source", configure.args = "--with-proj-lib=$(brew --prefix)/lib/")</code></pre>
-<ol start="2" type="1">
-<li><strong>{raster}</strong> [for raster data]</li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“raster”)</li>
-<li>GitHub: remotes::install_github(“rspatial/raster”)</li>
-</ul>
-<ol start="3" type="1">
-<li><strong>{shapefiles}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“shapefiles”)</li>
-</ul>
-<ol start="4" type="1">
-<li><strong>{ncdf4}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“ncdf4”)</li>
-<li>GitHub: devtools::install_github(“mdsumner/ncdf4”)</li>
-</ul>
-<ol start="5" type="1">
-<li><strong>{sp}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“sp”, dependencies=TRUE)</li>
-<li>GitHub: devtools::install_github(“edzer/sp”)</li>
-</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(sf, tidyverse, rnaturalearth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="cartography-and-data-visualization" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="cartography-and-data-visualization"><span class="header-section-number">1.2.2</span> Cartography and data visualization</h3>
-<ol type="1">
-<li><strong>{tidyverse}</strong> [Includes the packages {ggplot2}, {dplyr}, {tidyr}, {readr}, {purrr}, {tibble}, {stringr}, {forcats}]</li>
-</ol>
+<section id="using-sf-package-to-make-map" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="using-sf-package-to-make-map"><span class="header-section-number">1.3</span> Using <code>sf</code> package to make map</h2>
 <ul>
-<li>CRAN: install.packages(“tidyverse”)</li>
-<li>GitHub: pak::pak(“tidyverse/tidyverse”)</li>
+<li>Create data for world</li>
 </ul>
-<ol start="2" type="1">
-<li><strong>{RColorBrewer}</strong></li>
-</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">"small"</span>, <span class="at">returnclass =</span> <span class="st">"sf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
-<li>CRAN: install.packages(“RColorBrewer”)</li>
-<li>GitHub: devtools::install_github(“cran/RColorBrewer”)</li>
+<li>First we use the familiar ggplot2 syntax. Like in any other ggplot, we have an x and a y axis, though in this case the correspond to longitude and latitude. Knowing this, we can use other ggplot2 commands to make our map more complex. Below we draw a horizontal line where the <code>yintercept</code> is at the equator.</li>
 </ul>
-<ol start="3" type="1">
-<li><strong>{viridis}</strong></li>
-</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>world <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture_1_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <ul>
-<li>CRAN: install.packages(“viridis”)</li>
-<li>GitHub: devtools::install_github(“sjmgarnier/viridis”)</li>
+<li>World map with income groups</li>
 </ul>
-<ol start="4" type="1">
-<li><strong>{tmap}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“tmap”)</li>
-<li>GitHub: pak::pak(“r-tmap/tmap”)</li>
-</ul>
-<ol start="5" type="1">
-<li><strong>{leaflet}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“leaflet”)</li>
-<li>GitHub: devtools::install_github(“rstudio/leaflet”)</li>
-</ul>
-<ol start="6" type="1">
-<li><strong>{mapview}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“mapview”)</li>
-<li>GitHub: remotes::install_github(“r-spatial/mapview”)</li>
-</ul>
-<ol start="7" type="1">
-<li><strong>{cartography}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“cartography”)</li>
-<li>GitHub: remotes::install_github(“riatelab/cartography”)</li>
-</ul>
-<ol start="8" type="1">
-<li><strong>{ggmap}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“ggmap”)</li>
-<li>GitHub: remotes::install_github(“dkahle/ggmap”)</li>
-</ul>
-<ol start="9" type="1">
-<li><strong>{rayshader}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“rayshader”)</li>
-<li>GitHub: devtools::install_github(“tylermorganwall/rayshader”)</li>
-</ul>
-<ol start="10" type="1">
-<li><strong>{geojsonio}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“geojsonio”)</li>
-<li>GitHub: devtools::install_github(“ropensci/geojsonio”)</li>
-</ul>
-<ol start="11" type="1">
-<li><strong>{shinyjs}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“shinyjs”)</li>
-<li>GitHub: remotes::install_github(“daattali/shinyjs”)</li>
-</ul>
-<ol start="12" type="1">
-<li><strong>{GGally}</strong> [Extends {ggplot2} by adding several functions to reduce the complexity of combining geometric objects with transformed data]</li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“GGally”)</li>
-<li>GitHub: devtools::install_github(“ggobi/ggally”)</li>
-</ul>
-<ol start="13" type="1">
-<li><strong>{grid}</strong> [A set of graphical functions which support a great deal of flexibility in the layout of graphics]</li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“grid”)</li>
-<li>GitHub: devtools::install_github(“cran/grid”)</li>
-</ul>
-<ol start="14" type="1">
-<li><strong>{gridExtra}</strong> [Provides a number of user-level functions to work with “grid” graphics, notably to arrange multiple grid-based plots on a page, and draw tables]</li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“gridExtra”)</li>
-<li>GitHub: devtools::install_github(“cran/gridExtra”)</li>
-</ul>
-<ol start="15" type="1">
-<li><strong>{cartogram}</strong> [Construct continuous and non-contiguous area cartograms]</li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“cartogram”)</li>
-<li>GitHub: devtools::install_github(“sjewo/cartogram”)</li>
-</ul>
-<ol start="16" type="1">
-<li><strong>{visNetwork}</strong> [Use vis.js library for network visualization]</li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“visNetwork”)</li>
-<li>GitHub: devtools::install_github(“datastorm-open/visNetwork”)</li>
-</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>world <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income_grp =</span> <span class="fu">factor</span>(income_grp, <span class="at">ordered =</span> T)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> income_grp)) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Income Group:"</span>) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">nrow=</span><span class="dv">2</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture_1_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="spatial-statistics" class="level3" data-number="1.2.3">
-<h3 data-number="1.2.3" class="anchored" data-anchor-id="spatial-statistics"><span class="header-section-number">1.2.3</span> Spatial statistics</h3>
-<ol type="1">
-<li><strong>{spatial}</strong></li>
-</ol>
+<section id="using-shapefile-to-make-map" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="using-shapefile-to-make-map"><span class="header-section-number">1.4</span> Using <code>Shapefile</code> to make map</h2>
 <ul>
-<li>GitHub: remotes::install_github(“rspatial/rspatial”)</li>
+<li>First we will download the available shapefile of Japan from following website:</li>
 </ul>
-<ol start="2" type="1">
-<li><strong>{spatstat}</strong></li>
-</ol>
+<p>https://data.humdata.org/dataset/cod-ab-jpn?</p>
 <ul>
-<li>CRAN: install.packages(“spatstat”)</li>
-<li>GitHub: remotes::install_github(“spatstat/spatstat”)</li>
+<li><p>Save the downloaded data into your GIS project inside a folder name <code>data</code>.</p></li>
+<li><p>We will read the shapefile and provide a name <code>shapefile_jpn</code>.</p></li>
+<li><p>We will plot the shapefile named <code>shapefile_jpn</code>.</p></li>
 </ul>
-<ol start="3" type="1">
-<li><strong>{gstat}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“gstat”)</li>
-<li>GitHub: remotes::install_github(“r-spatial/gstat”)</li>
-</ul>
-<ol start="4" type="1">
-<li><strong>{spdep}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“spdep”, repos=“http://R-Forge.R-project.org”)</li>
-<li>GitHub: devtools::install_github(“r-spatial/spdep”)</li>
-</ul>
-<ol start="5" type="1">
-<li><p><strong>{geoshape}</strong></p></li>
-<li><p><strong>{ggspatial}</strong></p></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“ggspatial”)</li>
-<li>GitHub: remotes::install_github(“paleolimbot/ggspatial”)</li>
-</ul>
-<ol start="7" type="1">
-<li><strong>{spdep}</strong> [A collection of functions to create spatial weights matrix objects from polygon]</li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“spdep”)</li>
-<li>GitHub: devtools::install_github(“r-spatial/spdep”)</li>
-</ul>
-<ol start="8" type="1">
-<li><strong>{geogrid}</strong> [Turn geospatial polygons into regular or hexagonal grids]</li>
-</ol>
-<ul>
-<li>GitHub: devtools::install_github(“jbaileyh/geogrid”)</li>
-</ul>
-<ol start="9" type="1">
-<li><strong>{GISTools}</strong> [Some further GIS capabilities for R]</li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“GISTools”)</li>
-</ul>
-<ol start="10" type="1">
-<li><strong>{RgoogleMaps}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“RgoogleMaps”)</li>
-<li>GitHub: devtools::install_github(“cran/RgoogleMaps”)</li>
-</ul>
-</section>
-<section id="data-sources" class="level3" data-number="1.2.4">
-<h3 data-number="1.2.4" class="anchored" data-anchor-id="data-sources"><span class="header-section-number">1.2.4</span> Data sources</h3>
-<ol type="1">
-<li><strong>{OpenStreetMap}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“OpenStreetMap”)</li>
-<li>GitHub: devtools::install_github(“cran/OpenStreetMap”)</li>
-</ul>
-<ol start="2" type="1">
-<li><strong>{rnaturalearth}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“rnaturalearth”, dependencies = TRUE)</li>
-<li>GitHub: devtools::install_github(“ropensci/rnaturalearth”)</li>
-</ul>
-<ol start="3" type="1">
-<li><strong>{rnaturalearthdata}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“rnaturalearthdata”)</li>
-<li>GitHub: devtools::install_github(“ropensci/rnaturalearthdata”)</li>
-</ul>
-<ol start="4" type="1">
-<li><strong>{rastervis}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“rasterVis”)</li>
-<li>GitHub: devtools::install_github(“oscarperpinan/rasterVis”)</li>
-</ul>
-<ol start="5" type="1">
-<li><strong>{maps}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“maps”)</li>
-</ul>
-<ol start="6" type="1">
-<li><strong>{spData}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“spData”)</li>
-<li>GitHub: devtools::install_github(“nowosad/spData”)</li>
-</ul>
-<ol start="7" type="1">
-<li><strong>{rgeos}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“rgeos”, repos=“http://R-Forge.R-project.org”)</li>
-<li>GitHub: devtools::install_github(“cran/rgeos”)</li>
-</ul>
-<ol start="8" type="1">
-<li><strong>{jpndistrict}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“jpndistrict”)</li>
-<li>GitHub: devtools::install_github(“uribo/jpndistrict”, force=TRUE)</li>
-</ul>
-<ol start="9" type="1">
-<li><strong>{countrycode}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“countrycode”)</li>
-<li>GitHub: install_github(‘vincentarelbundock/countrycode’)</li>
-</ul>
-<ol start="10" type="1">
-<li><strong>{tmaptools}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“tmaptools”)</li>
-<li>GitHub: devtools::install_github(“mtennekes/tmaptools”)</li>
-</ul>
-<ol start="11" type="1">
-<li><strong><code>DT</code></strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“DT”)</li>
-<li>GitHub: remotes::install_github(“rstudio/DT”)</li>
-</ul>
-<ol start="12" type="1">
-<li><strong>{usmap}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“usmap”)</li>
-<li>GitHub: devtools::install_github(“pdil/usmap”)</li>
-</ul>
-<ol start="13" type="1">
-<li><strong>{tigris}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“tigris”)</li>
-<li>GitHub: devtools::install_github(“walkerke/tigris”)</li>
-</ul>
-<ol start="14" type="1">
-<li><strong>{scales}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“scales”)</li>
-<li>GitHub: devtools::install_github(“r-lib/scales”)</li>
-</ul>
-<ol start="15" type="1">
-<li><strong>{ggrepel}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“ggrepel”)</li>
-<li>GitHub: devtools::install_github(“slowkow/ggrepel”)</li>
-</ul>
-<ol start="16" type="1">
-<li><strong>{tidycensus}</strong></li>
-</ol>
-<ul>
-<li>CRAN: install.packages(“tidycensus”)</li>
-<li>GitHub: remotes::install_github(“walkerke/tidycensus”)</li>
-</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>shapefile_jpn <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data/jpn_shp_adm/jpn_admbnda_adm1_2019.shp"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(shapefile_jpn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture_1_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -890,7 +516,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = true;
+  const darkModeDefault = false;
   let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
@@ -980,8 +606,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1092,7 +716,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -1325,8 +948,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./lecture_2.html" class="pagination-link" aria-label="Processing Shapefiles">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Processing Shapefiles</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./lecture_2.html" class="pagination-link" aria-label="Processing shapefiles">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Processing shapefiles</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

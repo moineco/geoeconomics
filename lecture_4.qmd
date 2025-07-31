@@ -1,114 +1,132 @@
-# Income distribution of nations
+# World and continents with `sf`
 
-List of R packages used in this section:
-
-```{r message=FALSE, warning=FALSE}
-#| code-fold: false
-pacman::p_load(rnaturalearth, sf, tidyverse)
-```
-
--   We use free data on world map: Natural Earth
-
--   Using `rnaturalearth` package, we get the data necessary to draw a world map
-
--   Name the data world_map
-
-```{r message=FALSE, warning=FALSE}
-#| code-fold: false
-global_map <- ne_countries(scale = "small", returnclass = "sf")
-```
-
--   Show the list of variables included global_map
-
-```{r message=FALSE, warning=FALSE}
-#| code-fold: false
-names(global_map)
-```
-
--   We see 169 variables
--   Check the class of global_map
--   If you want to see the data of GDP for each country, use following code:
+We need the following packages to deal with this lecture:
 
 ```{r}
 #| code-fold: false
-global_map %>% 
-select(sovereignt, gdp_md, gdp_year) %>% 
-DT::datatable()
+library(sf)
+library(tidyverse)
+library(rnaturalearth)
+library(rnaturalearthdata)
 ```
 
--   World is a GeoDataFrame with the following columns:
+-   Alternatively, you can use the `pacman` package manager to load necessary R packages from below:
 
-`pop_est`: Contains a population estimate for the country
+```{txt}
+pacman::p_load(sf, tidyverse, rnaturalearth)
+```
 
-`continent`: The country's continent
+The above command will install all dependencies required to reproduce the entire lecture
 
-`name_en`: The country's name in English
+-   Use the package `sf`
 
-`iso_a3`: The country's 3 letter abbreviation (we made this the index)
-
-`gdp_md`: A country's GDP in million dollar
-
-`geometry`: A POLYGON for each country (we will learn more about these soon)
+-   We will use the world dataset provided by `spData`, to show what sf objects are and how they work. `world` is an 'sf data frame' containing spatial and attribute columns, the names of which are returned by the function names() (the last column in this example contains the geographic information):
 
 ```{r}
 #| code-fold: false
-class(global_map)
+#| warning: false
+#| message: false
+world <- ne_countries(scale = "medium", returnclass = "sf")
+class(world)
+names(world)
 ```
 
--   global_map has two classes: sf & data.frame
+-   Make sophistocated and professional looking map of World
 
-## Global GDP map
-
-```{r message=FALSE, warning=FALSE}
+```{r}
 #| code-fold: false
-global_map %>% 
-  ggplot() +
-  geom_sf(aes(fill = gdp_md)) +
-  scale_fill_gradient(low = "white", high = "green") +
-  labs(fill = "GDP") +
-  theme_minimal(base_family = "HiraKakuProN-W3") +
-  theme(legend.position = "bottom")
+#| warning: false
+#| message: false
+world.plot = ggplot() +               
+  geom_sf(data = world)
+world.plot 
 ```
 
--   Let's change the color and the position of legend.
+-   We will begin to get to know the basics of geographic data in R by using the "world" dataset in the package.
 
-```{r message=FALSE, warning=FALSE}
+-   First let's see what information is in the "world" dataset. Get the names of the variables in the world dataset.
+
+-   Filter the population and GDP data from World map for better understanding the data structure.
+
+-   Plot the GDP percapita map of the world:
+
+-   Prepare Africa map by highlighting Zambia
+
+```{r}
 #| code-fold: false
-global_map %>% 
-  ggplot() +
-  geom_sf(aes(fill = gdp_md)) +
-  scale_fill_gradient(low = "gray", high = "blue") +
-  labs(fill = "GDP_2019") +
-  theme_minimal(base_family = "HiraKakuProN-W3") +
-  theme(legend.position = "left")
+#| warning: false
+#| message: false
+# Select just the continent of Africa
+africa <- world %>% 
+  filter(region_un %in% "Africa")
 ```
 
-## Regional GDP map
+-   Check the type of data
 
--   GDP of European countries in 2019
-
-```{r message=FALSE, warning=FALSE}
+```{r}
 #| code-fold: false
-global_map %>% 
-  ggplot() +
-  geom_sf(aes(fill = gdp_md)) +
-  scale_fill_gradient(low = "white", high = "green") +
-  labs(fill = "GDP_Europe") +
-  coord_sf(xlim = c(-10, 45), ylim = c(35, 60)) +
-  theme_minimal(base_family = "HiraKakuProN-W3") +
-  theme(legend.position = "left")
+#| warning: false
+#| message: false
+class(africa)
+names(africa)
 ```
 
--   GDP of African countries in 2019
+-   Make professional looking map of `Asia`
 
-```{r message=FALSE, warning=FALSE}
+```{r}
 #| code-fold: false
-global_map %>% 
-  ggplot() +
-  geom_sf(aes(fill = gdp_md)) +
-  scale_fill_gradient(low = "white", high = "green") +
-  labs(fill = "GDP_Africa") +
-  coord_sf(xlim = c(-30, 60), ylim = c(-40, 40)) +
-  theme_minimal(base_family = "HiraKakuProN-W3") +
-  theme(legend.position = "left")
+#| warning: false
+#| message: false
+asia <- world[which(world$continent == "Asia"),]
+asia.plot = ggplot() +               
+  geom_sf(data = asia)  
+asia.plot 
+```
+
+-   Make professional looking map of `Africa`
+
+```{r}
+#| code-fold: false
+#| warning: false
+#| message: false
+africa <- world[which(world$continent == "Africa"),]
+africa.plot = ggplot() +               
+  geom_sf(data = africa)  
+africa.plot 
+```
+
+-   Make professional looking map of `Europe`
+
+```{r}
+#| code-fold: false
+#| warning: false
+#| message: false
+europe <- world[which(world$continent == "Europe"),]
+ggplot(europe) +
+  geom_sf() +
+  coord_sf(xlim = c(-25,50), ylim = c(35,70), expand = FALSE)
+```
+
+-   Make professional looking map of `Oceania`
+
+```{r}
+#| code-fold: false
+#| warning: false
+#| message: false
+oceania <- world[which(world$continent == "Oceania"),]
+ggplot(oceania) +
+  geom_sf() +
+  coord_sf(xlim = c(105,180), ylim = c(-50,0), expand = FALSE)
+```
+
+-   Make professional looking map of `North America`
+
+```{r}
+#| code-fold: false
+#| warning: false
+#| message: false
+north_america <- world[which(world$continent == "North America"),]
+ggplot(north_america) +
+  geom_sf() +
+  coord_sf(xlim = c(-180,-15), ylim = c(0,90), expand = FALSE)
 ```

@@ -1,4 +1,4 @@
-# Population density of Bangladesh
+# Administrative regions of Japan
 
 -   Load all necessary packages
 
@@ -8,225 +8,100 @@ library(tidyverse)
 library(sf)
 ```
 
--   Alternatively load all necessary packages by using `pacman` package manager
-
-```{txt}
-#| code-fold: false
-pacman::p_load(tidyverse, stringr, sf, RColorBrewer, leaflet, ggplot2, ggthemes, patchwork, plotly, ggrepel)
-```
-
-Load the `shapefile` of Bangladesh admin level 1 which represents the divisions.
+-   Load the `shapefile` of Japan's administrative divisions
 
 ```{r, results='hide'}
 #| code-fold: false
-bd1_shp <- st_read("data/shapefile/bd_adm1_shp/bgd_admbnda_adm1_bbs_20201113.shp")
-bd2_shp <- st_read("data/shapefile/bd_adm2_shp/bgd_admbnda_adm2_bbs_20201113.shp")
-bd3_shp <- st_read("data/shapefile/bd_adm3_shp/bgd_admbnda_adm3_bbs_20201113.shp")
+#| message: false
+jp0_shp <- st_read("data/shapefile/jp_adm0_shp/jpn_admbnda_adm0_2019.shp")
+jp1_shp <- st_read("data/shapefile/jp_adm1_shp/jpn_admbnda_adm1_2019.shp") 
+jp2_shp <- st_read("data/shapefile/jp_adm2_shp/jpn_admbnda_adm2_2019.shp") 
 ```
 
--   Observe the data inside the shape file
+-   Observe the data inside the shape file of `adm0`
 
 ```{r, results='hide'}
 #| code-fold: false
-bd1_shp
+#| message: false
+jp0_shp # for admin level 0
+jp1_shp # for admin level 1
+jp2_shp # for admin level 2
 ```
+
+-   Check the geographic coordinate system of your `adm0` shapefile
 
 ```{r, results='hide'}
 #| code-fold: false
-bd2_shp
+#| message: false
+st_crs(jp0_shp) # for admin level 0
+st_crs(jp1_shp) # for admin level 1
+st_crs(jp2_shp) # for admin level 2
 ```
 
-```{r, results='hide'}
-#| code-fold: false
-bd3_shp
-```
-
--   Check the geographic coordinate system of your shapefile
-
-```{r, results='hide'}
-#| code-fold: false
-st_crs(bd1_shp)
-```
-
-```{r, results='hide'}
-#| code-fold: false
-st_crs(bd2_shp)
-```
-
-```{r, results='hide'}
-#| code-fold: false
-st_crs(bd3_shp)
-```
-
--   Plot the map and show the name of the divisions
+-   Plot the map of Japan admin 0
 
 ```{r, warning=FALSE}
 #| code-fold: false
-ggplot(bd1_shp) +
-  geom_sf() + 
-  geom_sf_text(aes(label = ADM1_EN), size = 2) 
+ggplot(jp0_shp) +
+  geom_sf()
 ```
 
-```{r, warning=FALSE}
-#| code-fold: false
-ggplot(bd2_shp) +
-  geom_sf() 
-```
-
-```{r, warning=FALSE}
-#| code-fold: false
-ggplot(bd3_shp) +
-  geom_sf() 
-```
-
--   Prepare a custom theme to make the visualization of this map better than previous default version
+-   Change the boundary color and fill it with white color.
 
 ```{r}
-#| code-fold: false
-theme_custom_map <- function(base_size = 11,
-                             base_family = "",
-                             base_line_size = base_size / 22,
-                             base_rect_size = base_size / 22) {
-    theme_bw(base_size = base_size, 
-             base_family = base_family,
-             base_line_size = base_line_size) %+replace%
-        theme(
-            axis.title = element_blank(), 
-            axis.text = element_blank(),
-            axis.ticks = element_blank(),
-            complete = TRUE
-        )
-}
+ggplot(jp0_shp) +
+    geom_sf(color = "blue", fill = "white", lwd = 0.07)
 ```
 
-```{r, warning=FALSE}
-#| code-fold: false
-ggplot(bd1_shp) +
-  geom_sf() +
-  geom_sf_text(aes(label = ADM1_EN), size = 2) +
-  theme_custom_map()
-```
-
-```{r, warning=FALSE}
-#| code-fold: false
-ggplot(bd2_shp) +
-  geom_sf() +
-   theme_custom_map()
-```
-
-```{r, warning=FALSE}
-#| code-fold: false
-ggplot(bd3_shp) +
-  geom_sf() +
-   theme_custom_map()
-```
-
--   Import population data of all divisions of Bangladesh
+-   We can try the `aes()` function to improve the visual of the ADM0. Aesthetics are used to bind plotting parameters to your data. The `aes()` function defines which variables you want to plot, and which plot parameters to map them to.
 
 ```{r}
-#| code-fold: false
-bd1_pop <- read.csv("data/csv/bd_pop_adm1_2022.csv")
-bd2_pop <- read.csv("data/csv/bd_pop_adm2_2022.csv")
-bd3_pop <- read.csv("data/csv/bd_pop_adm3_2022.csv")
+ggplot(jp0_shp) +
+    geom_sf(aes(fill = ADM0_PCODE),  show.legend = FALSE)
 ```
 
--   Merge the shapefile and csv data-set
-
-```{r, results='hide'}
-#| code-fold: false
-bd1_shp_pop <- merge(bd1_shp, bd1_pop, by=c("ADM1_PCODE"))
-bd1_shp_pop <- st_make_valid(bd1_shp_pop)
-glimpse(bd1_shp_pop)
-```
-
-```{r, results='hide'}
-#| code-fold: false
-bd2_shp_pop <- merge(bd2_shp, bd2_pop, by=c("ADM2_PCODE"))
-bd2_shp_pop <- st_make_valid(bd2_shp_pop)
-glimpse(bd2_shp_pop)
-```
-
-```{r, results='hide'}
-#| code-fold: false
-bd3_shp_pop <- merge(bd3_shp, bd3_pop, by=c("ADM3_PCODE"))
-bd3_shp_pop <- st_make_valid(bd3_shp_pop)
-glimpse(bd3_shp_pop)
-```
-
--   Draw the map ADM1
-
-```{r}
-#| code-fold: false
-#| warning: false
-ggplot(bd1_shp_pop) +
-    geom_sf(aes(fill=F_TL), color = "white", lwd = 0.07) +
-    geom_sf_text(aes(label = ADM1_EN), size = 2) +
-    scale_fill_viridis_c(option = "magma", name = "Population")
-```
-
--   By loading additional package, we can draw for informative maps
-
-```{txt}
-#| code-fold: false
-ggplot(bd1_shp_pop) +
-    geom_sf(aes(fill=F_TL), color = "white", lwd = 0.07) +
-    geom_sf_text(aes(label = ADM1_EN), size = 2) +
-    scale_fill_viridis_c(option = "magma", name = "Population") +
-    theme_map() + 
-    theme(legend.direction="horizontal") +
-     labs(title = "Divisions of Bangladesh", 
-         subtitle = "Population density of Bangladesh", 
-         caption = "Source of data: BBS")
-```
-
--   Draw the map ADM2
-
-```{r}
-#| code-fold: false
-#| warning: false
-ggplot(bd2_shp_pop) +
-    geom_sf(aes(fill=F_TL), color = "white", lwd = 0.07) +
-    #geom_sf_text(aes(label = ADM2_EN), size = 2) +
-    scale_fill_viridis_c(option = "magma", name = "Population")
-```
-
--   By loading additional package, we can draw for informative maps
-
-```{txt}
-#| code-fold: false
-ggplot(bd2_shp_pop) +
-    geom_sf(aes(fill=F_TL), color = "white", lwd = 0.07) +
-    #geom_sf_text(aes(label = ADM2_EN), size = 2) +
-    scale_fill_viridis_c(option = "magma", name = "Population") +
-    theme_map() + 
-    theme(legend.direction="horizontal") +
-     labs(title = "Districts of Bangladesh", 
-         subtitle = "Population density of Bangladesh", 
-         caption = "Source of data: BBS")
-```
-
--   Draw the map ADM3
+-   Plot the map of Japan admin 1
 
 ```{r, warning=FALSE}
 #| code-fold: false
-#| warning: false
-ggplot(bd3_shp_pop) +
-    geom_sf(aes(fill=F_TL), color = "white", lwd = 0.07) +
-    #geom_sf_text(aes(label = ADM2_EN), size = 2) +
-    scale_fill_viridis_c(option = "magma", name = "Population")
+ggplot(jp1_shp) +
+  geom_sf()
 ```
 
--   By loading additional package, we can draw for informative maps
+-   Lets change the color of boundary and fill.
 
-```{txt}
+```{r}
+ggplot(jp1_shp) +
+    geom_sf(color = "blue",  fill = "white", lwd = 0.07)
+```
+
+-   We can try the `aes()` function to improve the visual of the ADM1.
+
+```{r}
+ggplot(jp1_shp) +
+    geom_sf(aes(fill = ADM1_PCODE),  show.legend = FALSE)
+```
+
+-   Plot the map of Japan admin 2
+
+```{r, warning=FALSE}
 #| code-fold: false
-ggplot(bd3_shp_pop) +
-    geom_sf(aes(fill=F_TL), color = "white", lwd = 0.07) +
-    #geom_sf_text(aes(label = ADM2_EN), size = 2) +
-    scale_fill_viridis_c(option = "magma", name = "Population") +
-    theme_map() + 
-    theme(legend.direction="horizontal") +
-     labs(title = "Upazila/Thana of Bangladesh", 
-         subtitle = "Population density of Bangladesh", 
-         caption = "Source of data: BBS")
+ggplot(jp2_shp) +
+  geom_sf()
+```
+
+-   Lets change the color of boundary and fill
+
+```{r}
+ggplot(jp2_shp) +
+    geom_sf(color = "blue",  fill = "white", lwd = 0.07)
+```
+
+-   
+
+    -   We can try the `aes()` function to improve the visual of the ADM2.
+
+```{r}
+ggplot(jp2_shp) +
+    geom_sf(aes(fill = ADM2_PCODE),  show.legend = FALSE)
 ```
