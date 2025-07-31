@@ -11,8 +11,7 @@ pacman::p_load(tidyverse, maps, jpndistrict, countrycode)
 
 -   As of January 25, 2021, `jpndistrict` has been removed from CRAN, so if you really want to install it, please install it directly from the github repository. To install, please use the following code in your `Console`:
 
-```{txt}
-#| codcode-fold: false
+```default
 install.packages("remotes")
 remotes::install_github("uribo/jpndistrict")
 ```

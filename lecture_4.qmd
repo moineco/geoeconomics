@@ -1,4 +1,4 @@
-# World and continents with `sf`
+# World and continents with sf
 
 We need the following packages to deal with this lecture:
 
@@ -12,7 +12,7 @@ library(rnaturalearthdata)
 
 -   Alternatively, you can use the `pacman` package manager to load necessary R packages from below:
 
-```{txt}
+```default
 pacman::p_load(sf, tidyverse, rnaturalearth)
 ```
 

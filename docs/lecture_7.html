@@ -172,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">World and continents with <code>sf</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">World and continents with sf</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -214,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture_11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Europian regions with <code>naturalearth</code> data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Europian regions with naturalearth data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -493,9 +493,7 @@ Geodetic CRS:  WGS 84
 6 2015 Alakanuk 62.68889 -164.6153        777 POINT (-164.6153 62.68889)</code></pre>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pop_joined &lt;- st_join(pop_4326, ak_regions_3338, join = st_within)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pop_joined &lt;- st_join(pop_4326, ak_regions_3338, join = st_within)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>This gives an error!</li>
 </ul>
@@ -568,7 +566,7 @@ Projected CRS: NAD83 / Alaska Albers
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lecture_7_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lecture_7_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -585,7 +583,7 @@ Projected CRS: NAD83 / Alaska Albers
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lecture_7_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lecture_7_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -602,14 +600,12 @@ Projected CRS: NAD83 / Alaska Albers
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lecture_7_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lecture_7_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>write_sf(pop_region_3338, "shapefiles/ak_regions_population.shp", delete_layer = TRUE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>write_sf(pop_region_3338, "shapefiles/ak_regions_population.shp", delete_layer = TRUE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Visualize with ggplot. It now has integrated functionality to plot sf objects using geom_sf(). We can plot sf objects just like regular data.frames using geom_sf.</li>
 </ul>
@@ -622,7 +618,7 @@ Projected CRS: NAD83 / Alaska Albers
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lecture_7_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lecture_7_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -692,7 +688,7 @@ PROJCRS["Albers",
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lecture_7_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lecture_7_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

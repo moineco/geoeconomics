@@ -10,7 +10,7 @@ library(sf)
 
 -   Alternatively load all necessary packages by using `pacman` package manager
 
-```{txt}
+```default
 #| code-fold: false
 pacman::p_load(tidyverse, stringr, sf, RColorBrewer, leaflet, ggplot2, ggthemes, patchwork, plotly, ggrepel)
 ```
@@ -166,7 +166,7 @@ ggplot(bd1_shp_pop) +
 
 -   By loading additional package, we can draw for informative maps
 
-```{txt}
+```default
 #| code-fold: false
 ggplot(bd1_shp_pop) +
     geom_sf(aes(fill=F_TL), color = "white", lwd = 0.07) +
@@ -218,7 +218,7 @@ ggplot(bd3_shp_pop) +
 
 -   By loading additional package, we can draw for informative maps
 
-```{txt}
+```default
 #| code-fold: false
 ggplot(bd3_shp_pop) +
     geom_sf(aes(fill=F_TL), color = "white", lwd = 0.07) +

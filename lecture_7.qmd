@@ -106,7 +106,7 @@ pop_4326 <- st_as_sf(pop,
 head(pop_4326)
 ```
 
-```{txt}
+```default
 pop_joined <- st_join(pop_4326, ak_regions_3338, join = st_within)
 ```
 
@@ -173,7 +173,7 @@ pop_mgmt_3338 <- pop_region_3338 %>%
 plot(pop_mgmt_3338["total_pop"])
 ```
 
-```{txt}
+```default
 write_sf(pop_region_3338, "shapefiles/ak_regions_population.shp", delete_layer = TRUE)
 ```
 
