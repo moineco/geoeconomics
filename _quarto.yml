@@ -3,7 +3,7 @@ project:
   output-dir: docs
    
 book:
-  title: "Geoinformation with R"
+  title: "Geoeconomics with R"
   author: "Moinul Islam"
   date: today
   chapters:
@@ -27,7 +27,7 @@ bibliography: geoeconomics.bib
 format:
   html:
     theme: 
-       light: journal
+       light: classic
        dark: darkly
   pdf:
     documentclass: scrreprt
